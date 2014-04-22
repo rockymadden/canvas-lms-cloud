@@ -1,0 +1,6 @@
+---
+
+- include: application.yml
+- include: cache.yml
+- include: database.yml
+- include: proxy.yml

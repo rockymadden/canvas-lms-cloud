@@ -1,0 +1,37 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Loopback allows everything.
+-A INPUT -i lo -j ACCEPT
+-A FORWARD -i lo -j ACCEPT
+
+# Ethernet allows established/related but does not allow invalid.
+-A INPUT -i eth+ -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -i eth+ -m state --state INVALID -j DROP
+
+# Ethernet allows ping.
+-A INPUT -i eth+ -m state --state NEW -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+# Ethernet allows everything from admins.
+{% for admin in admins %}
+-A INPUT -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
+-A FORWARD -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
+{% endfor %}
+
+# Ethernet allows everything from co-hosts.
+{% for host in groups['all'] %}
+-A INPUT -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
+-A FORWARD -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
+{% endfor %}
+
+# Ethernet does not allow internal IPs.
+-A INPUT -i eth+ -s 10.0.0.0/8 -j DROP
+-A INPUT -i eth+ -s 172.16.0.0/12 -j DROP
+-A INPUT -i eth+ -s 192.168.0.0/16 -j DROP
+-A INPUT -i eth+ -s 224.0.0.0/4 -j DROP
+-A INPUT -i eth+ -s 240.0.0.0/5 -j DROP
+-A INPUT -i eth+ -s 127.0.0.0/8 -j DROP
+
+COMMIT

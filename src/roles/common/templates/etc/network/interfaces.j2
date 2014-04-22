@@ -1,0 +1,10 @@
+auto lo
+iface lo inet loopback
+
+auto {{ ansible_default_ipv4.interface }}
+iface {{ ansible_default_ipv4.interface }} inet static
+address {{ ansible_default_ipv4.address }}
+netmask {{ ansible_default_ipv4.netmask }}
+gateway {{ ansible_default_ipv4.gateway }}
+network {{ ansible_default_ipv4.network }}
+dns-nameservers 8.8.8.8 8.8.4.4

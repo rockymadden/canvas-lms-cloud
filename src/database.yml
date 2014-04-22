@@ -1,0 +1,6 @@
+---
+
+- hosts: database
+  remote_user: root
+  roles:
+    - common

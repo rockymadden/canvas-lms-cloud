@@ -1,0 +1,6 @@
+---
+
+- hosts: cache
+  remote_user: root
+  roles:
+    - common

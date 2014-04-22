@@ -1,0 +1,17 @@
+---
+
+- name: reload iptables-persistent service
+  service: name=iptables-persistent state=reloaded
+
+- name: reload sysctl configuration
+  command: /sbin/sysctl -p
+
+- name: restart networking service
+  service: name=networking state=restarted
+
+- name: restart ntp service
+  service: name=ntp state=restarted
+
+- name: restart ssh service
+  service: name=ssh state=restarted
+

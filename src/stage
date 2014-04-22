@@ -1,0 +1,13 @@
+[stage-application]
+
+[stage-cache]
+
+[stage-database]
+
+[stage-proxy]
+
+[stage:children]
+stage-application
+stage-cache
+stage-database
+stage-proxy
