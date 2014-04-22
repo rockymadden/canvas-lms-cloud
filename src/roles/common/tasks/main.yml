@@ -78,7 +78,7 @@
   notify: restart ssh service
   tags:
     - common
-    - sshd
+    - ssh
     - secure
 
 - name: setup sysctl configuration
