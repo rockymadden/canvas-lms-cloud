@@ -1,0 +1,87 @@
+---
+
+- name: install general library packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+     - imagemagick
+     - libcurl4-gnutls-dev
+     - libmysqlclient-dev
+     - libpq-dev
+     - libsqlite3-dev
+     - libxml2-dev
+     - libxmlsec1
+     - libxmlsec1-dev
+     - libxslt1-dev
+     - unzip
+     - zlib1g-dev
+  tags:
+    - application
+    - library
+
+- name: install python related packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+     - python
+     - python-software-properties
+  tags:
+    - application
+    - python
+
+- name: install java related packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+    - openjdk-7-jre
+  tags:
+    - application
+    - java
+
+- name: install ruby related packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+     - ruby1.9.1
+     - ruby1.9.1-dev
+     - rubygems1.9.1
+     - libhttpclient-ruby1.9.1
+     - irb1.9.1
+     - ruby-passenger
+  tags:
+    - application
+    - ruby
+
+- name: create gems directory
+  file: path=/usr/local/lib/gems/ state=directory owner=canvas group=canvas mode=0700
+
+- name: install javascript related packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+     - nodejs
+     - coffeescript
+  tags:
+    - application
+    - javascript
+
+- name: install apache related packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+     - apache2
+     - libapache2-mod-passenger
+  when: job_server is not defined or not job_server|bool
+  tags:
+    - application
+    - apache
+
+- name: enable apache rewrite mod
+  command: a2enmod rewrite
+  notify: restart apache service
+  when: job_server is not defined or not job_server|bool
+  tags:
+    - application
+    - apache
+
+- name: enable apache passenger mod
+  command: a2enmod passenger
+  notify: restart apache service
+  when: job_server is not defined or not job_server|bool
+  tags:
+    - application
+    - apache

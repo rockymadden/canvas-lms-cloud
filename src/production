@@ -1,5 +1,5 @@
 [dc0-application]
-virtualmachine.localhost
+vm-0.localhost job_server=false
 
 [dc1-application]
 
