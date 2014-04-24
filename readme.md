@@ -15,9 +15,72 @@ Operate a self-hosted private [Canvas LMS](https://github.com/instructure/canvas
 ## Requirements
 
 One or more Ubuntu 14.04 LTS servers with:
-* OpenSSH server installed
+* OpenSSH server installed and started
 * Basic network interface and hostname configured
 * SSH keys transferred
+
+## Ansible Playbook Usage
+
+Configure and deploy all production servers:
+```
+$ ansible-playbook -i production site.yml
+```
+
+---
+
+Configure and deploy all staging servers:
+```
+$ ansible-playbook -i stage site.yml
+```
+
+---
+
+Configure and deploy just production application servers:
+```
+$ ansible-playbook -i production application.yml
+```
+
+---
+
+Configure and deploy just production cache servers:
+```
+$ ansible-playbook -i production cache.yml
+```
+
+---
+Configure and deploy just production database servers:
+```
+$ ansible-playbook -i production database.yml
+```
+
+---
+Configure and deploy just production proxy servers:
+```
+$ ansible-playbook -i production proxy.yml
+```
+
+---
+
+Perform apt maintenance on all production servers:
+```
+$ ansible-playbook -i production apt.yml
+```
+
+---
+
+Perform apt maintenance on all production servers without rebooting:
+```
+$ ansible-playbook -i production apt.yml --skip-tags=reboot
+```
+
+---
+
+Perform apt maintenance on all production application servers:
+```
+$ ansible-playbook -i production apt.yml --limit=application
+```
+
+---
 
 ## License
 ```
