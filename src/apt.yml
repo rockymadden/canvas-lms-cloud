@@ -3,7 +3,6 @@
 - hosts: all
   remote_user: root
   tasks:
-
   - name: apt update
     apt: update_cache=yes
 
