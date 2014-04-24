@@ -1,50 +1,24 @@
 ---
 
-- name: apt update
-  apt: update_cache=yes
+- name: install build-essential
+  apt: pkg=build-essential state=latest update_cache=yes cache_valid_time=3600
   tags:
     - common
-    - apt
-
-- name: apt upgrade
-  apt: upgrade=dist
-  tags:
-    - common
-    - apt
-
-- name: reboot host
-  command: /sbin/shutdown -r now
-  tags:
-    - common
-    - apt
-
-- name: wait for host to be down
-  sudo: false
-  local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
-  tags:
-    - common
-    - apt
-
-- name: wait for host to be up
-  sudo: false
-  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
-  tags:
-    - common
-    - apt
+    - build
 
 - name: install git-core
-  apt: pkg=git-core state=latest
+  apt: pkg=git-core state=latest update_cache=yes cache_valid_time=3600
   tags:
     - common
     - git
 
 - name: install ntp
-  apt: pkg=ntp state=latest
+  apt: pkg=ntp state=latest update_cache=yes cache_valid_time=3600
   tags:
     - common
     - ntp
 
-- name: setup ntp configuration
+- name: configure ntp
   template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
   notify: restart ntp service
   tags:
@@ -52,13 +26,13 @@
     - ntp
 
 - name: install iptables-persistent
-  apt: pkg=iptables-persistent state=latest
+  apt: pkg=iptables-persistent state=latest update_cache=yes cache_valid_time=3600
   tags:
     - common
     - iptables
     - secure
 
-- name: setup iptables-persistent rules
+- name: configure iptables-persistent rules
   template: src=etc/iptables/rules.v4.j2 dest=/etc/iptables/rules.v4
   notify: reload iptables-persistent service
   tags:
@@ -66,14 +40,14 @@
     - iptables
     - secure
 
-- name: setup interfaces
+- name: configure interfaces
   template: src=etc/network/interfaces.j2 dest=/etc/network/interfaces
   notify: restart networking service
   tags:
     - common
     - interfaces
 
-- name: setup ssh configuration
+- name: configure ssh
   template: src=etc/ssh/sshd_config.j2 dest=/etc/ssh/sshd_config
   notify: restart ssh service
   tags:
@@ -81,7 +55,7 @@
     - ssh
     - secure
 
-- name: setup sysctl configuration
+- name: configure sysctl
   template: src=etc/sysctl.conf.j2 dest=/etc/sysctl.conf
   notify: reload sysctl configuration
   tags:
@@ -109,6 +83,18 @@
 
 - name: secure /var/tmp
   file: state=directory path=/var/tmp mode=1777 recurse=yes
+  tags:
+    - common
+    - secure
+
+- name: create canvas group
+  group: name=canvas
+  tags:
+    - common
+    - secure
+
+- name: create canvas user
+  user: name=canvas group=canvas
   tags:
     - common
     - secure

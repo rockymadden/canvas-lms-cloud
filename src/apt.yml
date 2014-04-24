@@ -1,0 +1,28 @@
+---
+
+- hosts: all
+  remote_user: root
+  tasks:
+
+  - name: apt update
+    apt: update_cache=yes
+
+  - name: apt upgrade
+    apt: upgrade=dist
+
+  - name: reboot host
+    command: /sbin/shutdown -r now
+    tags:
+      - reboot
+
+  - name: wait for host to be down
+    sudo: false
+    local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
+    tags:
+      - reboot
+
+  - name: wait for host to be up
+    sudo: false
+    local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+    tags:
+      - reboot

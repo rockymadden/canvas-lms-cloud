@@ -1,5 +1,5 @@
 ---
 
 admins:
-#  - name: System Administrator
-#    ipv4: 127.0.0.1
+  - name: host
+    ipv4: 10.211.55.2

@@ -15,10 +15,12 @@
 -A INPUT -i eth+ -m state --state NEW -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
 # Ethernet allows everything from admins.
+{% if admins is not none %}
 {% for admin in admins %}
 -A INPUT -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
 -A FORWARD -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
 {% endfor %}
+{% endif %}
 
 # Ethernet allows everything from co-hosts.
 {% for host in groups['all'] %}
