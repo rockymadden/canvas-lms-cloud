@@ -1,5 +1,5 @@
 # Canvas LMS Cloud
-Operate a self-hosted private [Canvas LMS](https://github.com/instructure/canvas-lms) cloud installation, powered by [Ansible](https://github.com/ansible/ansible).
+Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance.
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
