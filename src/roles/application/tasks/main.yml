@@ -49,7 +49,19 @@
     - ruby
 
 - name: create gems directory
-  file: path=/usr/local/lib/gems/ state=directory owner=canvas group=canvas mode=0700
+  file: path=/usr/local/lib/gems state=directory owner=canvas group=canvas mode=0700
+
+- name: configuring GEM_HOME environment variable
+  lineinfile:
+    dest=/etc/profile.d/env.sh
+    state=present
+    create=yes
+    regexp='^export GEM_HOME'
+    line='export GEM_HOME=/usr/local/lib/gems'
+    insertafter=EOF
+  tags:
+    - application
+    - ruby
 
 - name: install javascript related packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
