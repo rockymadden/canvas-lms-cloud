@@ -1,5 +1,5 @@
 # Canvas LMS Cloud
-Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance.
+Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance. Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. In such scenarios, a provider with DDoS mitigation is highly recommended (e.g. [SoYouStart](http://www.soyoustart.com/) or [OVH](https://www.ovh.com/)).
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
@@ -19,7 +19,7 @@ Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
 * Network interface and hostname configured
 * SSH key transferred
 
-## Firewall
+## Firewall Design
 __Co-Hosts:__
 * All ports and protocols are open. Co-host IP addresses are automatically discovered via the [Ansible inventory](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/production). This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/roles/common/templates/etc/iptables/rules.v4.j2).
 
