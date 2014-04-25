@@ -12,7 +12,7 @@ Hosting large private clouds is designed without the need for dedicated hardware
 * 1 Gbps NIC
 * 1 public IPv4 IP address
 
-These types of servers can be custom built __very__ cost-effectively (i.e. $1,200) and leased in large quantities __very__ cost-effectively (e.g. $65 a month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
+These types of servers can be custom built __very__ cost-effectively (i.e. $1,200) and leased in large quantities __very__ cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
