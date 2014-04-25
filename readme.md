@@ -14,12 +14,12 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ## Requirements
 
-One or more Ubuntu 14.04 LTS servers with:
-* OpenSSH server installed and started
-* Basic network interface and hostname configured
-* SSH keys transferred
+Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
+* OpenSSH server installed
+* Network interface and hostname configured
+* SSH key transferred
 
-## Ansible Playbook Usage
+## Usage
 
 Configure and deploy all production servers:
 ```
