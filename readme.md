@@ -5,6 +5,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * High availability, fault tolerant, and horizontal scaling design
 * Nginx used as an SSL terminator, static cache, and a round-robin load balancer
 * Redis leveraged for improved system performance
+* SPDY protocol support
 * Handling for multiple physical datacenter setups
 * Handling for multiple application servers with round robin load balancing
 * Handling for multiple database servers (PostgreSQL clustering)
