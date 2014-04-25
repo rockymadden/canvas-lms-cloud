@@ -6,13 +6,13 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 __Hosting Large Private Clouds:__
 
 Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. The design is targeted specifically around servers with the following specifications:
-* Intel Xeon E3-1245v2 (4 cores/8 threads)
+* Intel Xeon E3-1245v2/v3 (4 cores/8 threads)
+* Intel SSDs in RAID 1 or 10 configuration
 * 32 GB ECC RAM
-* Intel SSDs in RAID 1 or RAID 10 configuration
-* 1Gbps NIC
-* 1 public IPv4 per-server
+* 1 Gbps NIC
+* 1 public IPv4 IP address
 
-These types of servers can be custom built __very__ cost-effectively (i.e. $1,200). They can also be leased in large quantities __very__ cost-effectively (e.g. $65 a month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
+These types of servers can be custom built __very__ cost-effectively (i.e. $1,200) and leased in large quantities __very__ cost-effectively (e.g. $65 a month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
