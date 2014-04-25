@@ -44,33 +44,8 @@
     - application
     - ruby
 
-- name: create gems directory
-  file: path=/usr/local/lib/gems state=directory owner=canvas group=canvas mode=0700
-  tags:
-    - application
-    - ruby
-
-- name: configuring GEM_HOME environment variable
-  lineinfile:
-    dest=/etc/environment
-    state=present
-    create=yes
-    regexp='^GEM_HOME'
-    line='GEM_HOME=/usr/local/lib/gems'
-    insertafter=EOF
-  tags:
-    - application
-    - ruby
-
-- name: configuring GEM_HOME environment variable for session
-  shell: export GEM_HOME=/usr/local/lib/gems
-  when: ansible_env.GEM_HOME is not defined or ansible_env.GEM_HOME != '/usr/local/lib/gems'
-  tags:
-    - application
-    - ruby
-
 - name: install bundler gem
-  gem: name=bundler state=latest
+  gem: name=bundler state=latest user_install=yes
   tags:
     - application
     - ruby
