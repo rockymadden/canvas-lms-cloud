@@ -5,6 +5,8 @@
   with_items:
      - imagemagick
      - libcurl4-gnutls-dev
+     - libpq5
+     - libpq-dev
      - libxml2-dev
      - libxmlsec1
      - libxmlsec1-dev
@@ -39,12 +41,6 @@
      - ruby1.9.1-dev
      - ruby-httpclient
      - ruby-passenger
-  tags:
-    - application
-    - ruby
-
-- name: install bundler gem
-  gem: name=bundler user_install=no version=1.5.3
   tags:
     - application
     - ruby
@@ -84,7 +80,7 @@
     - application
     - apache
 
-- name: determine if canvas is installed
+- name: check if canvas is installed
   stat: path=/var/canvas
   register: canvas_installed
   tags:
@@ -110,16 +106,23 @@
     - canvas
     - secure
 
-- name: determine if canvas dependencies are installed
+- name: check if canvas gems are installed
   stat: path=/var/canvas/vendor/bundle
-  register: canvas_dependencies_installed
+  register: canvas_gems_installed
   tags:
     - application
     - canvas
 
-- name: install canvas dependencies
-  command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql postgres development test
-  when: not canvas_dependencies_installed.stat.exists
+- name: install bundler gem
+  command: gem install bundler --version=1.5.3
+  when: not canvas_gems_installed.stat.exists
+  tags:
+    - application
+    - canvas
+
+- name: install canvas gems
+  command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development test
+  when: not canvas_gems_installed.stat.exists
   tags:
     - application
     - canvas
