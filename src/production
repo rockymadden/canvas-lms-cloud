@@ -1,5 +1,5 @@
 [dc0-application]
-vm-0.localhost job_server=false
+vm-0.localhost jobs_only=false
 
 [dc1-application]
 
