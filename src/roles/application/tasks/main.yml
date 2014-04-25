@@ -112,3 +112,8 @@
   tags:
     - application
     - apache
+
+- name: create canvas directory
+  file: path=/usr/local/bin/canvas state=directory owner=canvas group=canvas mode=0700
+  tags:
+    - application
