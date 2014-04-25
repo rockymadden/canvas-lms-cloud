@@ -56,12 +56,24 @@
 
 - name: configuring GEM_HOME environment variable
   lineinfile:
-    dest=/etc/profile.d/env.sh
+    dest=/etc/environment
     state=present
     create=yes
-    regexp='^export GEM_HOME'
-    line='export GEM_HOME=/usr/local/lib/gems'
+    regexp='^GEM_HOME'
+    line='GEM_HOME=/usr/local/lib/gems'
     insertafter=EOF
+  tags:
+    - application
+    - ruby
+
+- name: configuring GEM_HOME environment variable for shell session
+  shell: export GEM_HOME=/usr/local/lib/gems
+  tags:
+    - application
+    - ruby
+
+- name: install bundler gem
+  gem: name=bundler state=latest
   tags:
     - application
     - ruby
