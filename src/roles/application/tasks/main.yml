@@ -11,6 +11,7 @@
      - libxmlsec1
      - libxmlsec1-dev
      - libxslt1-dev
+     - unzip
      - zlib1g-dev
   tags:
     - application
