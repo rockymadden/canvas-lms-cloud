@@ -1,4 +1,5 @@
 # Canvas LMS Cloud
+
 Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance.
 
 ---
@@ -34,6 +35,7 @@ Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
 * SSH key transferred
 
 ## Firewall Design
+
 __Co-Hosts:__
 * All ports and protocols are open. Co-host IP addresses are automatically discovered via the [Ansible inventory](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/production). This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/roles/common/templates/etc/iptables/rules.v4.j2).
 
