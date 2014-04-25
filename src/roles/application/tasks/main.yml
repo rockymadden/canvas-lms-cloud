@@ -50,6 +50,9 @@
 
 - name: create gems directory
   file: path=/usr/local/lib/gems state=directory owner=canvas group=canvas mode=0700
+  tags:
+    - application
+    - ruby
 
 - name: configuring GEM_HOME environment variable
   lineinfile:
