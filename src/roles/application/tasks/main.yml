@@ -87,7 +87,7 @@
     - application
     - canvas
 
-- name: clone canvas from github
+- name: git clone canvas stable branch
   git:
     repo=https://github.com/instructure/canvas-lms.git
     dest=/var/canvas
@@ -98,13 +98,40 @@
     - application
     - canvas
 
-- name: secure canvas directory
-  file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
+- name: create /var/canvas/log
+  file: path=/var/canvas/log state=directory
   when: not canvas_installed.stat.exists
   tags:
     - application
     - canvas
-    - secure
+
+- name: create /var/canvas/tmp/pids
+  file: path=/var/canvas/tmp/pids state=directory
+  when: not canvas_installed.stat.exists
+  tags:
+    - application
+    - canvas
+
+- name: create /var/canvas/public/assets
+  file: path=/var/canvas/public/assets state=directory
+  when: not canvas_installed.stat.exists
+  tags:
+    - application
+    - canvas
+
+- name: create /var/canvas/public/stylesheets/compiled
+  file: path=/var/canvas/public/stylesheets/compiled state=directory
+  when: not canvas_installed.stat.exists
+  tags:
+    - application
+    - canvas
+
+- name: create /var/canvas/Gemfile.lock
+  file: path=/var/canvas/Gemfile.lock state=touch
+  when: not canvas_installed.stat.exists
+  tags:
+    - application
+    - canvas
 
 - name: check if canvas gems are installed
   stat: path=/var/canvas/vendor/bundle
@@ -126,3 +153,17 @@
   tags:
     - application
     - canvas
+
+- name: secure /var/canvas
+  file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
+  tags:
+    - application
+    - canvas
+    - secure
+
+- name: secure /var/canvas/config
+  file: path=/var/canvas/config state=directory owner=canvas group=canvas mode=0400 recurse=yes
+  tags:
+    - application
+    - canvas
+    - secure
