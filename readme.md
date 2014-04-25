@@ -1,11 +1,11 @@
 # Canvas LMS Cloud
-Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance. Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers.
+Automatically configure, deploy, and host the Canvas LMS on everything from a horizontally scaling, fault-tolerant, load balanced private cloud to a simple local virtual machine instance.
 
 ---
 
-__Large Private Clouds Infastructure:__
+__Hosting Large Private Clouds:__
 
-The design for large private clouds is targeted specifically around servers with the following specifications:
+Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. The design is targeted specifically around servers with the following specifications:
 * Intel Xeon E3-1245v2 (4 cores/8 threads)
 * 32 GB ECC RAM
 * Intel SSDs in RAID 1 or RAID 10 configuration
