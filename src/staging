@@ -1,0 +1,13 @@
+[staging-application]
+
+[staging-cache]
+
+[staging-database]
+
+[staging-proxy]
+
+[staging:children]
+staging-application
+staging-cache
+staging-database
+staging-proxy

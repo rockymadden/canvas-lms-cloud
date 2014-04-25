@@ -43,7 +43,7 @@ $ ansible-playbook -i production site.yml
 
 Configure and deploy all staging servers:
 ```
-$ ansible-playbook -i stage site.yml
+$ ansible-playbook -i staging site.yml
 ```
 
 ---
