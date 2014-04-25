@@ -119,17 +119,17 @@
     - application
     - canvas
 
-- name: convert canvas configuration examples 
-  command: mv {{ item.path }} {{ item.dest }} creates={{ item.dest }}
+- name: convert canvas configuration examples
+  command: mv {{ item.src }} {{ item.dest }} creates={{ item.dest }}
   with_items:
-    - { path: '/var/canvas/config/amazon_s3.yml.example', dest: '/var/canvas/config/amazon_s3.yml' }
-    - { path: '/var/canvas/config/database.yml.example', dest: '/var/canvas/config/database.yml' }
-    - { path: '/var/canvas/config/delayed_jobs.yml.example', dest: '/var/canvas/config/delayed_jobs.yml' }
-    - { path: '/var/canvas/config/domain.yml.example', dest: '/var/canvas/config/domain.yml' }
-    - { path: '/var/canvas/config/file_store.yml.example', dest: '/var/canvas/config/file_store.yml' }
-    - { path: '/var/canvas/config/outgoing_mail.yml.example', dest: '/var/canvas/config/outgoing_mail.yml' }
-    - { path: '/var/canvas/config/security.yml.example', dest: '/var/canvas/config/security.yml' }
-    - { path: '/var/canvas/config/external_migration.yml.example', dest: '/var/canvas/config/external_migration.yml' }
+    - { src: '/var/canvas/config/amazon_s3.yml.example', dest: '/var/canvas/config/amazon_s3.yml' }
+    - { src: '/var/canvas/config/database.yml.example', dest: '/var/canvas/config/database.yml' }
+    - { src: '/var/canvas/config/delayed_jobs.yml.example', dest: '/var/canvas/config/delayed_jobs.yml' }
+    - { src: '/var/canvas/config/domain.yml.example', dest: '/var/canvas/config/domain.yml' }
+    - { src: '/var/canvas/config/file_store.yml.example', dest: '/var/canvas/config/file_store.yml' }
+    - { src: '/var/canvas/config/outgoing_mail.yml.example', dest: '/var/canvas/config/outgoing_mail.yml' }
+    - { src: '/var/canvas/config/security.yml.example', dest: '/var/canvas/config/security.yml' }
+    - { src: '/var/canvas/config/external_migration.yml.example', dest: '/var/canvas/config/external_migration.yml' }
   when: not canvas_installed.stat.exists
   tags:
     - application
