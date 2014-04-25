@@ -5,8 +5,8 @@
   with_items:
      - imagemagick
      - libcurl4-gnutls-dev
+     - libpq5
      - libpq-dev
-     - libsqlite3-dev
      - libxml2-dev
      - libxmlsec1
      - libxmlsec1-dev
