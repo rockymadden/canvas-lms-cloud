@@ -85,7 +85,19 @@
     - application
     - apache
 
-- name: create canvas directory
-  file: path=/usr/local/bin/canvas state=directory owner=canvas group=canvas mode=0700
+- name: clone canvas from github
+  git:
+    repo=https://github.com/instructure/canvas-lms.git
+    dest=/var/canvas
+    version=stable
+    update=no
   tags:
     - application
+    - canvas
+
+- name: secure canvas directory
+  file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
+  tags:
+    - application
+    - canvas
+    - secure
