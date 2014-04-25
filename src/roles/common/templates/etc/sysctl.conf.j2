@@ -2,8 +2,8 @@
 kernel.sysrq = 0
 kernel.panic = 8
 kernel.shmmni = 4096
-kernel.shmmax = {{ ((1048576 * ansible_memtotal_mb) / 2) | int }}
-kernel.shmall = {{ (((1048576 * ansible_memtotal_mb) / 2) / 4096) | int }}
+kernel.shmmax = {{ ((1048576 * ansible_memtotal_mb) / 2)|int }}
+kernel.shmall = {{ (((1048576 * ansible_memtotal_mb) / 2) / 4096)|int }}
 
 # Network (IPv4).
 net.ipv4.ip_forward = 0
