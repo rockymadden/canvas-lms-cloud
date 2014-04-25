@@ -6,7 +6,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 __Hosting Large Private Clouds:__
 
-Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. An infrastructure design philosophy of handling for individual server failure is taken and mitigated via horizontal scaling concepts (i.e. numerous servers per role, load balancing per role, no single server is a point of failure). With this in mind, we specifically target servers with the following specifications:
+Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. An infrastructure design philosophy of handling for individual server failure is taken and mitigated via horizontal scaling concepts (e.g. numerous servers per role, load balancing per role, no single server is a point of failure). With this in mind, we specifically target servers with the following specifications:
 * Intel Xeon E3-1245v2/v3 (4 cores/8 threads)
 * Intel SSDs in RAID 1 or 10 configuration
 * 32 GB ECC RAM
