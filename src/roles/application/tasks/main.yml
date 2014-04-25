@@ -45,7 +45,7 @@
     - ruby
 
 - name: install bundler gem
-  gem: name=bundler state=latest user_install=yes
+  gem: name=bundler state=latest
   tags:
     - application
     - ruby
