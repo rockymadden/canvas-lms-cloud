@@ -98,36 +98,22 @@
     - application
     - canvas
 
-- name: create /var/canvas/log
-  file: path=/var/canvas/log state=directory
+- name: create canvas directories
+  file: path={{ item }} state=directory
+  with_items:
+    - /var/canvas/log
+    - /var/canvas/tmp/pids
+    - /var/canvas/public/assets
+    - /var/canvas/public/stylesheets/compiled
   when: not canvas_installed.stat.exists
   tags:
     - application
     - canvas
 
-- name: create /var/canvas/tmp/pids
-  file: path=/var/canvas/tmp/pids state=directory
-  when: not canvas_installed.stat.exists
-  tags:
-    - application
-    - canvas
-
-- name: create /var/canvas/public/assets
-  file: path=/var/canvas/public/assets state=directory
-  when: not canvas_installed.stat.exists
-  tags:
-    - application
-    - canvas
-
-- name: create /var/canvas/public/stylesheets/compiled
-  file: path=/var/canvas/public/stylesheets/compiled state=directory
-  when: not canvas_installed.stat.exists
-  tags:
-    - application
-    - canvas
-
-- name: create /var/canvas/Gemfile.lock
-  file: path=/var/canvas/Gemfile.lock state=touch
+- name: create canvas files
+  file: path={{ item }} state=touch
+  with_items:
+    - /var/canvas/Gemfile.lock
   when: not canvas_installed.stat.exists
   tags:
     - application
