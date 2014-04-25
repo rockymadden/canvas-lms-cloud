@@ -98,7 +98,7 @@
     - apache
 
 - name: enable apache rewrite mod
-  command: a2enmod rewrite
+  command: a2enmod rewrite creates=/etc/apache2/mods-enabled/rewrite.load
   notify: restart apache service
   when: job_server is not defined or not job_server|bool
   tags:
@@ -106,7 +106,7 @@
     - apache
 
 - name: enable apache passenger mod
-  command: a2enmod passenger
+  command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
   notify: restart apache service
   when: job_server is not defined or not job_server|bool
   tags:
