@@ -5,14 +5,12 @@
   with_items:
      - imagemagick
      - libcurl4-gnutls-dev
-     - libmysqlclient-dev
      - libpq-dev
      - libsqlite3-dev
      - libxml2-dev
      - libxmlsec1
      - libxmlsec1-dev
      - libxslt1-dev
-     - unzip
      - zlib1g-dev
   tags:
     - application
@@ -40,9 +38,7 @@
   with_items:
      - ruby1.9.1
      - ruby1.9.1-dev
-     - rubygems1.9.1
-     - libhttpclient-ruby1.9.1
-     - irb1.9.1
+     - ruby-httpclient
      - ruby-passenger
   tags:
     - application
@@ -66,8 +62,9 @@
     - application
     - ruby
 
-- name: configuring GEM_HOME environment variable for shell session
+- name: configuring GEM_HOME environment variable for session
   shell: export GEM_HOME=/usr/local/lib/gems
+  when: ansible_env.GEM_HOME is not defined or ansible_env.GEM_HOME != '/usr/local/lib/gems'
   tags:
     - application
     - ruby
