@@ -43,14 +43,6 @@ __Large:__
 * __Who:__ Targeted at large organizations or smaller organizations with write-heavy workloads.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
 
-
-## Requirements
-
-Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
-* OpenSSH server installed
-* Network interface and hostname configured
-* SSH key transferred
-
 ## Firewall Design
 
 __Co-Hosts:__
@@ -64,66 +56,72 @@ __Public:__
 * ICMP echo requests are allowed to all servers. However, there is a threshold of 5 per second which is enforced via [sysctl.conf](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/sysctl.conf.j2).
 * TCP ports 80 and 443 are open on proxy servers and __are the only ports intended for public consumption.__ Via Ansible inventory variables, it is possible to rate-limit connections to help protect against abuse and attacks.
 
+## Requirements
+
+Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
+* OpenSSH server installed
+* Network interface and hostname configured
+* SSH key transferred
 
 ## Usage
 
 Configure and deploy all production servers:
 ```
-$ ansible-playbook -i production site.yml
+$ ansible-playbook -i production-small site.yml
 ```
 
 ---
 
 Configure and deploy all development servers:
 ```
-$ ansible-playbook -i development site.yml
+$ ansible-playbook -i development-small site.yml
 ```
 
 ---
 
 Configure and deploy just production application servers:
 ```
-$ ansible-playbook -i production application.yml
+$ ansible-playbook -i production-small application.yml
 ```
 
 ---
 
 Configure and deploy just production cache servers:
 ```
-$ ansible-playbook -i production cache.yml
+$ ansible-playbook -i production-small cache.yml
 ```
 
 ---
 Configure and deploy just production database servers:
 ```
-$ ansible-playbook -i production database.yml
+$ ansible-playbook -i production-small database.yml
 ```
 
 ---
 Configure and deploy just production proxy servers:
 ```
-$ ansible-playbook -i production proxy.yml
+$ ansible-playbook -i production-small proxy.yml
 ```
 
 ---
 
 Perform apt maintenance on all production servers:
 ```
-$ ansible-playbook -i production apt.yml
+$ ansible-playbook -i production-small apt.yml
 ```
 
 ---
 
 Perform apt maintenance on all production servers without rebooting:
 ```
-$ ansible-playbook -i production apt.yml --skip-tags=reboot
+$ ansible-playbook -i production-small apt.yml --skip-tags=reboot
 ```
 
 ---
 
 Perform apt maintenance on all production application servers:
 ```
-$ ansible-playbook -i production apt.yml --limit=application
+$ ansible-playbook -i production-small apt.yml --limit=application
 ```
 
 ---
