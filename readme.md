@@ -7,7 +7,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
 * No dedicated hardware firewalls or load balancers needed
-* Nginx used as an SSL terminator, static cache, and a round-robin load balancer (with SPDY protocol support)
+* Nginx used as an SSL terminator, static cache, a round-robin load balancer, and SPDY protocol support
 * Redis leveraged for improved system performance
 * Handling for multiple physical datacenter setups
 * Handling for multiple application hosts with round robin load balancing
