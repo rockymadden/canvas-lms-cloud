@@ -7,7 +7,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
 * No dedicated hardware firewalls or load balancers needed
-* Nginx used as an SSL terminator, static cache, a round-robin load balancer, and SPDY protocol support
+* Nginx used as an SSL terminator, static cache, round-robin load balancer, with SPDY protocol support
 * Redis leveraged for improved system performance
 * Handling for multiple physical datacenter setups
 * Handling for multiple application hosts with round robin load balancing
@@ -48,7 +48,7 @@ __Large:__
 ## Firewall Design
 
 __Co-Hosts:__
-* All ports and protocols are open. Co-host IP addresses are automatically discovered via the [Ansible inventory](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/production). This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
+* All ports and protocols are open. Co-host IP addresses are automatically discovered via the Ansible inventory. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
 
 __Administrators:__
 * All ports and protocols are open. If your IP address is explicitly defined in [group_vars](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/group_vars/all) you are considered an administrator. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
