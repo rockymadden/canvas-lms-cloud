@@ -128,6 +128,32 @@ $ ansible-playbook -i production-small apt.yml --limit=application
 
 ---
 
+## Frequently Asked Questions
+How should my inventory look if I want to host locally on a virtual machine?
+```
+[dc0-application]
+vm0.localhost
+
+[dc1-application]
+
+[dc0-cache]
+vm0.localhost
+
+[dc1-cache]
+
+[dc0-database]
+vm0.localhost
+
+[dc1-database]
+
+[dc0-proxy]
+vm0.localhost
+
+[dc1-proxy]
+
+...
+```
+
 ## License
 
 ```
