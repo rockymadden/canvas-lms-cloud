@@ -10,10 +10,10 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * Nginx used as an SSL terminator, static cache, and a round-robin load balancer (with SPDY protocol support)
 * Redis leveraged for improved system performance
 * Handling for multiple physical datacenter setups
-* Handling for multiple application servers with round robin load balancing
+* Handling for multiple application hosts with round robin load balancing
 * Handling for database clusters (e.g. Pgpool II and Postgres-XC)
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
-* Handling for dedicated application server(s) to run automated jobs
+* Handling for dedicated application hosts to run automated jobs
 * Security hardening at multiple levels
 
 ## Server Targeting
@@ -32,15 +32,18 @@ These types of servers can be custom built cost-effectively (i.e. $1,200) and le
 ## Cloud Sizes
 __Small__
 * __Who:__ Targeted at local installations and small organizations.
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports a single vertically scaling database role server which can leverage a failover sister.
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a single vertically scaling database hosts which can leverage a failover sister.
+* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, and 2 database hosts.
 
 __Medium:__
 * __Who:__ Targeted at medium organizations or organizations with very read-heavy workloads.
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
+* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 1 database master host, and 1 database slave host.
 
 __Large:__
 * __Who:__ Targeted at large organizations or organizations with very write-heavy workloads.
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
+* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 2 database datanode hosts, and 2 database GTM hosts.
 
 ## Firewall Design
 
@@ -51,74 +54,74 @@ __Administrators:__
 * All ports and protocols are open. If your IP address is explicitly defined in [group_vars](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/group_vars/all) you are considered an administrator. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
 
 __Public:__
-* TCP port 22 is open on all servers. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/ssh/sshd_config.j2).
-* ICMP echo requests are allowed to all servers. However, there is a threshold of 5 per second which is enforced via [sysctl.conf](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/sysctl.conf.j2).
-* TCP ports 80 and 443 are open on proxy servers and __are the only ports intended for public consumption.__ Via Ansible inventory variables, it is possible to rate-limit connections to help protect against abuse and attacks.
+* TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/ssh/sshd_config.j2).
+* ICMP echo requests are allowed to all hosts. However, there is a threshold of 5 per second which is enforced via [sysctl.conf](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/sysctl.conf.j2).
+* TCP ports 80 and 443 are open on proxy hosts and __are the only ports intended for public consumption.__ Via Ansible inventory variables, it is possible to rate-limit connections to help protect against abuse and attacks.
 
 ## Requirements
 
-Ansible installed locally and one or more Ubuntu 14.04 LTS servers with:
+Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
 * OpenSSH server installed
 * Network interface and hostname configured
 * SSH key transferred
 
 ## Usage
 
-Configure and deploy all production servers:
+Configure and deploy all production hosts:
 ```
 $ ansible-playbook -i production-small site.yml
 ```
 
 ---
 
-Configure and deploy all development servers:
+Configure and deploy all development hosts:
 ```
 $ ansible-playbook -i development-small site.yml
 ```
 
 ---
 
-Configure and deploy just production application servers:
+Configure and deploy just production application hosts:
 ```
 $ ansible-playbook -i production-small application.yml
 ```
 
 ---
 
-Configure and deploy just production cache servers:
+Configure and deploy just production cache hosts:
 ```
 $ ansible-playbook -i production-small cache.yml
 ```
 
 ---
-Configure and deploy just production database servers:
+Configure and deploy just production database hosts:
 ```
 $ ansible-playbook -i production-small database.yml
 ```
 
 ---
-Configure and deploy just production proxy servers:
+Configure and deploy just production proxy hosts:
 ```
 $ ansible-playbook -i production-small proxy.yml
 ```
 
 ---
 
-Perform apt maintenance on all production servers:
+Perform apt maintenance on all production hosts:
 ```
 $ ansible-playbook -i production-small apt.yml
 ```
 
 ---
 
-Perform apt maintenance on all production servers without rebooting:
+Perform apt maintenance on all production hosts without rebooting:
 ```
 $ ansible-playbook -i production-small apt.yml --skip-tags=reboot
 ```
 
 ---
 
-Perform apt maintenance on all production application servers:
+Perform apt maintenance on all production application hosts:
 ```
 $ ansible-playbook -i production-small apt.yml --limit=application
 ```
