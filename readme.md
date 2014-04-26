@@ -4,17 +4,6 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ---
 
-__Hosting Large Private Clouds:__
-
-Hosting large private clouds is designed without the need for dedicated hardware firewalls or load balancers. An infrastructure design philosophy of handling for individual server failure is taken and mitigated via horizontal scaling concepts (e.g. numerous servers per role, load balancing per role, no single server is a point of failure). With this in mind, we specifically target servers with roughly the following specifications:
-* Intel Xeon E3-1245v2
-* Intel SSDs in RAID 1 or 10 configuration
-* 32 GB ECC RAM
-* 1 Gbps NIC
-* 1 public IPv4 IP address
-
-These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
-
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
 * Nginx used as an SSL terminator, static cache, and a round-robin load balancer
@@ -25,7 +14,35 @@ These types of servers can be custom built cost-effectively (i.e. $1,200) and le
 * Handling for multiple database servers (PostgreSQL clustering)
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application server(s) to run automated jobs
+* No dedicated hardware firewalls or load balancers needed
 * Security hardening at multiple levels
+
+## Server Targeting
+Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
+
+```
+CPU: Intel Xeon E3-1245v2
+DISK: Intel SSDs in RAID 1/10 or 10k SATA HDDs in RAID 1/10
+RAM 32 GB ECC
+NIC: 1 Gbps
+IPv4: 1 public
+```
+
+These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
+
+## Cloud Sizes
+__Small__
+* __Who:__ Targeted at local installations and small organizations.
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports a single vertically scaling database role server which can leverage a failover sister.
+
+__Medium:__
+* __Who:__ Targeted at medium organizations or larger organizations with read-heavy workloads.
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
+
+__Large:__
+* __Who:__ Targeted at large organizations or smaller organizations with write-heavy workloads.
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
+
 
 ## Requirements
 
