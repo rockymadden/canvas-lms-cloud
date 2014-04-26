@@ -1,0 +1,13 @@
+[application]
+
+[cache]
+
+[database]
+
+[proxy]
+
+[all:children]
+application
+cache
+database
+proxy

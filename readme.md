@@ -129,28 +129,21 @@ $ ansible-playbook -i production-small apt.yml --limit=application
 ---
 
 ## Frequently Asked Questions
-How should my inventory look if I want to host locally on a virtual machine?
+__How should my inventory look if I want to host locally on a virtual machine?__
+
+Leverage the localhost inventory file with the following (vm0.localhost would need to be in hosts file):
 ```
-[dc0-application]
+[application]
 vm0.localhost
 
-[dc1-application]
-
-[dc0-cache]
+[cache]
 vm0.localhost
 
-[dc1-cache]
-
-[dc0-database]
+[database]
 vm0.localhost
 
-[dc1-database]
-
-[dc0-proxy]
+[proxy]
 vm0.localhost
-
-[dc1-proxy]
-
 ...
 ```
 
