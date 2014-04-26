@@ -1,0 +1,13 @@
+[test-application]
+
+[test-cache]
+
+[test-database]
+
+[test-proxy]
+
+[test:children]
+test-application
+test-cache
+test-database
+test-proxy

@@ -57,9 +57,9 @@ $ ansible-playbook -i production site.yml
 
 ---
 
-Configure and deploy all staging servers:
+Configure and deploy all development servers:
 ```
-$ ansible-playbook -i staging site.yml
+$ ansible-playbook -i development site.yml
 ```
 
 ---
