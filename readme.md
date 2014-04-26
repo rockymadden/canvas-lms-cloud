@@ -21,7 +21,7 @@ Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ab
 
 ```
 CPU: Intel Xeon E3-1245v2
-DISK: Intel SSDs in RAID 1/10 or 10k SATA HDDs in RAID 1/10
+DISK: Intel SSDs or 10k SATA HDDs in RAID 1/10
 RAM 32 GB ECC
 NIC: 1 Gbps
 IPv4: 1 public
