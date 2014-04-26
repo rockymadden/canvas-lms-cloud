@@ -6,15 +6,14 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
-* Nginx used as an SSL terminator, static cache, and a round-robin load balancer
+* No dedicated hardware firewalls or load balancers needed
+* Nginx used as an SSL terminator, static cache, and a round-robin load balancer (with SPDY protocol support)
 * Redis leveraged for improved system performance
-* SPDY protocol support
 * Handling for multiple physical datacenter setups
 * Handling for multiple application servers with round robin load balancing
-* Handling for multiple database servers (PostgreSQL clustering)
+* Handling for database clusters (e.g. Pgpool II and Postgres-XC)
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application server(s) to run automated jobs
-* No dedicated hardware firewalls or load balancers needed
 * Security hardening at multiple levels
 
 ## Server Targeting
@@ -36,11 +35,11 @@ __Small__
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports a single vertically scaling database role server which can leverage a failover sister.
 
 __Medium:__
-* __Who:__ Targeted at medium organizations or larger organizations with read-heavy workloads.
+* __Who:__ Targeted at medium organizations or organizations with very read-heavy workloads.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
 
 __Large:__
-* __Who:__ Targeted at large organizations or smaller organizations with write-heavy workloads.
+* __Who:__ Targeted at large organizations or organizations with very write-heavy workloads.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application role servers. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
 
 ## Firewall Design
