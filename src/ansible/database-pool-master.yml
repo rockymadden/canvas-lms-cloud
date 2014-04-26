@@ -1,0 +1,6 @@
+---
+
+- hosts: database-pool-master
+  remote_user: root
+  roles:
+    - common

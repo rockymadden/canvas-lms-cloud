@@ -1,0 +1,8 @@
+---
+
+- include: application.yml
+- include: cache.yml
+- include: database-xc-coordinator.yml
+- include: database-xc-datanode.yml
+- include: database-xc-gtm.yml
+- include: proxy.yml

@@ -1,0 +1,6 @@
+---
+
+- hosts: database-xc-datanode
+  remote_user: root
+  roles:
+    - common

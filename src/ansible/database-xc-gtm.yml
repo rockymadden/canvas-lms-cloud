@@ -1,0 +1,6 @@
+---
+
+- hosts: database-xc-gtm
+  remote_user: root
+  roles:
+    - common

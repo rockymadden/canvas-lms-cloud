@@ -1,0 +1,6 @@
+---
+
+- hosts: database-pool-slave
+  remote_user: root
+  roles:
+    - common
