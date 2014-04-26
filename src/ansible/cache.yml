@@ -1,6 +1,9 @@
 ---
 
-- hosts: cache
+- hosts:
+    - cache
+    - development-cache
+    - test-cache
   remote_user: root
   roles:
     - common

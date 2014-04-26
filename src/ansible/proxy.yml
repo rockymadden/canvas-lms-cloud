@@ -1,6 +1,9 @@
 ---
 
-- hosts: proxy
+- hosts:
+    - proxy
+    - development-proxy
+    - test-proxy
   remote_user: root
   roles:
     - common

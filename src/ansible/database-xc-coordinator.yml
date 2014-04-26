@@ -1,6 +1,9 @@
 ---
 
-- hosts: database-xc-coordinator
+- hosts:
+    - database-xc-coordinator
+    - development-database-xc-coordinator
+    - test-database-xc-coordinator
   remote_user: root
   roles:
     - common

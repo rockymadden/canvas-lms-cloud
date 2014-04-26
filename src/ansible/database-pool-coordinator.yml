@@ -1,6 +1,9 @@
 ---
 
-- hosts: database-pool-coordinator
+- hosts:
+    - database-pool-coordinator
+    - development-database-pool-coordinator
+    - test-database-pool-coordinator
   remote_user: root
   roles:
     - common

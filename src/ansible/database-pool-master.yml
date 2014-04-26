@@ -1,6 +1,9 @@
 ---
 
-- hosts: database-pool-master
+- hosts:
+    - database-pool-master
+    - development-database-pool-master
+    - test-database-pool-master
   remote_user: root
   roles:
     - common
