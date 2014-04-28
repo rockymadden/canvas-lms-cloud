@@ -30,18 +30,19 @@ IPv4: 1 public
 These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
 
 ## Cloud Sizes
+__Localhost:__
+* __Scalability:__ N/A
+* __Ideal hosts (min):__ N/A
+
 __Small__
-* __Who:__ Targeted at local installations and small organizations.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a single vertically scaling database hosts which can leverage a failover sister.
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, and 2 database hosts.
 
 __Medium:__
-* __Who:__ Targeted at medium organizations or organizations with very read-heavy workloads.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 1 database master host, and 1 database slave host.
 
 __Large:__
-* __Who:__ Targeted at large organizations or organizations with very write-heavy workloads.
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 2 database datanode hosts, and 2 database GTM hosts.
 
@@ -127,25 +128,6 @@ $ ansible-playbook -i production-small apt.yml --limit=application
 ```
 
 ---
-
-## Frequently Asked Questions
-__How should my inventory look if I want to host locally on a virtual machine?__
-
-Leverage the localhost inventory file with the following (vm0.localhost would need to be in hosts file):
-```
-[application]
-vm0.localhost
-
-[cache]
-vm0.localhost
-
-[database]
-vm0.localhost
-
-[proxy]
-vm0.localhost
-...
-```
 
 ## License
 
