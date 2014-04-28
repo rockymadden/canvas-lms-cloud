@@ -4,15 +4,15 @@
     encoding: utf8
     database: canvas_{{ env.name }}
     host: localhost # TODO: Detect and populate.
-    username: {{ env.configuration.postgresql.username }}
-    password: {{ env.configuration.postgresql.password }}
+    username: {{ env.postgresql.username }}
+    password: {{ env.postgresql.password }}
     timeout: 8000
     queue:
       adapter: postgresql
       encoding: utf8
       database: canvas_queue_{{ env.name }}
       host: # TODO: Detect and populate.
-      username: {{ env.configuration.postgresql.username }}
-      password: {{ env.configuration.postgresql.password }}
+      username: {{ env.postgresql.username }}
+      password: {{ env.postgresql.password }}
       timeout: 8000
 {% endfor %}

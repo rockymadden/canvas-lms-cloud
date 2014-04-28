@@ -1,4 +1,4 @@
 {% for env in environments %}
   {{ env.name }}:
-    encryption_key: {{ env.configuration.security.canvas_encryption_key }}
+    encryption_key: {{ env.security.canvas_encryption_key }}
 {% endfor %}

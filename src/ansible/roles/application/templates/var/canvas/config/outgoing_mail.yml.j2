@@ -1,11 +1,11 @@
 {% for env in environments %}
   {{ env.name }}:
-    address: {{ env.configuration.email.server.hostname }}
-    port: {{ env.configuration.email.server.port }}
-    user_name: {{ env.configuration.email.user.username }}
-    password: {{ env.configuration.email.user.password }}
-    authentication: {{ env.configuration.email.server.authentication }}
-    domain: {{ env.configuration.email.server.domain_name }}
-    outgoing_address: {{ env.configuration.email.user.address }}
-    default_name: {{ env.configuration.email.user.name }}
+    address: {{ env.email.server.hostname }}
+    port: {{ env.email.server.port }}
+    user_name: {{ env.email.user.username }}
+    password: {{ env.email.user.password }}
+    authentication: {{ env.email.server.authentication }}
+    domain: {{ env.email.server.domain_name }}
+    outgoing_address: {{ env.email.user.address }}
+    default_name: {{ env.email.user.name }}
 {% endfor %}

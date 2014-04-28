@@ -1,30 +1,29 @@
 ---
 
 endpoint:
-  hostname: example.com
+  hostname: canvas.example.com
 security:
   administrators:
     - name: System Administrator
       ipv4: 127.0.0.1
 environments:
   - name: production
-    configuration:
-      email:
-        user:
-          address: example@example.com
-          name: Example Example
-          username: username
-          password: password
-        server:
-          authentication: plain
-          hostname: smtp.example.com
-          domain_name: example.com
-          port: 25
-      postgresql:
+    email:
+      user:
+        address: example@example.com
+        name: Example Example
         username: username
         password: password
-      redis:
-        username: username
-        password: password
-      security:
-        canvas_encryption_key: FEEXtgTkbBJ4DZjW89vNryxjA2arsGwYndxz7G47QVEs9gUKvcRunyXFixXP
+      server:
+        authentication: plain
+        hostname: smtp.example.com
+        domain_name: example.com
+        port: 25
+    postgresql:
+      username: username
+      password: password
+    redis:
+      username: username
+      password: password
+    security:
+      canvas_encryption_key: FEEXtgTkbBJ4DZjW89vNryxjA2arsGwYndxz7G47QVEs9gUKvcRunyXFixXP
