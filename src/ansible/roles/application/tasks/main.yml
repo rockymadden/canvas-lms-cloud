@@ -119,6 +119,78 @@
     - application
     - canvas
 
+- name: configure canvas cache store
+  template: src=var/canvas/config/cache_store.yml.j2 dest=/var/canvas/config/cache_store.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas database
+  template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas delayed jobs
+  template: src=var/canvas/config/delayed_jobs.yml.j2 dest=/var/canvas/config/delayed_jobs.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas domain
+  template: src=var/canvas/config/domain.yml.j2 dest=/var/canvas/config/domain.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas file store
+  template: src=var/canvas/config/file_store.yml.j2 dest=/var/canvas/config/file_store.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas incoming mail
+  template: src=var/canvas/config/incoming_mail.yml.j2 dest=/var/canvas/config/incoming_mail.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas logging
+  template: src=var/canvas/config/logging.yml.j2 dest=/var/canvas/config/logging.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas outgoing mail
+  template: src=var/canvas/config/outgoing_mail.yml.j2 dest=/var/canvas/config/outgoing_mail.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas periodic jobs
+  template: src=var/canvas/config/periodic_jobs.yml.j2 dest=/var/canvas/config/periodic_jobs.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas redis
+  template: src=var/canvas/config/redis.yml.j2 dest=/var/canvas/config/redis.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas security
+  template: src=var/canvas/config/security.yml.j2 dest=/var/canvas/config/security.yml
+  tags:
+    - application
+    - canvas
+
+- name: configure canvas session store
+  template: src=var/canvas/config/session_store.yml.j2 dest=/var/canvas/config/session_store.yml
+  tags:
+    - application
+    - canvas
+
 - name: check if canvas gems are installed
   stat: path=/var/canvas/vendor/bundle
   register: canvas_gems_installed

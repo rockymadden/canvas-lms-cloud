@@ -13,3 +13,6 @@
 
 # OS ignores.
 .DS_Store
+
+# Codebase ignores.
+development
