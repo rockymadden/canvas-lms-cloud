@@ -21,9 +21,9 @@ Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ab
 
 ```
 CPU: Intel Xeon E3-1245v3
-DISK: Intel SSDs or 10k SATA HDDs in RAID 1/10
+DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
 RAM 32 GB ECC
-NIC: 1 Gbps
+NIC: 1 Gbps (preferably dual)
 IPv4: 1 public
 ```
 
@@ -72,63 +72,90 @@ Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
 
 ## Usage
 
-Configure and deploy all production hosts:
+Configure and deploy all production hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost site.yml
 $ ansible-playbook -i production-small site.yml
+$ ansible-playbook -i production-medium site.yml
+$ ansible-playbook -i production-large site.yml
 ```
 
 ---
 
-Configure and deploy all development hosts:
+Configure and deploy all development hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost site.yml
 $ ansible-playbook -i development-small site.yml
+$ ansible-playbook -i development-medium site.yml
+$ ansible-playbook -i development-large site.yml
 ```
 
 ---
 
-Configure and deploy just production application hosts:
+Configure and deploy just production application hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost application.yml
 $ ansible-playbook -i production-small application.yml
+$ ansible-playbook -i production-medium application.yml
+$ ansible-playbook -i production-large application.yml
 ```
 
 ---
 
-Configure and deploy just production cache hosts:
+Configure and deploy just production cache hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost cache.yml
 $ ansible-playbook -i production-small cache.yml
+$ ansible-playbook -i production-medium cache.yml
+$ ansible-playbook -i production-large cache.yml
 ```
 
 ---
-Configure and deploy just production database hosts:
+Configure and deploy just production database hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost database.yml
 $ ansible-playbook -i production-small database.yml
+$ ansible-playbook -i production-medium database.yml
+$ ansible-playbook -i production-large database.yml
 ```
 
 ---
-Configure and deploy just production proxy hosts:
+Configure and deploy just production proxy hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost proxy.yml
 $ ansible-playbook -i production-small proxy.yml
+$ ansible-playbook -i production-medium proxy.yml
+$ ansible-playbook -i production-large proxy.yml
 ```
 
 ---
 
-Perform apt maintenance on all production hosts:
+Perform apt maintenance on all production hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost apt.yml
 $ ansible-playbook -i production-small apt.yml
+$ ansible-playbook -i production-medium apt.yml
+$ ansible-playbook -i production-large apt.yml
 ```
 
 ---
 
-Perform apt maintenance on all production hosts without rebooting:
+Perform apt maintenance on all production hosts without rebooting (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost apt.yml --skip-tags=reboot
 $ ansible-playbook -i production-small apt.yml --skip-tags=reboot
+$ ansible-playbook -i production-medium apt.yml --skip-tags=reboot
+$ ansible-playbook -i production-large apt.yml --skip-tags=reboot
 ```
 
 ---
 
-Perform apt maintenance on all production application hosts:
+Perform apt maintenance on all production application hosts (depending upon cloud size):
 ```
+$ ansible-playbook -i localhost apt.yml --limit=application
 $ ansible-playbook -i production-small apt.yml --limit=application
+$ ansible-playbook -i production-medium apt.yml --limit=application
+$ ansible-playbook -i production-large apt.yml --limit=application
 ```
 
 ---
