@@ -8,6 +8,7 @@
 
 [development-proxy]
 
+# Groups of groups, no need to edit.
 [development-database:children]
 development-database-standy-master
 development-database-standy-slave

@@ -8,6 +8,7 @@
 
 [test-proxy]
 
+# Groups of groups, no need to edit.
 [test-database:children]
 test-database-standy-master
 test-database-standy-slave
