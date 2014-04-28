@@ -31,18 +31,22 @@ These types of servers can be custom built cost-effectively (i.e. $1,200) and le
 
 ## Cloud Sizes
 __Localhost:__
+* __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
 * __Scalability:__ N/A
 * __Ideal hosts (min):__ N/A
 
 __Small__
+* __Inventory files:__ [production-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [development-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [test-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-small)
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a single vertically scaling database hosts which can leverage a failover sister.
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, and 2 database hosts.
 
 __Medium:__
+* __Inventory files:__ [production-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [development-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [test-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-medium)
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 1 database master host, and 1 database slave host.
 
 __Large:__
+* __Inventory files:__ [production-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [development-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [test-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-large)
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 2 database datanode hosts, and 2 database GTM hosts.
 
