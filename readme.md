@@ -37,7 +37,7 @@ __Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yell
 
 __Small:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 * __Inventory files:__ [production-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [development-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [test-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-small)
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a single vertically scaling database hosts which leverage a hot standby.
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a master database host with a hot standby.
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 1 database master host, and 1 database slave host.
 
 __Medium:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
