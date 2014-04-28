@@ -18,10 +18,10 @@
 -A INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
 
 # Ethernet allows everything from administrators.
-{% if admins is not none %}
-{% for admin in admins %}
--A INPUT -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
--A FORWARD -i eth+ -s {{ admin['ipv4'] }} -j ACCEPT
+{% if security.administrators is not none %}
+{% for a in security.administrators %}
+-A INPUT -i eth+ -s {{ a['ipv4'] }} -j ACCEPT
+-A FORWARD -i eth+ -s {{ a['ipv4'] }} -j ACCEPT
 {% endfor %}
 {% endif %}
 

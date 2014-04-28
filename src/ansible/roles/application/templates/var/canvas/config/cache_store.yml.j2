@@ -1,8 +1,4 @@
-development:
-  cache_store: redis_store
-
-test:
-  cache_store: redis_store
-
-production:
-  cache_store: redis_store
+{% for env in environments %}
+  {{ env.name }}:
+    cache_store: redis_store
+{% endfor %}

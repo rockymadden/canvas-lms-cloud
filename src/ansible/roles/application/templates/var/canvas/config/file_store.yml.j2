@@ -1,11 +1,5 @@
-development:
-  storage: local
-  path_prefix: tmp/files
-
-test:
-  storage: local
-  path_prefix: tmp/files
-
-production:
-  storage: local
-  path_prefix: tmp/files
+{% for env in environments %}
+  {{ env.name }}:
+    storage: local
+    path_prefix: tmp/files
+{% endfor %}

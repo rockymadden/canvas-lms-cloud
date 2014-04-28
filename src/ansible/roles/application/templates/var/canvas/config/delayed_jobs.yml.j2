@@ -1,11 +1,9 @@
-production:
-  workers:
-    - queue: canvas_queue
-      workers: 2
-      max_priority: 10
-    - queue: canvas_queue
-      workers: 4
-
-default:
-  workers:
-    - queue: canvas_queue
+{% for env in environments %}
+  {{ env.name }}:
+    workers:
+      - queue: canvas_queue
+        workers: 4
+        max_priority: 10
+      - queue: canvas_queue
+        workers: 8
+{% endfor %}

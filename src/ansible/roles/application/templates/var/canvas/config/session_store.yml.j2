@@ -1,11 +1,5 @@
-development:
-  session_store: encrypted_cookie_store
-  expire_after: 86400
-
-test:
-  session_store: encrypted_cookie_store
-  expire_after: 86400
-
-production:
-  session_store: encrypted_cookie_store
-  expire_after: 86400
+{% for env in environments %}
+  {{ env.name }}:
+    session_store: encrypted_cookie_store
+    expire_after: 86400
+{% endfor %}

@@ -1,8 +1,3 @@
-development:
-
-test:
-  servers:
-    - redis://localhost
-  database: 1
-
-production:
+{% for env in environments %}
+  {{ env.name }}:
+{% endfor %}

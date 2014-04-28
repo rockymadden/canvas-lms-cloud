@@ -1,37 +1,11 @@
-development:
-  address: "smtp.example.com"
-  port: "25"
-  user_name: "user"
-  password: "password"
-  authentication: "plain" # plain, login, or cram_md5
-  domain: "example.com"
-  outgoing_address: "canvas@example.com"
-  default_name: "Instructure Canvas"
-
-test:
-  delivery_method: "test"
-
-production:
-  address: "smtp.example.com"
-  port: "25"
-  user_name: "user"
-  password: "password"
-  authentication: "plain"
-  domain: "example.com"
-  outgoing_address: "canvas@example.com"
-  default_name: "Instructure Canvas"
-
-multiple_inboxes:
-  address: "smtp.example.com"
-  port: "25"
-  user_name: "user"
-  password: "password"
-  authentication: "plain"
-  domain: "example.com"
-  outgoing_address: "canvas@example.com"
-  default_name: "Instructure Canvas"
-  reply_to_addresses:
-    - "canvas1@example.com"
-    - "canvas2@example.com"
-    - "canvas3@example.com"
-    - "canvas4@example.com"
+{% for env in environments %}
+  {{ env.name }}:
+    address: {{ env.configuration.email.server.hostname }}
+    port: {{ env.configuration.email.server.port }}
+    user_name: {{ env.configuration.email.user.username }}
+    password: {{ env.configuration.email.user.password }}
+    authentication: {{ env.configuration.email.server.authentication }}
+    domain: {{ env.configuration.email.server.domain_name }}
+    outgoing_address: {{ env.configuration.email.user.address }}
+    default_name: {{ env.configuration.email.user.name }}
+{% endfor %}

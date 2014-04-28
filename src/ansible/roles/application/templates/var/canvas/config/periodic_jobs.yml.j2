@@ -1,5 +1,3 @@
-development:
-
-test:
-
-production:
+{% for env in environments %}
+  {{ env.name }}:
+{% endfor %}

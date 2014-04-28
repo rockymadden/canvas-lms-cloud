@@ -1,9 +1,4 @@
-development:
-  logger: rails
-  log_context: false
-
-test:
-  logger: rails
-
-production:
-  logger: rails
+{% for env in environments %}
+  {{ env.name }}:
+    logger: rails
+{% endfor %}

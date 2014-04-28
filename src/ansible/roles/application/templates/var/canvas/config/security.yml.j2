@@ -1,8 +1,4 @@
-production:
-  encryption_key: 12345
-
-development:
-  encryption_key: facdd3a131ddd8988b14f6e4e01039c93cfa0160
-
-test:
-  encryption_key: facdd3a131ddd8988b14f6e4e01039c93cfa0160
+{% for env in environments %}
+  {{ env.name }}:
+    encryption_key: {{ env.configuration.security.canvas_encryption_key }}
+{% endfor %}

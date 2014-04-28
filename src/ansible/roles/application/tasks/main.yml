@@ -149,12 +149,6 @@
     - application
     - canvas
 
-- name: configure canvas incoming mail
-  template: src=var/canvas/config/incoming_mail.yml.j2 dest=/var/canvas/config/incoming_mail.yml
-  tags:
-    - application
-    - canvas
-
 - name: configure canvas logging
   template: src=var/canvas/config/logging.yml.j2 dest=/var/canvas/config/logging.yml
   tags:
