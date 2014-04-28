@@ -10,10 +10,13 @@
 
 [test-proxy]
 
-[test:children]
-test-application
-test-cache
+[test-database:children]
 test-database-xc-coordinator
 test-database-xc-datanode
 test-database-xc-gtm
+
+[test:children]
+test-application
+test-cache
+test-database
 test-proxy

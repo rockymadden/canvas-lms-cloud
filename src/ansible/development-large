@@ -10,10 +10,13 @@
 
 [development-proxy]
 
-[development:children]
-development-application
-development-cache
+[development-database:children]
 development-database-xc-coordinator
 development-database-xc-datanode
 development-database-xc-gtm
+
+[development:children]
+development-application
+development-cache
+development-database
 development-proxy

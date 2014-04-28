@@ -10,10 +10,13 @@
 
 [test-proxy]
 
-[test:children]
-test-application
-test-cache
+[test-database:children]
 test-database-pool-coordinator
 test-database-pool-master
 test-database-pool-slave
+
+[test:children]
+test-application
+test-cache
+test-database
 test-proxy

@@ -10,10 +10,13 @@
 
 [development-proxy]
 
-[development:children]
-development-application
-development-cache
+[development-database:children]
 development-database-pool-coordinator
 development-database-pool-master
 development-database-pool-slave
+
+[development:children]
+development-application
+development-cache
+development-database
 development-proxy

@@ -42,6 +42,21 @@ dc1-database-xc-datanode
 dc0-database-xc-gtm
 dc1-database-xc-gtm
 
+[dc0-database:children]
+dc0-database-xc-coordinator
+dc0-database-xc-datanode
+dc0-database-xc-gtm
+
+[dc1-database:children]
+dc1-database-xc-coordinator
+dc1-database-xc-datanode
+dc1-database-xc-gtm
+
+[database:children]
+database-xc-coordinator
+database-xc-datanode
+database-xc-gtm
+
 [proxy:children]
 dc0-proxy
 dc1-proxy
@@ -49,17 +64,13 @@ dc1-proxy
 [dc0:children]
 dc0-application
 dc0-cache
-dc0-database-xc-coordinator
-dc0-database-xc-datdatanode
-dc0-database-xc-gtm
+dc0-database
 dc0-proxy
 
 [dc1:children]
 dc1-application
 dc1-cache
-dc1-database-xc-coordinator
-dc1-database-xc-datdatanode
-dc1-database-xc-gtm
+dc1-database
 dc1-proxy
 
 [all:children]

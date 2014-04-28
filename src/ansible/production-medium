@@ -42,6 +42,21 @@ dc1-database-pool-master
 dc0-database-pool-slave
 dc1-database-pool-slave
 
+[dc0-database:children]
+dc0-database-pool-coordinator
+dc0-database-pool-master
+dc0-database-pool-slave
+
+[dc1-database:children]
+dc1-database-pool-coordinator
+dc1-database-pool-master
+dc1-database-pool-slave
+
+[database:children]
+database-pool-coordinator
+database-pool-master
+database-pool-slave
+
 [proxy:children]
 dc0-proxy
 dc1-proxy
@@ -49,17 +64,13 @@ dc1-proxy
 [dc0:children]
 dc0-application
 dc0-cache
-dc0-database-pool-coordinator
-dc0-database-pool-master
-dc0-database-pool-slave
+dc0-database
 dc0-proxy
 
 [dc1:children]
 dc1-application
 dc1-cache
-dc1-database-pool-coordinator
-dc1-database-pool-master
-dc1-database-pool-slave
+dc1-database
 dc1-proxy
 
 [all:children]
