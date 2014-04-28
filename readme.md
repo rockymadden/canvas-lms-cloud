@@ -72,7 +72,7 @@ Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
 
 ## Usage
 
-Configure and deploy all production hosts (depending upon cloud size):
+Configure and deploy all production hosts:
 ```
 $ ansible-playbook -i localhost site.yml
 $ ansible-playbook -i production-small site.yml
@@ -82,7 +82,7 @@ $ ansible-playbook -i production-large site.yml
 
 ---
 
-Configure and deploy all development hosts (depending upon cloud size):
+Configure and deploy all development hosts:
 ```
 $ ansible-playbook -i localhost site.yml
 $ ansible-playbook -i development-small site.yml
@@ -92,7 +92,7 @@ $ ansible-playbook -i development-large site.yml
 
 ---
 
-Configure and deploy just production application hosts (depending upon cloud size):
+Configure and deploy just production application hosts:
 ```
 $ ansible-playbook -i localhost application.yml
 $ ansible-playbook -i production-small application.yml
@@ -102,7 +102,7 @@ $ ansible-playbook -i production-large application.yml
 
 ---
 
-Configure and deploy just production cache hosts (depending upon cloud size):
+Configure and deploy just production cache hosts:
 ```
 $ ansible-playbook -i localhost cache.yml
 $ ansible-playbook -i production-small cache.yml
@@ -111,7 +111,7 @@ $ ansible-playbook -i production-large cache.yml
 ```
 
 ---
-Configure and deploy just production database hosts (depending upon cloud size):
+Configure and deploy just production database hosts:
 ```
 $ ansible-playbook -i localhost database.yml
 $ ansible-playbook -i production-small database.yml
@@ -120,7 +120,7 @@ $ ansible-playbook -i production-large database.yml
 ```
 
 ---
-Configure and deploy just production proxy hosts (depending upon cloud size):
+Configure and deploy just production proxy hosts:
 ```
 $ ansible-playbook -i localhost proxy.yml
 $ ansible-playbook -i production-small proxy.yml
@@ -130,7 +130,7 @@ $ ansible-playbook -i production-large proxy.yml
 
 ---
 
-Perform apt maintenance on all production hosts (depending upon cloud size):
+Perform apt maintenance on all production hosts:
 ```
 $ ansible-playbook -i localhost apt.yml
 $ ansible-playbook -i production-small apt.yml
@@ -140,7 +140,7 @@ $ ansible-playbook -i production-large apt.yml
 
 ---
 
-Perform apt maintenance on all production hosts without rebooting (depending upon cloud size):
+Perform apt maintenance on all production hosts without rebooting:
 ```
 $ ansible-playbook -i localhost apt.yml --skip-tags=reboot
 $ ansible-playbook -i production-small apt.yml --skip-tags=reboot
@@ -150,7 +150,7 @@ $ ansible-playbook -i production-large apt.yml --skip-tags=reboot
 
 ---
 
-Perform apt maintenance on all production application hosts (depending upon cloud size):
+Perform apt maintenance on all production application hosts:
 ```
 $ ansible-playbook -i localhost apt.yml --limit=application
 $ ansible-playbook -i production-small apt.yml --limit=application
