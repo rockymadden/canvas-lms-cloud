@@ -16,19 +16,6 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * Handling for dedicated application hosts to run automated jobs
 * Security hardening at multiple levels
 
-## Server Targeting
-Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
-
-```
-CPU: Intel Xeon E3-1245v3
-DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
-RAM 32 GB ECC
-NIC: 1 Gbps (preferably dual)
-IPv4: 1 public
-```
-
-These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
-
 ## Cloud Sizes
 __Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 * __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
@@ -50,6 +37,19 @@ __Large:__ ![Development Status](http://img.shields.io/badge/status-queued-light
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
 * __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 2 database datanode hosts, and 2 database GTM hosts.
 
+## Server Targeting
+Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
+
+```
+CPU: Intel Xeon E3-1245v3
+DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
+RAM 32 GB ECC
+NIC: 1 Gbps (preferably dual)
+IPv4: 1 public
+```
+
+These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
+
 ## Firewall Design
 
 __Co-Hosts:__
@@ -62,13 +62,6 @@ __Public:__
 * TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/ssh/sshd_config.j2).
 * ICMP echo requests are allowed to all hosts. However, there is a threshold of 5 per second which is enforced via [sysctl.conf](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/sysctl.conf.j2).
 * TCP ports 80 and 443 are open on proxy hosts and __are the only ports intended for public consumption.__ Via Ansible inventory variables, it is possible to rate-limit connections to help protect against abuse and attacks.
-
-## Requirements
-
-Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
-* OpenSSH server installed
-* Network interface and hostname configured
-* SSH key transferred
 
 ## Usage
 
@@ -169,6 +162,13 @@ $ ansible-playbook -i production-large apt.yml --limit=application
 ```
 
 ---
+
+## Requirements
+
+Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
+* OpenSSH server installed
+* Network interface and hostname configured
+* SSH key transferred
 
 ## License
 
