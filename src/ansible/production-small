@@ -6,9 +6,13 @@
 
 [dc1-cache]
 
-[dc0-database]
+[dc0-database-standy-master]
 
-[dc1-database]
+[dc1-database-standy-master]
+
+[dc0-database-standy-slave]
+
+[dc1-database-standy-slave]
 
 [dc0-proxy]
 
@@ -22,9 +26,25 @@ dc1-application
 dc0-cache
 dc1-cache
 
+[database-standy-master:children]
+dc0-database-standy-master
+dc1-database-standy-master
+
+[database-standy-slave:children]
+dc0-database-standy-master
+dc1-database-standy-slave
+
+[dc0-database:children]
+dc0-database-standby-master
+dc0-database-standby-slave
+
+[dc1-database:children]
+dc1-database-standby-master
+dc1-database-standby-slave
+
 [database:children]
-dc0-database
-dc1-database
+database-standy-master
+database-standy-slave
 
 [proxy:children]
 dc0-proxy

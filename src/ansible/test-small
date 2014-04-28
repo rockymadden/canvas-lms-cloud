@@ -2,12 +2,19 @@
 
 [test-cache]
 
-[test-database]
+[test-database-standby-master]
+
+[test-database-standby-slave]
 
 [test-proxy]
+
+[test-database:children]
+test-database-standy-master
+test-database-standy-slave
 
 [test:children]
 test-application
 test-cache
-test-database
+test-database-standy-master
+test-database-standy-slave
 test-proxy

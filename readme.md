@@ -20,7 +20,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
 
 ```
-CPU: Intel Xeon E3-1245v2
+CPU: Intel Xeon E3-1245v3
 DISK: Intel SSDs or 10k SATA HDDs in RAID 1/10
 RAM 32 GB ECC
 NIC: 1 Gbps

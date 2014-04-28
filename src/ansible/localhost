@@ -2,9 +2,12 @@
 
 [cache]
 
-[database]
+[database-standby-master]
 
 [proxy]
+
+[database:children]
+database-standby-master
 
 [all:children]
 application

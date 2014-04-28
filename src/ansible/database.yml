@@ -1,9 +1,0 @@
----
-
-- hosts:
-    - database
-    - development-database
-    - test-database
-  remote_user: root
-  roles:
-    - common

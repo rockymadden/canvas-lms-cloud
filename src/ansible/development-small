@@ -2,9 +2,15 @@
 
 [development-cache]
 
-[development-database]
+[development-database-standy-master]
+
+[development-database-standy-slave]
 
 [development-proxy]
+
+[development-database:children]
+development-database-standy-master
+development-database-standy-slave
 
 [development:children]
 development-application
