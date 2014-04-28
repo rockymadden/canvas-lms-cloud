@@ -102,6 +102,16 @@ $ ansible-playbook -i production-large application.yml
 
 ---
 
+Configure and deploy just production application hosts while only running ruby based tasks:
+```
+$ ansible-playbook -i localhost application.yml --tags ruby
+$ ansible-playbook -i production-small application.yml --tags ruby
+$ ansible-playbook -i production-medium application.yml --tags ruby
+$ ansible-playbook -i production-large application.yml --tags ruby
+```
+
+---
+
 Configure and deploy just production cache hosts:
 ```
 $ ansible-playbook -i localhost cache.yml
