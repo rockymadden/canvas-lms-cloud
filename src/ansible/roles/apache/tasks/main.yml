@@ -8,6 +8,7 @@
   when: jobs_only is not defined or not jobs_only|bool
   tags:
     - apache
+    - install
 
 - name: enable apache rewrite mod
   command: a2enmod rewrite creates=/etc/apache2/mods-enabled/rewrite.load
@@ -15,6 +16,7 @@
   when: jobs_only is not defined or not jobs_only|bool
   tags:
     - apache
+    - configure
 
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
@@ -22,3 +24,4 @@
   when: jobs_only is not defined or not jobs_only|bool
   tags:
     - apache
+    - configure
