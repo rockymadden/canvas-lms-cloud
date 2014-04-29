@@ -1,5 +1,5 @@
-{% for env in environments %}
-  {{ env.name }}:
+{% for k, v in environments.items() %}
+  {{ k }}:
     storage: local
     path_prefix: tmp/files
 {% endfor %}

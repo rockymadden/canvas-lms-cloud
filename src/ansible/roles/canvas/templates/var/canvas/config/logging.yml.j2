@@ -1,4 +1,4 @@
-{% for env in environments %}
-  {{ env.name }}:
+{% for k, v in environments.items() %}
+  {{ k }}:
     logger: rails
 {% endfor %}

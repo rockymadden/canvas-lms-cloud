@@ -7,7 +7,7 @@ canvas:
   hostname: canvas.example.com
   version: release/2014-04-12.20
 environments:
-  - name: production
+  production:
     canvas:
       encryption_key: FEEXtgTkbBJ4DZjW89vNryxjA2arsGwYndxz7G47QVEs9gUKvcRunyXFixXP
     email: # TODO: sendmail

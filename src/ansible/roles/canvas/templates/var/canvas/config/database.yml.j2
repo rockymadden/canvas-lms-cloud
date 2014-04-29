@@ -1,18 +1,18 @@
-{% for env in environments %}
-  {{ env.name }}:
+{% for k, v in environments.items() %}
+  {{ k }}:
     adapter: postgresql
     encoding: utf8
-    database: canvas_{{ env.name }}
+    database: canvas_{{ k }}
     host: localhost # TODO: Detect and populate.
-    username: {{ env.postgresql.username }}
-    password: {{ env.postgresql.password }}
+    username: {{ v.postgresql.username }}
+    password: {{ v.postgresql.password }}
     timeout: 8000
     queue:
       adapter: postgresql
       encoding: utf8
-      database: canvas_queue_{{ env.name }}
+      database: canvas_queue_{{ k }}
       host: # TODO: Detect and populate.
-      username: {{ env.postgresql.username }}
-      password: {{ env.postgresql.password }}
+      username: {{ v.postgresql.username }}
+      password: {{ v.postgresql.password }}
       timeout: 8000
 {% endfor %}

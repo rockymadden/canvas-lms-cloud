@@ -1,4 +1,4 @@
-{% for env in environments %}
-  {{ env.name }}:
-    encryption_key: {{ env.canvas.encryption_key }}
+{% for k, v in environments.items() %}
+  {{ k }}:
+    encryption_key: {{ v.canvas.encryption_key }}
 {% endfor %}
