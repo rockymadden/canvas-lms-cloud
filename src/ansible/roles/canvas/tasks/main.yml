@@ -14,7 +14,7 @@
      - unzip
      - zlib1g-dev
   tags:
-    - application
+    - canvas
     - library
 
 - name: install python related packages
@@ -23,7 +23,7 @@
      - python
      - python-software-properties
   tags:
-    - application
+    - canvas
     - python
 
 - name: install java related packages
@@ -31,7 +31,7 @@
   with_items:
     - openjdk-7-jre
   tags:
-    - application
+    - canvas
     - java
 
 - name: install ruby related packages
@@ -42,7 +42,7 @@
      - ruby-httpclient
      - ruby-passenger
   tags:
-    - application
+    - canvas
     - ruby
 
 - name: install javascript related packages
@@ -51,40 +51,13 @@
      - nodejs
      - coffeescript
   tags:
-    - application
+    - canvas
     - javascript
-
-- name: install apache related packages
-  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
-  with_items:
-     - apache2
-     - libapache2-mod-passenger
-  when: jobs_only is not defined or not jobs_only|bool
-  tags:
-    - application
-    - apache
-
-- name: enable apache rewrite mod
-  command: a2enmod rewrite creates=/etc/apache2/mods-enabled/rewrite.load
-  notify: restart apache service
-  when: jobs_only is not defined or not jobs_only|bool
-  tags:
-    - application
-    - apache
-
-- name: enable apache passenger mod
-  command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
-  notify: restart apache service
-  when: jobs_only is not defined or not jobs_only|bool
-  tags:
-    - application
-    - apache
 
 - name: check if canvas is installed
   stat: path=/var/canvas
   register: canvas_installed
   tags:
-    - application
     - canvas
 
 - name: git clone canvas
@@ -95,7 +68,6 @@
     update=no
   when: not canvas_installed.stat.exists
   tags:
-    - application
     - canvas
 
 - name: create canvas directories
@@ -107,7 +79,6 @@
     - /var/canvas/public/stylesheets/compiled
   when: not canvas_installed.stat.exists
   tags:
-    - application
     - canvas
 
 - name: create canvas files
@@ -116,106 +87,89 @@
     - /var/canvas/Gemfile.lock
   when: not canvas_installed.stat.exists
   tags:
-    - application
     - canvas
 
 - name: configure canvas cache store
   template: src=var/canvas/config/cache_store.yml.j2 dest=/var/canvas/config/cache_store.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas database
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas delayed jobs
   template: src=var/canvas/config/delayed_jobs.yml.j2 dest=/var/canvas/config/delayed_jobs.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas domain
   template: src=var/canvas/config/domain.yml.j2 dest=/var/canvas/config/domain.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas file store
   template: src=var/canvas/config/file_store.yml.j2 dest=/var/canvas/config/file_store.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas logging
   template: src=var/canvas/config/logging.yml.j2 dest=/var/canvas/config/logging.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas outgoing mail
   template: src=var/canvas/config/outgoing_mail.yml.j2 dest=/var/canvas/config/outgoing_mail.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas periodic jobs
   template: src=var/canvas/config/periodic_jobs.yml.j2 dest=/var/canvas/config/periodic_jobs.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas redis
   template: src=var/canvas/config/redis.yml.j2 dest=/var/canvas/config/redis.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas security
   template: src=var/canvas/config/security.yml.j2 dest=/var/canvas/config/security.yml
   tags:
-    - application
     - canvas
 
 - name: configure canvas session store
   template: src=var/canvas/config/session_store.yml.j2 dest=/var/canvas/config/session_store.yml
   tags:
-    - application
     - canvas
 
 - name: check if canvas gems are installed
   stat: path=/var/canvas/vendor/bundle
   register: canvas_gems_installed
   tags:
-    - application
     - canvas
 
 - name: install bundler gem
   command: gem install bundler --version=1.5.3
   when: not canvas_gems_installed.stat.exists
   tags:
-    - application
     - canvas
 
 - name: install canvas gems
   command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development test
   when: not canvas_gems_installed.stat.exists
   tags:
-    - application
     - canvas
 
 - name: secure /var/canvas
   file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
   tags:
-    - application
     - canvas
     - secure
 
 - name: secure /var/canvas/config
   file: path=/var/canvas/config state=directory owner=canvas group=canvas mode=0400 recurse=yes
   tags:
-    - application
     - canvas
     - secure

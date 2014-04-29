@@ -7,4 +7,5 @@
   remote_user: root
   roles:
     - common
-    - application
+    - canvas
+    - apache
