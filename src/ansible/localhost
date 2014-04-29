@@ -15,3 +15,8 @@ application
 cache
 database
 proxy
+
+[all:vars]
+datacenter=0
+environment=production
+size=localhost

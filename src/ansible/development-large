@@ -21,3 +21,8 @@ development-application
 development-cache
 development-database
 development-proxy
+
+[development:vars]
+datacenter=0
+environment=development
+size=large

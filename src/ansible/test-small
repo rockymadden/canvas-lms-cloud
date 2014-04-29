@@ -19,3 +19,8 @@ test-cache
 test-database-standy-master
 test-database-standy-slave
 test-proxy
+
+[test:vars]
+datacenter=0
+environment=test
+size=small

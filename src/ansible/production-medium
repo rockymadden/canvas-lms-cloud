@@ -68,12 +68,22 @@ dc0-cache
 dc0-database
 dc0-proxy
 
+[dc0:vars]
+datacenter=0
+
 [dc1:children]
 dc1-application
 dc1-cache
 dc1-database
 dc1-proxy
 
+[dc1:vars]
+datacenter=1
+
 [all:children]
 dc0
 dc1
+
+[all:vars]
+environment=production
+size=medium
