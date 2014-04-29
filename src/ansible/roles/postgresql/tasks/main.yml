@@ -4,6 +4,7 @@
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items:
      - postgresql-9.3
+     - python-psycopg2
   tags:
     - postgresql
     - install
@@ -39,6 +40,34 @@
 - name: configure postgresql start
   template: src=etc/postgresql/9.3/main/start.conf.j2 dest=/etc/postgresql/9.3/main/start.conf
   notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
+
+- name: create canvas postgresql user
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: name=canvas password={{ environments[this_environment].postgresql.password }} role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
+  tags:
+    - postgresql
+    - configure
+
+- name: create canvas postgresql database
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db:
+    name=canvas_{{ this_environment }}
+    owner=canvas
+  tags:
+    - postgresql
+    - configure
+
+- name: create canvas postgresql queue database
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db:
+    name=canvas_queue_{{ this_environment }}
+    owner=canvas
   tags:
     - postgresql
     - configure
