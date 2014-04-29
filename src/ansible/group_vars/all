@@ -2,7 +2,7 @@
 
 administrators:
   - name: System Administrator
-    pv4: 127.0.0.1
+    ipv4: 127.0.0.1
 canvas:
   hostname: canvas.example.com
   version: release/2014-04-12.20
