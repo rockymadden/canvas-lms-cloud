@@ -9,33 +9,36 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * No dedicated hardware firewalls or load balancers needed
 * Nginx used as an SSL terminator, static cache, round-robin load balancer, with SPDY protocol support
 * Redis leveraged for improved system performance
+* Cassandra leveraged for improved system performance
 * Handling for multiple physical datacenter setups
 * Handling for multiple application hosts with round robin load balancing
 * Handling for database clusters (e.g. Pgpool II and Postgres-XC)
+* Handling for file clusters (e.g. GlusterFS) or Amazon S3 for file storage
+* Handling for email hosts (e.g. sendmail)
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application hosts to run automated jobs
 * Security hardening at multiple levels
 
 ## Cloud Sizes
 __Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
-* __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
+* __Available roles:__ proxy, application, cache, database
 * __Scalability:__ N/A
-* __Ideal hosts (min):__ N/A
+* __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
 
 __Small:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+* __Available roles:__ proxy, application, cache, database master, database slave
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master database host with a hot standby. Supports file storage via Amazon S3.
 * __Inventory files:__ [production-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [development-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [test-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-small)
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports a master database host with a hot standby.
-* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 1 database master host, and 1 database slave host.
 
 __Medium:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
+* __Available roles:__ proxy, application, cache, database coordinator, database master, database slave, email, storage
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [production-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [development-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [test-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-medium)
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/).
-* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 1 database master host, and 1 database slave host.
 
 __Large:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
+* __Available roles:__ proxy, application, cache, database coordinator, database datanode, database global transaction manager, email, storage
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [production-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [development-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [test-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-large)
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache, and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC).
-* __Ideal hosts (min):__ 2 proxy hosts, 3 application hosts, 1 cache host, 2 database coordinator hosts, 2 database datanode hosts, and 2 database GTM hosts.
 
 ## Server Targeting
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
