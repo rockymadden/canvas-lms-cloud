@@ -7,3 +7,38 @@
   tags:
     - postgresql
     - install
+
+- name: configure postgresql pg_ctl
+  template: src=etc/postgresql/9.3/main/pg_ctl.conf.j2 dest=/etc/postgresql/9.3/main/pg_ctl.conf
+  notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
+
+- name: configure postgresql pg_hba
+  template: src=etc/postgresql/9.3/main/pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
+  notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
+
+- name: configure postgresql pg_ident
+  template: src=etc/postgresql/9.3/main/pg_ident.conf.j2 dest=/etc/postgresql/9.3/main/pg_ident.conf
+  notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
+
+- name: configure postgresql
+  template: src=etc/postgresql/9.3/main/postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
+  notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
+
+- name: configure postgresql start
+  template: src=etc/postgresql/9.3/main/start.conf.j2 dest=/etc/postgresql/9.3/main/start.conf
+  notify: restart postgresql service
+  tags:
+    - postgresql
+    - configure
