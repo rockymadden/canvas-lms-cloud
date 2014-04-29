@@ -13,7 +13,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * Handling for multiple physical datacenter setups
 * Handling for multiple application hosts with round robin load balancing
 * Handling for database clusters (e.g. Pgpool II and Postgres-XC)
-* Handling for file clusters (e.g. GlusterFS) or Amazon S3 for file storage
+* Handling for storage clusters (e.g. GlusterFS) or Amazon S3
 * Handling for email hosts (e.g. sendmail)
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application hosts to run automated jobs
