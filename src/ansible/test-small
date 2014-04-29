@@ -21,6 +21,6 @@ test-database-standy-slave
 test-proxy
 
 [test:vars]
-datacenter=0
-environment=test
-size=small
+this_datacenter=0
+this_environment=test
+this_size=small

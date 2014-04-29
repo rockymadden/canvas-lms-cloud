@@ -20,6 +20,6 @@ development-database
 development-proxy
 
 [development:vars]
-datacenter=0
-environment=development
-size=small
+this_datacenter=0
+this_environment=development
+this_size=small

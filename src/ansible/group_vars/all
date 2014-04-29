@@ -22,8 +22,6 @@ environments:
         domain_name: example.com
         port: 25
     postgresql:
-      username: username
       password: password
     redis:
-      username: username
       password: password
