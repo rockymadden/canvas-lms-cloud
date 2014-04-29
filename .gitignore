@@ -14,5 +14,14 @@
 # OS ignores.
 .DS_Store
 
-# Codebase ignores.
-development
+# Inventory ignores.
+.localhost
+.development-large
+.development-medium
+.development-small
+.production-large
+.production-medium
+.production-small
+.test-large
+.test-medium
+.test-small
