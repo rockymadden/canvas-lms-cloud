@@ -1,9 +1,9 @@
 ---
 
 - hosts:
-    - database-standy-master
-    - development-database-standy-master
-    - test-database-standy-master
+    - database-standby-master
+    - development-database-standby-master
+    - test-database-standby-master
   remote_user: root
   roles:
     - common

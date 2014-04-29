@@ -1,8 +1,8 @@
 ---
 
 - hosts:
-    - database-standy-slave
-    - development-database-standy-slave
+    - database-standby-slave
+    - development-database-standby-slave
     - test-database-standby-slave
   remote_user: root
   roles:
