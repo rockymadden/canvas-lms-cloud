@@ -1,25 +1,128 @@
+#------------------------------------------------------------------------------
+# FILE LOCATIONS
+#------------------------------------------------------------------------------
+
 data_directory = '/var/lib/postgresql/9.3/main'
 hba_file = '/etc/postgresql/9.3/main/pg_hba.conf'
 ident_file = '/etc/postgresql/9.3/main/pg_ident.conf'
 external_pid_file = '/var/run/postgresql/9.3-main.pid'
 
-listen_addresses = 'localhost'
-port = 5432
-max_connections = 100
-unix_socket_directories = '/var/run/postgresql'
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
 
+listen_addresses = '*'
+port = 5432
+
+{% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
+
+max_connections = 512
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 16 %}
+
+max_connections = 256
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 8 %}
+
+max_connections = 128
+
+{% else %}
+
+max_connections = 64
+
+{% endif %}
+
+unix_socket_directories = '/var/run/postgresql'
 ssl = true
 ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
 ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'
+password_encryption = on
 
-shared_buffers = 128MB
+#------------------------------------------------------------------------------
+# RESOURCE USAGE (except WAL)
+#------------------------------------------------------------------------------
+
+shared_buffers = {{ ( ansible_memtotal_mb / 4)|int }}MB
+
+{% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
+
+temp_buffers = 32MB
+max_prepared_transactions = 256
+work_mem = 16MB
+maintenance_work_mem = 512MB
+max_stack_depth = 6MB
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 16 %}
+
+temp_buffers = 16MB
+max_prepared_transactions = 128
+work_mem = 12MB
+maintenance_work_mem = 256MB
+max_stack_depth = 4MB
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 8 %}
+
+temp_buffers = 8MB
+max_prepared_transactions = 64
+work_mem = 8MB
+maintenance_work_mem = 128MB
+max_stack_depth = 2MB
+
+{% else %}
+
+temp_buffers = 8MB
+max_prepared_transactions = 32
+work_mem = 4MB
+maintenance_work_mem = 32MB
+max_stack_depth = 2MB
+
+{% endif %}
+
+
+#------------------------------------------------------------------------------
+# WRITE AHEAD LOG AND REPLICATION
+#------------------------------------------------------------------------------
+{% if inventory_hostname in groups['database-standby-master'] %}
+{% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
+
+wal_level = hot_standby
+max_wal_senders = 32
+wal_keep_segments = 128
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 16 %}
+
+wal_level = hot_standby
+max_wal_senders = 16
+wal_keep_segments = 64
+
+{% elif ((ansible_memtotal_mb / 1024)|round) >= 8 %}
+
+wal_level = hot_standby
+max_wal_senders = 8
+wal_keep_segments = 32
+
+{% else %}
+
+wal_level = hot_standby
+max_wal_senders = 4
+wal_keep_segments = 16
+
+{% endif %}
+{% endif %}
+
+#------------------------------------------------------------------------------
+# ERROR REPORTING AND LOGGING
+#------------------------------------------------------------------------------
 
 log_line_prefix = '%t '
 log_timezone = 'Navajo'
 
+#------------------------------------------------------------------------------
+# CLIENT CONNECTION DEFAULTS
+#------------------------------------------------------------------------------
+
 datestyle = 'iso, mdy'
 timezone = 'Navajo'
-
 lc_messages = 'en_US.UTF-8'
 lc_monetary = 'en_US.UTF-8'
 lc_numeric = 'en_US.UTF-8'
