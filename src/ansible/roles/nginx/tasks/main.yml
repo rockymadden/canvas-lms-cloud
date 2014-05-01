@@ -7,3 +7,13 @@
   tags:
     - nginx
     - install
+
+- name: remove default nginx sites
+  file: path={{ item }} state=absent
+  with_items:
+    - /etc/nginx/sites-enabled/default
+    - /etc/nginx/sites-available/default
+  notify: restart nginx service
+  tags:
+    - nginx
+    - configure
