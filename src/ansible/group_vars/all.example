@@ -16,6 +16,10 @@ administrators:
 # -----------------------------------------------------------------------------
 
 canvas:
+  admin_account_email: admin@example.com
+  admin_account_name: Organization Name
+  admin_account_password: password
+  files_hostname: files.canvas.example.com
   hostname: canvas.example.com
   version: release/2014-04-12.20
 
