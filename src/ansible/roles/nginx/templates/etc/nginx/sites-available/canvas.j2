@@ -2,9 +2,13 @@ proxy_cache_path /var/cache/nginx/canvas-core levels=1:2 keys_zone=canvas-core:1
 proxy_cache_path /var/cache/nginx/canvas-files levels=1:2 keys_zone=canvas-files:32m inactive=60m;
 
 upstream canvas-apache {
+{% if this_size == 'localhost' %}
+	server 127.0.0.1:80;
+{% else %}
 {% for h in groups['application'] %}
 	server {{ hostvars[h]['ansible_eth0']['ipv4']['address'] }}:80 max_fails=4 fail_timeout=16s;
 {% endfor %}
+{% endif %}
 
 	keepalive_timeout 64;
 }
