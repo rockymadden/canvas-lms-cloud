@@ -9,8 +9,9 @@ canvas:
 environments:
   production:
     canvas:
-      encryption_key: FEEXtgTkbBJ4DZjW89vNryxjA2arsGwYndxz7G47QVEs9gUKvcRunyXFixXP
-    email: # TODO: sendmail
+      # A high entropy random string of at least 32 characters is strongly recommended.
+      encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
+    email:
       user:
         address: example@example.com
         name: Example Example
