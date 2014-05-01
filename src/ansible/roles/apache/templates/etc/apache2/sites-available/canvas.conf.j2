@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+  ServerName {{ canvas.hostname }}
+  ServerAlias {{ canvas.files_hostname }}
+  ServerAdmin {{ canvas.admin_email }}
+  DocumentRoot /var/canvas/public
+  RewriteEngine On
+  RewriteCond %{HTTP:X-Forwarded-Proto} != https
+  RewriteCond %{REQUEST_URI} !^/health_check
+  RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L]
+  ErrorLog /var/log/apache2/canvas_errors.log
+  LogLevel warn
+  CustomLog /var/log/apache2/canvas_access.log combined
+  SetEnv RAILS_ENV production
+  <Directory /var/canvas/public>
+    Allow from all
+    Options -MultiViews
+  </Directory>
+</VirtualHost>

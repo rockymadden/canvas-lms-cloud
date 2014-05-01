@@ -37,3 +37,9 @@
   tags:
     - apache
     - configure
+
+- name: configure canvas apache site
+  template: src=etc/apache2/sites-available/canvas.conf.j2 dest=/etc/apache2/sites-available/canvas.conf
+  tags:
+    - apache
+    - configure
