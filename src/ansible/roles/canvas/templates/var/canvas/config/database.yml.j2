@@ -1,22 +1,22 @@
 {% for k, v in environments.items() %}
-  {{ k }}:
+{{ k }}:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_{{ k }}
+{% if this_size == 'localhost' or this_size == 'small' %}
+  host: {{ hostvars[groups['database-standby-master'][0]]['ansible_eth0']['ipv4']['address'] }}
+{% endif %}
+  username: canvas
+  password: {{ v.postgresql.password }}
+  timeout: 8000
+  queue:
     adapter: postgresql
     encoding: utf8
-    database: canvas_{{ k }}
-    {% if this_size == 'localhost' or this_size == 'small' %}
+    database: canvas_queue_{{ k }}
+{% if this_size == 'localhost' or this_size == 'small' %}
     host: {{ hostvars[groups['database-standby-master'][0]]['ansible_eth0']['ipv4']['address'] }}
-    {% endif %}
+{% endif %}
     username: canvas
     password: {{ v.postgresql.password }}
     timeout: 8000
-    queue:
-      adapter: postgresql
-      encoding: utf8
-      database: canvas_queue_{{ k }}
-      {% if this_size == 'localhost' or this_size == 'small' %}
-      host: {{ hostvars[groups['database-standby-master'][0]]['ansible_eth0']['ipv4']['address'] }}
-      {% endif %}
-      username: canvas
-      password: {{ v.postgresql.password }}
-      timeout: 8000
 {% endfor %}

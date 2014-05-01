@@ -1,11 +1,11 @@
 {% for k, v in environments.items() %}
-  {{ k }}:
-    address: {{ v.email.server.hostname }}
-    port: {{ v.email.server.port }}
-    user_name: {{ v.email.user.username }}
-    password: {{ v.email.user.password }}
-    authentication: {{ v.email.server.authentication }}
-    domain: {{ v.email.server.domain_name }}
-    outgoing_address: {{ v.email.user.address }}
-    default_name: {{ v.email.user.name }}
+{{ k }}:
+  address: {{ v.email.server.hostname }}
+  port: {{ v.email.server.port }}
+  user_name: {{ v.email.user.username }}
+  password: {{ v.email.user.password }}
+  authentication: {{ v.email.server.authentication }}
+  domain: {{ v.email.server.domain_name }}
+  outgoing_address: {{ v.email.user.address }}
+  default_name: {{ v.email.user.name }}
 {% endfor %}

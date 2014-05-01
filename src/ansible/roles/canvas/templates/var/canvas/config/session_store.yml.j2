@@ -1,5 +1,5 @@
 {% for k, v in environments.items() %}
-  {{ k }}:
-    session_store: encrypted_cookie_store
-    expire_after: 86400
+{{ k }}:
+  session_store: encrypted_cookie_store
+  expire_after: 86400
 {% endfor %}

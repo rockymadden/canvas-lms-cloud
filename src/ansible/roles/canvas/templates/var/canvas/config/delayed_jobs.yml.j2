@@ -1,9 +1,9 @@
 {% for k, v in environments.items() %}
-  {{ k }}:
-    workers:
-      - queue: canvas_queue
-        workers: 4
-        max_priority: 10
-      - queue: canvas_queue
-        workers: 8
+{{ k }}:
+  workers:
+    - queue: canvas_queue
+      workers: 4
+      max_priority: 10
+    - queue: canvas_queue
+      workers: 8
 {% endfor %}
