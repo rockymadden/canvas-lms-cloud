@@ -46,10 +46,10 @@ environments:
         domain_name: example.com
         port: 25
 
-    # Environment specific postgresql settings.
+    # Environment specific postgresql settings, many settings are decided for you (e.g. username is canvas).
     postgresql:
       password: password
 
-    # Environment specific redis settings.
+    # Environment specific redis settings, many settings are decided for you (e.g. username is canvas).
     redis:
       password: password
