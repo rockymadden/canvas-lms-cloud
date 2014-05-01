@@ -31,14 +31,14 @@
     - configure
 
 - name: configure canvas apache site
-  template: src=etc/apache2/sites-available/canvas.conf.j2 dest=/etc/apache2/sites-available/canvas.conf
+  template: src=etc/apache2/sites-available/canvas.j2 dest=/etc/apache2/sites-available/canvas
   notify: restart apache service
   tags:
     - apache
     - configure
 
 - name: enable canvas apache site
-  command: a2ensite canvas.conf
+  command: a2ensite canvas
   notify: restart apache service
   tags:
     - apache
