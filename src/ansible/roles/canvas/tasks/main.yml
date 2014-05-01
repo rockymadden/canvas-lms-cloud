@@ -53,7 +53,15 @@
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items:
      - nodejs
+     - npm
      - coffeescript
+  tags:
+    - canvas
+    - install
+    - javascript
+
+- name: create symlink /usr/bin/nodejs to /usr/bin/node
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
   tags:
     - canvas
     - install
@@ -179,6 +187,19 @@
 - name: install canvas gems
   command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development test
   when: not canvas_gems_installed.stat.exists
+  tags:
+    - canvas
+    - install
+
+- name: check if canvas node modules are installed
+  stat: path=/var/canvas/node_modules
+  register: canvas_node_modules_installed
+  tags:
+    - canvas
+
+- name: install canvas node modules
+  command: chdir=/var/canvas npm install
+  when: not canvas_node_modules_installed.stat.exists
   tags:
     - canvas
     - install
