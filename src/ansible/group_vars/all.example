@@ -1,15 +1,34 @@
 ---
+# -----------------------------------------------------------------------------
+# Rename this file from `all.example` to `all` after updating.
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Global system administrators, which are given full firewall access.
+# -----------------------------------------------------------------------------
 
 administrators:
   - name: System Administrator
     ipv4: 127.0.0.1
+
+# -----------------------------------------------------------------------------
+# Global Canvas settings.
+# -----------------------------------------------------------------------------
+
 canvas:
   hostname: canvas.example.com
   version: release/2014-04-12.20
+
+# -----------------------------------------------------------------------------
+# Global map/dict/hash of environments. Values are `production`, `test`, and
+# `development`.
+# -----------------------------------------------------------------------------
+
 environments:
   production:
     canvas:
-      # A high entropy random string of at least 32 characters is strongly recommended.
+      # A high entropy random string of at least 32 characters is strongly
+      # recommended.
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
     email:
       user:
