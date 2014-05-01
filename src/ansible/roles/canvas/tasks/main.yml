@@ -60,6 +60,7 @@
     - install
     - javascript
 
+# An exception is thrown when performing npm install without.
 - name: create symlink /usr/bin/nodejs to /usr/bin/node
   file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
   tags:
@@ -184,8 +185,9 @@
     - canvas
     - install
 
+# `test` would typically be excluded, however it is needed to compile assets (performed locally).
 - name: install canvas gems
-  command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development test
+  command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development
   when: not canvas_gems_installed.stat.exists
   tags:
     - canvas
@@ -198,8 +200,28 @@
     - canvas
 
 - name: install canvas node modules
-  command: chdir=/var/canvas npm install
+  command: chdir=/var/canvas npm installAlways
   when: not canvas_node_modules_installed.stat.exists
+  tags:
+    - canvas
+    - install
+
+- name: initialize canvas database
+  shell: >
+    chdir=/var/canvas RAILS_ENV=production bundle exec rake
+    CANVAS_LMS_ADMIN_EMAIL="{{ canvas.admin_account_email }}"
+    CANVAS_LMS_ADMIN_PASSWORD="{{ canvas.admin_account_password }}"
+    CANVAS_LMS_ACCOUNT_NAME="{{ canvas.admin_account_name }}"
+    CANVAS_LMS_STATS_COLLECTION=2
+    db:initial_setup
+  when: not canvas_installed.stat.exists
+  tags:
+    - canvas
+    - install
+
+- name: compile canvas assets
+  shell: chdir=/var/canvas bundle exec rake canvas:compile_assets
+  when: not canvas_installed.stat.exists
   tags:
     - canvas
     - install
@@ -215,16 +237,3 @@
   tags:
     - canvas
     - secure
-
-- name: initialize canvas database
-  shell: >
-    chdir=/var/canvas RAILS_ENV=production bundle exec rake
-    CANVAS_LMS_ADMIN_EMAIL="{{ canvas.admin_account_email }}"
-    CANVAS_LMS_ADMIN_PASSWORD="{{ canvas.admin_account_password }}"
-    CANVAS_LMS_ACCOUNT_NAME="{{ canvas.admin_account_name }}"
-    CANVAS_LMS_STATS_COLLECTION=2
-    db:initial_setup
-  when: not canvas_installed.stat.exists
-  tags:
-    - canvas
-    - install
