@@ -3,8 +3,8 @@
   ServerAlias {{ canvas.files_hostname }}
   ServerAdmin {{ canvas.admin_email }}
   DocumentRoot /var/canvas/public
+  # TODO: This can all be done via nginx. We can remove this mod entirely.
   RewriteEngine On
-  RewriteCond %{HTTP:X-Forwarded-Proto} != https
   RewriteCond %{REQUEST_URI} !^/health_check
   RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L]
   ErrorLog /var/log/apache2/canvas_errors.log
