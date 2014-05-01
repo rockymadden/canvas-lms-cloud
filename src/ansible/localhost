@@ -6,7 +6,6 @@
 
 [proxy]
 
-# Groups of groups, no need to edit.
 [database:children]
 database-standby-master
 
@@ -17,6 +16,6 @@ database
 proxy
 
 [all:vars]
-datacenter=0
-environment=production
-size=localhost
+this_datacenter=0
+this_environment=production
+this_size=localhost

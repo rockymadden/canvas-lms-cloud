@@ -18,7 +18,6 @@
 
 [dc1-proxy]
 
-# Groups of groups, no need to edit.
 [application:children]
 dc0-application
 dc1-application

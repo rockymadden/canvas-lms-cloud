@@ -10,7 +10,6 @@
 
 [development-proxy]
 
-# Groups of groups, no need to edit.
 [development-database:children]
 development-database-xc-coordinator
 development-database-xc-datanode
