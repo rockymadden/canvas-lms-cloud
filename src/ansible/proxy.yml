@@ -6,4 +6,3 @@
     - test-proxy
   remote_user: root
   roles:
-    - common

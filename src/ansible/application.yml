@@ -6,6 +6,5 @@
     - test-application
   remote_user: root
   roles:
-    - common
     - canvas
     - apache

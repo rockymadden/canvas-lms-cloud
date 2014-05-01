@@ -6,5 +6,4 @@
     - test-database-xc-gtm
   remote_user: root
   roles:
-    - common
     - postgresql

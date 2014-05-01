@@ -6,5 +6,4 @@
     - test-database-standby-slave
   remote_user: root
   roles:
-    - common
     - postgresql
