@@ -17,3 +17,10 @@
   tags:
     - nginx
     - configure
+
+- name: configure canvas nginx site
+  template: src=etc/nginx/sites-available/canvas.j2 dest=/etc/nginx/sites-available/canvas
+  notify: restart nginx service
+  tags:
+    - nginx
+    - configure
