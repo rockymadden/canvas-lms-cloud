@@ -25,3 +25,15 @@
   tags:
     - apache
     - configure
+
+- name: remove default apache sites
+  file: path={{ item }} state=absent
+  with_items:
+    - /etc/apache2/sites-enabled/000-default.conf
+    - /etc/apache2/sites-available/000-default.conf
+    - /etc/apache2/sites-available/default-ssl.conf
+  notify: restart apache service
+  when: jobs_only is not defined or not jobs_only|bool
+  tags:
+    - apache
+    - configure
