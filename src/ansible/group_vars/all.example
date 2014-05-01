@@ -12,7 +12,7 @@ administrators:
     ipv4: 127.0.0.1
 
 # -----------------------------------------------------------------------------
-# Global Canvas settings.
+# Global canvas settings.
 # -----------------------------------------------------------------------------
 
 canvas:
@@ -26,10 +26,14 @@ canvas:
 
 environments:
   production:
+
+    # Environment specific canvas settings.
     canvas:
       # A high entropy random string of at least 32 characters is strongly
       # recommended.
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
+
+    # Environment specific email settings.
     email:
       user:
         address: example@example.com
@@ -41,7 +45,11 @@ environments:
         hostname: smtp.example.com
         domain_name: example.com
         port: 25
+
+    # Environment specific postgresql settings.
     postgresql:
       password: password
+
+    # Environment specific redis settings.
     redis:
       password: password
