@@ -1,7 +1,5 @@
 ---
 
-- include: application.yml
-- include: cache.yml
 - include: database-pool-coordinator.yml
 - include: database-pool-master.yml
 - include: database-pool-slave.yml
@@ -10,4 +8,6 @@
 - include: database-xc-coordinator.yml
 - include: database-xc-datanode.yml
 - include: database-xc-gtm.yml
+- include: cache.yml
 - include: proxy.yml
+- include: application.yml
