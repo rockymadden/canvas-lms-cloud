@@ -5,15 +5,15 @@
   with_items:
      - apache2
      - libapache2-mod-passenger
-  when: jobs_only is not defined or not jobs_only|bool
+  when: not (hostvars[inventory_hostname]['delayed_jobs']|default(false))|bool
   tags:
     - apache
     - install
 
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
+  when: not (hostvars[inventory_hostname]['delayed_jobs']|default(false))|bool
   notify: restart apache service
-  when: jobs_only is not defined or not jobs_only|bool
   tags:
     - apache
     - configure
@@ -24,14 +24,15 @@
     - /etc/apache2/sites-enabled/000-default.conf
     - /etc/apache2/sites-available/000-default.conf
     - /etc/apache2/sites-available/default-ssl.conf
+  when: not (hostvars[inventory_hostname]['delayed_jobs']|default(false))|bool
   notify: restart apache service
-  when: jobs_only is not defined or not jobs_only|bool
   tags:
     - apache
     - configure
 
 - name: configure canvas apache site
   template: src=etc/apache2/sites-available/canvas.j2 dest=/etc/apache2/sites-available/canvas
+  when: not (hostvars[inventory_hostname]['delayed_jobs']|default(false))|bool
   notify: restart apache service
   tags:
     - apache
@@ -39,6 +40,7 @@
 
 - name: enable canvas apache site
   command: a2ensite canvas
+  when: not (hostvars[inventory_hostname]['delayed_jobs']|default(false))|bool
   notify: restart apache service
   tags:
     - apache
