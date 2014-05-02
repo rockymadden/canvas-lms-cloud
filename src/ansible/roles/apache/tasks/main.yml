@@ -24,7 +24,7 @@
   tags: apache
 
 - name: configure canvas apache site
-  template: src=etc/apache2/sites-available/canvas.j2 dest=/etc/apache2/sites-available/canvas
+  template: src=etc/apache2/sites-available/canvas.conf.j2 dest=/etc/apache2/sites-available/canvas.conf
   notify: restart apache service
   tags: apache
 
