@@ -24,7 +24,9 @@ __Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yell
 * __Scalability:__ N/A
 * __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
 
+
   ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
+
 
 __Small:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 * __Available roles:__ proxy, application, cache, database master, database slave
