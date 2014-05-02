@@ -2,3 +2,7 @@
 
 - name: restart apache service
   service: name=apache2 state=restarted
+  notify: warm up canvas apache site
+
+- name: warm up canvas apache site
+  shell: wget -qO- 127.0.0.1 &> /dev/null

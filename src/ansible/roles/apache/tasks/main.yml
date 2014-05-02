@@ -7,6 +7,11 @@
      - libapache2-mod-passenger
   tags: apache
 
+- name: configure apache
+  template: src=etc/apache2/apache2.conf.j2 dest=/etc/apache2/apache2.conf
+  notify: restart apache service
+  tags: apache
+
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
   notify: restart apache service
@@ -29,6 +34,6 @@
   tags: apache
 
 - name: enable canvas apache site
-  command: a2ensite canvas
+  command: a2ensite canvas creates=/etc/apache2/sites-enabled/canvas.conf
   notify: restart apache service
   tags: apache
