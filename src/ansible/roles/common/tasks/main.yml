@@ -30,7 +30,6 @@
   tags:
     - common
     - iptables
-    - secure
 
 - name: configure iptables-persistent rules
   template: src=etc/iptables/rules.v4.j2 dest=/etc/iptables/rules.v4
@@ -38,7 +37,6 @@
   tags:
     - common
     - iptables
-    - secure
 
 - name: configure interfaces
   template: src=etc/network/interfaces.j2 dest=/etc/network/interfaces
@@ -53,7 +51,6 @@
   tags:
     - common
     - ssh
-    - secure
 
 - name: configure sysctl
   template: src=etc/sysctl.conf.j2 dest=/etc/sysctl.conf
@@ -61,40 +58,27 @@
   tags:
     - common
     - sysctl
-    - secure
 
 - name: secure /usr/local/bin
   file: state=directory path=/usr/local/bin mode=0711 owner=root group=root recurse=yes
-  tags:
-    - common
-    - secure
+  tags: common
 
 - name: secure /etc
   file: state=directory path=/etc mode=0711
-  tags:
-    - common
-    - secure
+  tags: common
 
 - name: secure /tmp
   file: state=directory path=/tmp mode=1777 recurse=yes
-  tags:
-    - common
-    - secure
+  tags: common
 
 - name: secure /var/tmp
   file: state=directory path=/var/tmp mode=1777 recurse=yes
-  tags:
-    - common
-    - secure
+  tags: common
 
 - name: create canvas group
   group: name=canvas
-  tags:
-    - common
-    - secure
+  tags: common
 
 - name: create canvas user
   user: name=canvas group=canvas
-  tags:
-    - common
-    - secure
+  tags: common

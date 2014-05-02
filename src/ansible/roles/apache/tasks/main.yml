@@ -5,16 +5,14 @@
   with_items:
      - apache2
      - libapache2-mod-passenger
-  tags:
-    - apache
-    - install
+  tags: apache
 
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
   notify: restart apache service
   tags:
     - apache
-    - configure
+    - passenger
 
 - name: remove default apache sites
   file: path={{ item }} state=absent
@@ -23,20 +21,14 @@
     - /etc/apache2/sites-available/000-default.conf
     - /etc/apache2/sites-available/default-ssl.conf
   notify: restart apache service
-  tags:
-    - apache
-    - configure
+  tags: apache
 
 - name: configure canvas apache site
   template: src=etc/apache2/sites-available/canvas.j2 dest=/etc/apache2/sites-available/canvas
   notify: restart apache service
-  tags:
-    - apache
-    - configure
+  tags: apache
 
 - name: enable canvas apache site
   command: a2ensite canvas
   notify: restart apache service
-  tags:
-    - apache
-    - configure
+  tags: apache

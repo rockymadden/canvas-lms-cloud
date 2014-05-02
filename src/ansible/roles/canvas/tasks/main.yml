@@ -15,7 +15,6 @@
      - zlib1g-dev
   tags:
     - canvas
-    - install
     - library
 
 - name: install python related packages
@@ -25,14 +24,12 @@
      - python-software-properties
   tags:
     - canvas
-    - install
     - python
 
 - name: install java related packages
   apt: pkg=openjdk-7-jre state=latest update_cache=yes cache_valid_time=3600
   tags:
     - canvas
-    - install
     - java
 
 - name: install ruby related packages
@@ -44,7 +41,6 @@
      - ruby-passenger
   tags:
     - canvas
-    - install
     - ruby
 
 - name: install javascript related packages
@@ -55,7 +51,6 @@
      - coffeescript
   tags:
     - canvas
-    - install
     - javascript
 
 # An exception is thrown when performing npm install without.
@@ -63,14 +58,12 @@
   file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
   tags:
     - canvas
-    - install
     - javascript
 
 - name: check if canvas is installed
   stat: path=/var/canvas
   register: canvas_installed
-  tags:
-    - canvas
+  tags: canvas
 
 - name: git clone canvas
   git:
@@ -79,9 +72,7 @@
     version={{ canvas.version }}
     update=no
   when: not canvas_installed.stat.exists
-  tags:
-    - canvas
-    - install
+  tags: canvas
 
 - name: create canvas directories
   file: path={{ item }} state=directory
@@ -91,101 +82,74 @@
     - /var/canvas/public/assets
     - /var/canvas/public/stylesheets/compiled
   when: not canvas_installed.stat.exists
-  tags:
-    - canvas
-    - install
+  tags: canvas
 
 - name: create canvas files
   file: path=/var/canvas/Gemfile.lock state=touch
   when: not canvas_installed.stat.exists
-  tags:
-    - canvas
-    - install
+  tags: canvas
 
 - name: configure canvas amazon s3
   template: src=var/canvas/config/amazon_s3.yml.j2 dest=/var/canvas/config/amazon_s3.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas cache store
   template: src=var/canvas/config/cache_store.yml.j2 dest=/var/canvas/config/cache_store.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas database
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas delayed jobs
   template: src=var/canvas/config/delayed_jobs.yml.j2 dest=/var/canvas/config/delayed_jobs.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas domain
   template: src=var/canvas/config/domain.yml.j2 dest=/var/canvas/config/domain.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas file store
   template: src=var/canvas/config/file_store.yml.j2 dest=/var/canvas/config/file_store.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas logging
   template: src=var/canvas/config/logging.yml.j2 dest=/var/canvas/config/logging.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas outgoing mail
   template: src=var/canvas/config/outgoing_mail.yml.j2 dest=/var/canvas/config/outgoing_mail.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas periodic jobs
   template: src=var/canvas/config/periodic_jobs.yml.j2 dest=/var/canvas/config/periodic_jobs.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas redis
   template: src=var/canvas/config/redis.yml.j2 dest=/var/canvas/config/redis.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas security
   template: src=var/canvas/config/security.yml.j2 dest=/var/canvas/config/security.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: configure canvas session store
   template: src=var/canvas/config/session_store.yml.j2 dest=/var/canvas/config/session_store.yml
-  tags:
-    - canvas
-    - configure
+  tags: canvas
 
 - name: check if canvas gems are installed
   stat: path=/var/canvas/vendor/bundle
   register: canvas_gems_installed
   tags:
     - canvas
+    - gems
 
 - name: install bundler gem
   command: gem install bundler --version=1.5.3
   when: not canvas_gems_installed.stat.exists
   tags:
     - canvas
-    - install
+    - gems
 
 # `test` would typically be excluded, however it is needed to compile assets (performed locally).
 - name: install canvas gems
@@ -193,20 +157,21 @@
   when: not canvas_gems_installed.stat.exists
   tags:
     - canvas
-    - install
+    - gems
 
 - name: check if canvas node modules are installed
   stat: path=/var/canvas/node_modules
   register: canvas_node_modules_installed
   tags:
     - canvas
+    - node_modules
 
 - name: install canvas node modules
   command: chdir=/var/canvas npm installAlways
   when: not canvas_node_modules_installed.stat.exists
   tags:
     - canvas
-    - install
+    - node_modules
 
 - name: initialize canvas database
   shell: >
@@ -217,35 +182,27 @@
     CANVAS_LMS_STATS_COLLECTION=2
     db:initial_setup
   when: not canvas_installed.stat.exists
-  tags:
-    - canvas
-    - install
+  tags: canvas
 
 - name: compile canvas assets
   shell: chdir=/var/canvas bundle exec rake canvas:compile_assets
   when: not canvas_installed.stat.exists
   tags:
     - canvas
-    - install
+    - assets
 
 - name: secure /var/canvas
   file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
-  tags:
-    - canvas
-    - secure
+  tags: canvas
 
 - name: secure /var/canvas/config
   file: path=/var/canvas/config state=directory owner=canvas group=canvas mode=0400 recurse=yes
-  tags:
-    - canvas
-    - secure
+  tags: canvas
 
 - name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
   file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
   when: automated_jobs is defined and automated_jobs|bool
-  tags:
-    - canvas
-    - install
+  tags: canvas
 
 - name: create canvas jobs daemon
   command: update-rc.d canvas_init defaults
@@ -253,6 +210,4 @@
   notify:
     - start canvas_init service
     - restart apache service
-  tags:
-    - canvas
-    - install
+  tags: canvas

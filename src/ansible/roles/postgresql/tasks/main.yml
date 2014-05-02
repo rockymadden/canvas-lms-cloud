@@ -5,52 +5,38 @@
   with_items:
      - postgresql-9.3
      - python-psycopg2
-  tags:
-    - postgresql
-    - install
+  tags: postgresql
 
 - name: configure postgresql pg_ctl
   template: src=etc/postgresql/9.3/main/pg_ctl.conf.j2 dest=/etc/postgresql/9.3/main/pg_ctl.conf
   notify: restart postgresql service
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: configure postgresql pg_hba
   template: src=etc/postgresql/9.3/main/pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
   notify: restart postgresql service
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: configure postgresql pg_ident
   template: src=etc/postgresql/9.3/main/pg_ident.conf.j2 dest=/etc/postgresql/9.3/main/pg_ident.conf
   notify: restart postgresql service
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: configure postgresql
   template: src=etc/postgresql/9.3/main/postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
   notify: restart postgresql service
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: configure postgresql start
   template: src=etc/postgresql/9.3/main/start.conf.j2 dest=/etc/postgresql/9.3/main/start.conf
   notify: restart postgresql service
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: create canvas postgresql user
   sudo: yes
   sudo_user: postgres
   postgresql_user: name=canvas password={{ environments[this_environment].postgresql.password }} role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: create canvas postgresql database
   sudo: yes
@@ -58,9 +44,7 @@
   postgresql_db:
     name=canvas_{{ this_environment }}
     owner=canvas
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql
 
 - name: create canvas postgresql queue database
   sudo: yes
@@ -68,6 +52,4 @@
   postgresql_db:
     name=canvas_queue_{{ this_environment }}
     owner=canvas
-  tags:
-    - postgresql
-    - configure
+  tags: postgresql

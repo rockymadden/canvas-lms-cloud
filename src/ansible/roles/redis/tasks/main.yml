@@ -2,13 +2,9 @@
 
 - name: install redis related packages
   apt: pkg=redis-server state=latest update_cache=yes cache_valid_time=3600
-  tags:
-    - redis
-    - install
+  tags: redis
 
 - name: configure redis
   template: src=etc/redis/redis.conf.j2 dest=/etc/redis/redis.conf
   notify: restart redis service
-  tags:
-    - redis
-    - configure
+  tags: redis
