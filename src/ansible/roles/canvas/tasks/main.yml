@@ -29,9 +29,7 @@
     - python
 
 - name: install java related packages
-  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
-  with_items:
-    - openjdk-7-jre
+  apt: pkg=openjdk-7-jre state=latest update_cache=yes cache_valid_time=3600
   tags:
     - canvas
     - install
@@ -98,9 +96,7 @@
     - install
 
 - name: create canvas files
-  file: path={{ item }} state=touch
-  with_items:
-    - /var/canvas/Gemfile.lock
+  file: path=/var/canvas/Gemfile.lock state=touch
   when: not canvas_installed.stat.exists
   tags:
     - canvas
