@@ -58,11 +58,6 @@ environments:
     postgresql:
       password: password
 
-    # Environment specific redis settings, some settings are decided for you
-    # (e.g. username is canvas).
-    redis:
-      password: password
-
     # Environment specific s3 settings. Only needed if the canvas
     # file_store above is set to s3.
     s3:

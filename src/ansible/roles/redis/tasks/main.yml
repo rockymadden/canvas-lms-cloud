@@ -7,3 +7,10 @@
   tags:
     - redis
     - install
+
+- name: configure redis
+  template: src=etc/redis/redis.conf.j2 dest=/etc/redis/redis.conf
+  notify: restart redis service
+  tags:
+    - redis
+    - configure
