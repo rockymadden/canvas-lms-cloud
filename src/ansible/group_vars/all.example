@@ -1,10 +1,6 @@
 ---
 
 # -----------------------------------------------------------------------------
-# ###     Rename this file from `all.example` to `all` after updating.      ###
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
 # Global system administrators, which are given full firewall access.
 # -----------------------------------------------------------------------------
 
@@ -31,7 +27,6 @@ canvas:
 
 environments:
   production:
-
     # Environment specific canvas settings.
     canvas:
       # A high entropy random string of at least 32 characters is strongly
@@ -39,7 +34,6 @@ environments:
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
       # Values are `local` or `s3`.
       file_store: local
-
     # Environment specific email settings.
     email:
       user:
@@ -52,12 +46,10 @@ environments:
         hostname: smtp.example.com
         domain_name: example.com
         port: 25
-
     # Environment specific postgresql settings, some settings are decided for
     # you (e.g. username is canvas).
     postgresql:
       password: password
-
     # Environment specific s3 settings. Only needed if the canvas
     # file_store above is set to s3.
     s3:
