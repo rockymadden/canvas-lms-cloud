@@ -107,8 +107,8 @@
 - name: configure canvas delayed jobs
   template: src=var/canvas/config/delayed_jobs.yml.j2 dest=/var/canvas/config/delayed_jobs.yml
   notify:
-    - restart canvas_init service
     - restart apache service
+    - restart canvas_init service
   tags: canvas
 
 - name: configure canvas domain
@@ -134,8 +134,8 @@
 - name: configure canvas periodic jobs
   template: src=var/canvas/config/periodic_jobs.yml.j2 dest=/var/canvas/config/periodic_jobs.yml
   notify:
-    - restart canvas_init service
     - restart apache service
+    - restart canvas_init service
   tags: canvas
 
 - name: configure canvas redis
@@ -217,9 +217,13 @@
 
 - name: create canvas jobs daemon
   command: update-rc.d canvas_init defaults
-  notify:
-    - restart canvas_init service
-    - restart apache service
+  when: background_jobs is defined and background_jobs|bool
+  tags: canvas
+
+- name: enable canvas jobs daemon
+  sudo: yes
+  sudo_user: www-data
+  service: name=canvas_init state=started enabled=yes
   when: background_jobs is defined and background_jobs|bool
   tags: canvas
 
@@ -242,8 +246,8 @@
 - name: chmod canvas qti
   command: chmod +x /var/canvas/vendor/QTIMigrationTool/migrate.py
   notify:
-    - restart canvas_init service
     - restart apache service
+    - restart canvas_init service
   when: not canvas_qti_installed.stat.exists
   tags:
     - canvas
