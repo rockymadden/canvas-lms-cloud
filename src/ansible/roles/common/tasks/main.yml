@@ -74,11 +74,3 @@
 - name: secure /var/tmp
   file: state=directory path=/var/tmp mode=1777 recurse=yes
   tags: common
-
-- name: create canvas group
-  group: name=canvas
-  tags: common
-
-- name: create canvas user
-  user: name=canvas group=canvas
-  tags: common

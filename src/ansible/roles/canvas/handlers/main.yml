@@ -5,6 +5,8 @@
   notify: warm up canvas apache site
 
 - name: restart canvas_init service
+  sudo: yes
+  sudo_user: www-data
   service: name=canvas_init state=restarted
 
 - name: warm up canvas apache site
