@@ -28,3 +28,7 @@
 
 # Group variable ignores.
 src/ansible/group_vars/all
+
+# SSL certificate ignores.
+*.key
+*.pem

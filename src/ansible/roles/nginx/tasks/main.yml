@@ -8,6 +8,20 @@
     - nginx
     - install
 
+# Assumes wildcard SSL if using local storage.
+- name: copy canvas ssl pem file
+  copy: src='etc/ssl/certs/canvas.pem' dest='/etc/ssl/certs/canvas.pem' owner=root group=root mode=644
+  tags:
+    - nginx
+    - install
+
+# Assumes wildcard SSL if using local storage.
+- name: copy canvas ssl key file
+  copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=ssl-cert mode=640
+  tags:
+    - nginx
+    - install
+
 - name: remove default nginx sites
   file: path={{ item }} state=absent
   with_items:
