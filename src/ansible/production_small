@@ -10,13 +10,13 @@
 
 [dc1_cache]
 
-[dc0_database_standy_master]
+[dc0_database_standby_master]
 
-[dc1_database_standy_master]
+[dc1_database_standby_master]
 
-[dc0_database_standy_slave]
+[dc0_database_standby_slave]
 
-[dc1_database_standy_slave]
+[dc1_database_standby_slave]
 
 [dc0_proxy]
 
@@ -30,13 +30,13 @@ dc1_application
 dc0_cache
 dc1_cache
 
-[database_standy_master:children]
-dc0_database_standy_master
-dc1_database_standy_master
+[database_standby_master:children]
+dc0_database_standby_master
+dc1_database_standby_master
 
-[database_standy_slave:children]
-dc0_database_standy_master
-dc1_database_standy_slave
+[database_standby_slave:children]
+dc0_database_standby_master
+dc1_database_standby_slave
 
 [dc0_database:children]
 dc0_database_standby_master
@@ -47,8 +47,8 @@ dc1_database_standby_master
 dc1_database_standby_slave
 
 [database:children]
-database_standy_master
-database_standy_slave
+database_standby_master
+database_standby_slave
 
 [proxy:children]
 dc0_proxy

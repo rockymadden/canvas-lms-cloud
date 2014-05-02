@@ -11,14 +11,14 @@
 [test_proxy]
 
 [test_database:children]
-test_database_standy_master
-test_database_standy_slave
+test_database_standby_master
+test_database_standby_slave
 
 [test:children]
 test_application
 test_cache
-test_database_standy_master
-test_database_standy_slave
+test_database_standby_master
+test_database_standby_slave
 test_proxy
 
 [test:vars]

@@ -4,15 +4,15 @@
 
 [development_cache]
 
-[development_database_standy_master]
+[development_database_standby_master]
 
-[development_database_standy_slave]
+[development_database_standby_slave]
 
 [development_proxy]
 
 [development_database:children]
-development_database_standy_master
-development_database_standy_slave
+development_database_standby_master
+development_database_standby_slave
 
 [development:children]
 development_application
