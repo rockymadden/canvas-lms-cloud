@@ -29,6 +29,17 @@ server {
 
 		proxy_pass http://canvas-apache;
 	}
+
+	location ^~ /health_check {
+{% if administrators is not none %}
+{% for a in administrators %}
+		allow {{ a['ipv4'] }}/32;
+{% endfor %}
+{% endif %}
+		deny all;
+
+		proxy_pass http://canvas-apache;
+	}
 }
 
 server {
