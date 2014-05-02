@@ -2,8 +2,8 @@
 
 - hosts:
     - proxy
-    - development-proxy
-    - test-proxy
+    - development_proxy
+    - test_proxy
   remote_user: root
   roles:
     - nginx

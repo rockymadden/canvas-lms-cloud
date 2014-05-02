@@ -1,0 +1,29 @@
+# You need at least one application host with `automated_jobs=yes`.
+# Ex: `application_server_1 automated_jobs=yes`
+[test_application]
+
+[test_cache]
+
+[test_database_xc_coordinator]
+
+[test_database_xc_datanode]
+
+[test_database_xc_gtm]
+
+[test_proxy]
+
+[test_database:children]
+test_database_xc_coordinator
+test_database_xc_datanode
+test_database_xc_gtm
+
+[test:children]
+test_application
+test_cache
+test_database
+test_proxy
+
+[test:vars]
+this_datacenter=0
+this_environment=test
+this_size=large

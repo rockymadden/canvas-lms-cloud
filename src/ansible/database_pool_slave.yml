@@ -1,0 +1,9 @@
+---
+
+- hosts:
+    - database_pool_slave
+    - development_database_pool_slave
+    - test_database_pool_slave
+  remote_user: root
+  roles:
+    - postgresql

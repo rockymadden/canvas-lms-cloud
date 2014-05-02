@@ -1,0 +1,9 @@
+---
+
+- hosts:
+    - database_xc_coordinator
+    - development_database_xc_coordinator
+    - test_database_xc_coordinator
+  remote_user: root
+  roles:
+    - postgresql

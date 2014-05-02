@@ -1,9 +1,0 @@
----
-
-- hosts:
-    - database-xc-gtm
-    - development-database-xc-gtm
-    - test-database-xc-gtm
-  remote_user: root
-  roles:
-    - postgresql

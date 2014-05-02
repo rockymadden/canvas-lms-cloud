@@ -1,15 +1,15 @@
 # You need at least one application host with `automated_jobs=yes`.
-# Ex: `application-server-1 automated_jobs=yes`
+# Ex: `application_server_1 automated_jobs=yes`
 [application]
 
 [cache]
 
-[database-standby-master]
+[database_standby_master]
 
 [proxy]
 
 [database:children]
-database-standby-master
+database_standby_master
 
 [all:children]
 application

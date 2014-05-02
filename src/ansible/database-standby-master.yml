@@ -1,9 +1,0 @@
----
-
-- hosts:
-    - database-standby-master
-    - development-database-standby-master
-    - test-database-standby-master
-  remote_user: root
-  roles:
-    - postgresql

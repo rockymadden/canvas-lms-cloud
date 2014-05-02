@@ -27,17 +27,17 @@ __Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yell
 __Small:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 * __Available roles:__ proxy, application, cache, database master, database slave
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master database host with a hot standby. Supports file storage via Amazon S3.
-* __Inventory files:__ [production-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [development-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-small), [test-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-small)
+* __Inventory files:__ [production_small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_small), [development_small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_small), [test-small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_small)
 
 __Medium:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 * __Available roles:__ proxy, application, cache, database coordinator, database master, database slave, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
-* __Inventory files:__ [production-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [development-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-medium), [test-medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-medium)
+* __Inventory files:__ [production_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_medium), [development_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_medium), [test_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_medium)
 
 __Large:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 * __Available roles:__ proxy, application, cache, database coordinator, database datanode, database global transaction manager, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
-* __Inventory files:__ [production-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [development-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development-large), [test-large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test-large)
+* __Inventory files:__ [production_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_large), [development_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_large), [test_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_large)
 
 ## Server Targeting
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
@@ -70,9 +70,9 @@ __Public:__
 Configure and deploy all production hosts:
 ```
 $ ansible-playbook -i localhost site.yml
-$ ansible-playbook -i production-small site.yml
-$ ansible-playbook -i production-medium site.yml
-$ ansible-playbook -i production-large site.yml
+$ ansible-playbook -i production_small site.yml
+$ ansible-playbook -i production_medium site.yml
+$ ansible-playbook -i production_large site.yml
 ```
 
 ---
@@ -90,9 +90,9 @@ $ ansible-playbook -i development-large site.yml
 Configure and deploy just production application hosts:
 ```
 $ ansible-playbook -i localhost application.yml
-$ ansible-playbook -i production-small application.yml
-$ ansible-playbook -i production-medium application.yml
-$ ansible-playbook -i production-large application.yml
+$ ansible-playbook -i production_small application.yml
+$ ansible-playbook -i production_medium application.yml
+$ ansible-playbook -i production_large application.yml
 ```
 
 ---
@@ -100,9 +100,9 @@ $ ansible-playbook -i production-large application.yml
 Configure and deploy just production application hosts while only running ruby based tasks:
 ```
 $ ansible-playbook -i localhost application.yml --tags ruby
-$ ansible-playbook -i production-small application.yml --tags ruby
-$ ansible-playbook -i production-medium application.yml --tags ruby
-$ ansible-playbook -i production-large application.yml --tags ruby
+$ ansible-playbook -i production_small application.yml --tags ruby
+$ ansible-playbook -i production_medium application.yml --tags ruby
+$ ansible-playbook -i production_large application.yml --tags ruby
 ```
 
 ---
@@ -110,57 +110,57 @@ $ ansible-playbook -i production-large application.yml --tags ruby
 Configure and deploy just production cache hosts:
 ```
 $ ansible-playbook -i localhost cache.yml
-$ ansible-playbook -i production-small cache.yml
-$ ansible-playbook -i production-medium cache.yml
-$ ansible-playbook -i production-large cache.yml
+$ ansible-playbook -i production_small cache.yml
+$ ansible-playbook -i production_medium cache.yml
+$ ansible-playbook -i production_large cache.yml
 ```
 
 ---
 Configure and deploy just production database hosts:
 ```
 $ ansible-playbook -i localhost database.yml
-$ ansible-playbook -i production-small database.yml
-$ ansible-playbook -i production-medium database.yml
-$ ansible-playbook -i production-large database.yml
+$ ansible-playbook -i production_small database.yml
+$ ansible-playbook -i production_medium database.yml
+$ ansible-playbook -i production_large database.yml
 ```
 
 ---
 Configure and deploy just production proxy hosts:
 ```
 $ ansible-playbook -i localhost proxy.yml
-$ ansible-playbook -i production-small proxy.yml
-$ ansible-playbook -i production-medium proxy.yml
-$ ansible-playbook -i production-large proxy.yml
+$ ansible-playbook -i production_small proxy.yml
+$ ansible-playbook -i production_medium proxy.yml
+$ ansible-playbook -i production_large proxy.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts:
 ```
-$ ansible-playbook -i localhost apt.yml
-$ ansible-playbook -i production-small apt.yml
-$ ansible-playbook -i production-medium apt.yml
-$ ansible-playbook -i production-large apt.yml
+$ ansible-playbook -i localhost apt_upgrade.yml
+$ ansible-playbook -i production_small apt_upgrade.yml
+$ ansible-playbook -i production_medium apt_upgrade.yml
+$ ansible-playbook -i production_large apt_upgrade.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts without rebooting:
 ```
-$ ansible-playbook -i localhost apt.yml --skip-tags=reboot
-$ ansible-playbook -i production-small apt.yml --skip-tags=reboot
-$ ansible-playbook -i production-medium apt.yml --skip-tags=reboot
-$ ansible-playbook -i production-large apt.yml --skip-tags=reboot
+$ ansible-playbook -i localhost apt_upgrade.yml --skip-tags=reboot
+$ ansible-playbook -i production_small apt_upgrade.yml --skip-tags=reboot
+$ ansible-playbook -i production_medium apt_upgrade.yml --skip-tags=reboot
+$ ansible-playbook -i production_large apt_upgrade.yml --skip-tags=reboot
 ```
 
 ---
 
 Perform apt maintenance on all production application hosts:
 ```
-$ ansible-playbook -i localhost apt.yml --limit=application
-$ ansible-playbook -i production-small apt.yml --limit=application
-$ ansible-playbook -i production-medium apt.yml --limit=application
-$ ansible-playbook -i production-large apt.yml --limit=application
+$ ansible-playbook -i localhost apt_upgrade.yml --limit=application
+$ ansible-playbook -i production_small apt_upgrade.yml --limit=application
+$ ansible-playbook -i production_medium apt_upgrade.yml --limit=application
+$ ansible-playbook -i production_large apt_upgrade.yml --limit=application
 ```
 
 ---

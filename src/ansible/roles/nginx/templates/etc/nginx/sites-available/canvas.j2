@@ -1,6 +1,6 @@
 proxy_cache_path /var/cache/nginx/canvas levels=1:2 keys_zone=canvas:64m inactive=60m;
 
-upstream canvas-apache {
+upstream canvas_apache {
 {% if this_size == 'localhost' %}
 	server 127.0.0.1:80;
 {% else %}
@@ -27,7 +27,7 @@ server {
 		proxy_cache_valid any 15s;
 		proxy_cache_min_uses 4;
 
-		proxy_pass http://canvas-apache;
+		proxy_pass http://canvas_apache;
 	}
 
 	location ^~ /health_check {
@@ -38,7 +38,7 @@ server {
 {% endif %}
 		deny all;
 
-		proxy_pass http://canvas-apache;
+		proxy_pass http://canvas_apache;
 	}
 }
 
@@ -56,7 +56,7 @@ server {
 		proxy_cache_valid any 15m;
 		proxy_cache_min_uses 4;
 
-		proxy_pass http://canvas-apache;
+		proxy_pass http://canvas_apache;
 
 		expires 900;
 	}

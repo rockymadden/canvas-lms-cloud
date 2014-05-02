@@ -1,9 +1,0 @@
----
-
-- hosts:
-    - database-xc-datanode
-    - development-database-xc-datanode
-    - test-database-xc-datanode
-  remote_user: root
-  roles:
-    - postgresql

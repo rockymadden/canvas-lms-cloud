@@ -2,8 +2,8 @@
 
 - hosts:
     - cache
-    - development-cache
-    - test-cache
+    - development_cache
+    - test_cache
   remote_user: root
   roles:
     - redis

@@ -1,0 +1,9 @@
+---
+
+- hosts:
+    - database_pool_coordinator
+    - development_database_pool_coordinator
+    - test-database_pool_coordinator
+  remote_user: root
+  roles:
+    - postgresql

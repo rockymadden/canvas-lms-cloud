@@ -1,13 +1,13 @@
 ---
 
-- include: database-pool-coordinator.yml
-- include: database-pool-master.yml
-- include: database-pool-slave.yml
-- include: database-standy-master.yml
-- include: database-standy-slave.yml
-- include: database-xc-coordinator.yml
-- include: database-xc-datanode.yml
-- include: database-xc-gtm.yml
+- include: database_pool_coordinator.yml
+- include: database_pool_master.yml
+- include: database_pool_slave.yml
+- include: database_standy_master.yml
+- include: database_standy_slave.yml
+- include: database_xc_coordinator.yml
+- include: database_xc_datanode.yml
+- include: database_xc_gtm.yml
 - include: cache.yml
 - include: proxy.yml
 - include: application.yml

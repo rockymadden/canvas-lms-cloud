@@ -2,8 +2,8 @@
 
 - hosts:
     - application
-    - development-application
-    - test-application
+    - development_application
+    - test_application
   remote_user: root
   roles:
     - canvas
