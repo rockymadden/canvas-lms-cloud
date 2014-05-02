@@ -206,8 +206,8 @@
 
 - name: create canvas jobs daemon
   command: update-rc.d canvas_init defaults
-  when: automated_jobs is defined and automated_jobs|bool
   notify:
     - start canvas_init service
     - restart apache service
+  when: automated_jobs is defined and automated_jobs|bool
   tags: canvas
