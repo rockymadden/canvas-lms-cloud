@@ -19,28 +19,26 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 * Security hardening at multiple levels
 
 ## Cloud Sizes
-__Localhost:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+### Localhost ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+
+![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
+
 * __Available roles:__ proxy, application, cache, database
 * __Scalability:__ N/A
 * __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
 
---
 
-![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
-
---
-
-__Small:__ ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+### Small ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 * __Available roles:__ proxy, application, cache, database master, database slave
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master database host with a hot standby. Supports file storage via Amazon S3.
 * __Inventory files:__ [production_small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/production_small), [development_small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_small), [test_small](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_small)
 
-__Medium:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
+### Medium ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 * __Available roles:__ proxy, application, cache, database coordinator, database master, database slave, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [production_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/production_medium), [development_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_medium), [test_medium](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_medium)
 
-__Large:__ ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
+### Large ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 * __Available roles:__ proxy, application, cache, database coordinator, database datanode, database global transaction manager, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [production_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/production_large), [development_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/development_large), [test_large](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/test_large)
