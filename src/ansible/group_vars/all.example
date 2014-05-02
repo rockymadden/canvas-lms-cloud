@@ -1,7 +1,7 @@
 ---
 
 # -----------------------------------------------------------------------------
-# Global system administrators, which are given full firewall access.
+# System administrators, who are given full access (e.g. firewall).
 # -----------------------------------------------------------------------------
 
 administrators:
