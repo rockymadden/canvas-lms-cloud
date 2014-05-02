@@ -11,16 +11,25 @@
 # Assumes wildcard SSL if using local storage.
 - name: copy canvas ssl pem file
   copy: src='etc/ssl/certs/canvas.pem' dest='/etc/ssl/certs/canvas.pem' owner=root group=root mode=644
+  notify: restart nginx service
   tags:
     - nginx
-    - install
+    - configure
 
 # Assumes wildcard SSL if using local storage.
 - name: copy canvas ssl key file
   copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=ssl-cert mode=640
+  notify: restart nginx service
   tags:
     - nginx
-    - install
+    - configure
+
+- name: create nginx canvas cache directory
+  file: path=/var/cache/nginx/canvas state=directory owner=www-data group=www-data mode=0755
+  notify: restart nginx service
+  tags:
+    - nginx
+    - configure
 
 - name: remove default nginx sites
   file: path={{ item }} state=absent
@@ -32,8 +41,22 @@
     - nginx
     - configure
 
+- name: configure nginx
+  template: src=etc/nginx/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify: restart nginx service
+  tags:
+    - nginx
+    - configure
+
 - name: configure canvas nginx site
   template: src=etc/nginx/sites-available/canvas.j2 dest=/etc/nginx/sites-available/canvas
+  notify: restart nginx service
+  tags:
+    - nginx
+    - configure
+
+- name: create symlink /etc/nginx/sites-available/canvas to /etc/nginx/sites-enabled/canvas
+  file: src=/etc/nginx/sites-available/canvas dest=/etc/nginx/sites-enabled/canvas state=link
   notify: restart nginx service
   tags:
     - nginx

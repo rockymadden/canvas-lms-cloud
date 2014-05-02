@@ -1,5 +1,4 @@
-proxy_cache_path /var/cache/nginx/canvas-core levels=1:2 keys_zone=canvas-core:16m inactive=30m;
-proxy_cache_path /var/cache/nginx/canvas-files levels=1:2 keys_zone=canvas-files:32m inactive=60m;
+proxy_cache_path /var/cache/nginx/canvas levels=1:2 keys_zone=canvas:64m inactive=60m;
 
 upstream canvas-apache {
 {% if this_size == 'localhost' %}
@@ -11,8 +10,6 @@ upstream canvas-apache {
 {% endif %}
 {% endfor %}
 {% endif %}
-
-	keepalive_timeout 64;
 }
 
 server {
@@ -25,7 +22,7 @@ server {
 	ssl_session_timeout 8m;
 
 	location / {
-		proxy_cache canvas-core;
+		proxy_cache canvas;
 		proxy_cache_valid 301 404 1m;
 		proxy_cache_valid any 15s;
 		proxy_cache_min_uses 4;
@@ -44,7 +41,7 @@ server {
 	ssl_session_timeout 8m;
 
 	location / {
-		proxy_cache canvas-files;
+		proxy_cache canvas;
 		proxy_cache_valid any 15m;
 		proxy_cache_min_uses 4;
 
