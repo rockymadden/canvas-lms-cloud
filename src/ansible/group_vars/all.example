@@ -21,8 +21,7 @@ canvas:
   version: release/2014-04-12.20
 
 # -----------------------------------------------------------------------------
-# Global map/dict/hash of environments. Values are `production`, `test`, and
-# `development`.
+# Map of environments. Values are `production`, `test`, and `development`.
 # -----------------------------------------------------------------------------
 
 environments:
