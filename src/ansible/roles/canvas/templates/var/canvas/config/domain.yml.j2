@@ -1,6 +1,6 @@
 {% for k, v in environments.items() %}
 {{ k }}:
   domain: {{ canvas.hostname }}
+  files_domain: {{ canvas.files_hostname }}
   ssl: true
-  # TODO: for medium and large via GlusterFS... files_domain:
 {% endfor %}
