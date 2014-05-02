@@ -1,3 +1,11 @@
 {% for k, v in environments.items() %}
 {{ k }}:
+  servers:
+{% if this_size == 'localhost' %}
+    - redis://127.0.0.1
+{% else %}
+{% for h in groups['cache'] %}
+    - redis://{{ hostvars[h]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+{% endif %}
 {% endfor %}

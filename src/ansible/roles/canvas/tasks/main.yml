@@ -112,6 +112,12 @@
     - canvas
     - configure
 
+- name: configure canvas cache store
+  template: src=var/canvas/config/cache_store.yml.j2 dest=/var/canvas/config/cache_store.yml
+  tags:
+    - canvas
+    - configure
+
 - name: configure canvas database
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
   tags:

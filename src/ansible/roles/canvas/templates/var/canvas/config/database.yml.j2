@@ -5,7 +5,7 @@
   database: canvas_{{ k }}
 {% if this_size == 'localhost' %}
   host: 127.0.0.1
-{% elif this_size == 'small'%}
+{% elif this_size == 'small' %}
   host: {{ hostvars[groups['database-standby-master'][0]]['ansible_eth0']['ipv4']['address'] }}
 {% endif %}
   username: canvas
@@ -17,7 +17,7 @@
     database: canvas_queue_{{ k }}
 {% if this_size == 'localhost' %}
     host: 127.0.0.1
-{% elif this_size == 'small'%}
+{% elif this_size == 'small' %}
     host: {{ hostvars[groups['database-standby-master'][0]]['ansible_eth0']['ipv4']['address'] }}
 {% endif %}
     username: canvas
