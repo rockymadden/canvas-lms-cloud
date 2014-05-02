@@ -25,7 +25,7 @@ server {
 		proxy_cache canvas;
 		proxy_cache_valid 301 404 1m;
 		proxy_cache_valid any 15s;
-		proxy_cache_min_uses 4;
+		proxy_cache_min_uses 16;
 
 		proxy_pass http://canvas_apache;
 	}
