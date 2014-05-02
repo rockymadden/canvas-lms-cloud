@@ -251,14 +251,8 @@
 
 - name: secure /var/canvas
   file: path=/var/canvas state=directory owner=www-data group=www-data mode=0700 recurse=yes
-  notify:
-    - restart canvas_init service
-    - restart apache service
   tags: canvas
 
 - name: secure /var/canvas/config
-  file: path=/var/canvas/config state=directory owner=www-data group=www-data mode=0400 recurse=yes
-  notify:
-    - restart canvas_init service
-    - restart apache service
+  shell: chmod 400 /var/canvas/config/*.yml
   tags: canvas
