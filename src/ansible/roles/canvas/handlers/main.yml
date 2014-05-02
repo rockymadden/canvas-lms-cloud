@@ -3,8 +3,5 @@
 - name: restart apache service
   service: name=apache2 state=restarted
 
-- name: restart canvas_init service
-  service: name=canvas_init state=restarted
-
 - name: start canvas_init service
   service: name=canvas_init state=started
