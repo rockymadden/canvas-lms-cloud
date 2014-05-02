@@ -191,6 +191,23 @@
     - canvas
     - assets
 
+- name: check if canvas qti is installed
+  stat: path=/var/canvas/vendor/QTIMigrationTool
+  register: canvas_qti_installed
+  tags:
+    - canvas
+    - qti
+
+- name: git clone qti
+  git:
+    repo=https://github.com/instructure/QTIMigrationTool.git
+    dest=/var/canvas/vendor/QTIMigrationTool
+    update=no
+  when: not canvas_qti_installed.stat.exists
+  tags:
+    - canvas
+    - qti
+
 - name: secure /var/canvas
   file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
   tags: canvas
