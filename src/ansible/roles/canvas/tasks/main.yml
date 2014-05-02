@@ -53,7 +53,7 @@
     - canvas
     - javascript
 
-# An exception is thrown when performing npm install without.
+# An exception is thrown when performing canvas npm install without symlink.
 - name: create symlink /usr/bin/nodejs to /usr/bin/node
   file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
   tags:
@@ -70,7 +70,6 @@
     repo=https://github.com/instructure/canvas-lms.git
     dest=/var/canvas
     version={{ canvas.version }}
-    update=no
   when: not canvas_installed.stat.exists
   tags: canvas
 
@@ -86,55 +85,72 @@
 
 - name: create canvas files
   file: path=/var/canvas/Gemfile.lock state=touch
+  notify: restart apache service
   when: not canvas_installed.stat.exists
   tags: canvas
 
 - name: configure canvas amazon s3
   template: src=var/canvas/config/amazon_s3.yml.j2 dest=/var/canvas/config/amazon_s3.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas cache store
   template: src=var/canvas/config/cache_store.yml.j2 dest=/var/canvas/config/cache_store.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas database
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas delayed jobs
   template: src=var/canvas/config/delayed_jobs.yml.j2 dest=/var/canvas/config/delayed_jobs.yml
+  notify:
+    - restart canvas_init service
+    - restart apache service
   tags: canvas
 
 - name: configure canvas domain
   template: src=var/canvas/config/domain.yml.j2 dest=/var/canvas/config/domain.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas file store
   template: src=var/canvas/config/file_store.yml.j2 dest=/var/canvas/config/file_store.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas logging
   template: src=var/canvas/config/logging.yml.j2 dest=/var/canvas/config/logging.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas outgoing mail
   template: src=var/canvas/config/outgoing_mail.yml.j2 dest=/var/canvas/config/outgoing_mail.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas periodic jobs
   template: src=var/canvas/config/periodic_jobs.yml.j2 dest=/var/canvas/config/periodic_jobs.yml
+  notify:
+    - restart canvas_init service
+    - restart apache service
   tags: canvas
 
 - name: configure canvas redis
   template: src=var/canvas/config/redis.yml.j2 dest=/var/canvas/config/redis.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas security
   template: src=var/canvas/config/security.yml.j2 dest=/var/canvas/config/security.yml
+  notify: restart apache service
   tags: canvas
 
 - name: configure canvas session store
   template: src=var/canvas/config/session_store.yml.j2 dest=/var/canvas/config/session_store.yml
+  notify: restart apache service
   tags: canvas
 
 - name: check if canvas gems are installed
@@ -151,9 +167,10 @@
     - canvas
     - gems
 
-# `test` would typically be excluded, however it is needed to compile assets (performed locally).
+# `test` would be excluded, however it is needed to compile assets locally.
 - name: install canvas gems
   command: chdir=/var/canvas bundle install --path vendor/bundle --without=sqlite mysql development
+  notify: restart apache service
   when: not canvas_gems_installed.stat.exists
   tags:
     - canvas
@@ -167,7 +184,8 @@
     - node_modules
 
 - name: install canvas node modules
-  command: chdir=/var/canvas npm installAlways
+  command: chdir=/var/canvas npm install
+  notify: restart apache service
   when: not canvas_node_modules_installed.stat.exists
   tags:
     - canvas
@@ -186,10 +204,24 @@
 
 - name: compile canvas assets
   shell: chdir=/var/canvas bundle exec rake canvas:compile_assets
+  notify: restart apache service
   when: not canvas_installed.stat.exists
   tags:
     - canvas
     - assets
+
+- name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
+  file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
+  when: background_jobs is defined and background_jobs|bool
+  tags: canvas
+
+- name: create canvas jobs daemon
+  command: update-rc.d canvas_init defaults
+  notify:
+    - restart canvas_init service
+    - restart apache service
+  when: background_jobs is defined and background_jobs|bool
+  tags: canvas
 
 - name: check if canvas qti is installed
   stat: path=/var/canvas/vendor/QTIMigrationTool
@@ -202,7 +234,16 @@
   git:
     repo=https://github.com/instructure/QTIMigrationTool.git
     dest=/var/canvas/vendor/QTIMigrationTool
-    update=no
+  when: not canvas_qti_installed.stat.exists
+  tags:
+    - canvas
+    - qti
+
+- name: chmod canvas qti
+  command: chmod +x /var/canvas/vendor/QTIMigrationTool/migrate.py
+  notify:
+    - restart canvas_init service
+    - restart apache service
   when: not canvas_qti_installed.stat.exists
   tags:
     - canvas
@@ -210,21 +251,14 @@
 
 - name: secure /var/canvas
   file: path=/var/canvas state=directory owner=canvas group=canvas mode=0700 recurse=yes
+  notify:
+    - restart canvas_init service
+    - restart apache service
   tags: canvas
 
 - name: secure /var/canvas/config
   file: path=/var/canvas/config state=directory owner=canvas group=canvas mode=0400 recurse=yes
-  tags: canvas
-
-- name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
-  file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
-  when: background_jobs is defined and background_jobs|bool
-  tags: canvas
-
-- name: create canvas jobs daemon
-  command: update-rc.d canvas_init defaults
   notify:
-    - start canvas_init service
+    - restart canvas_init service
     - restart apache service
-  when: background_jobs is defined and background_jobs|bool
   tags: canvas
