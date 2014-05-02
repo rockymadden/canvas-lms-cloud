@@ -52,18 +52,18 @@ environments:
         domain_name: example.com
         port: 25
 
-    # Environment specific postgresql settings, many settings are decided for
+    # Environment specific postgresql settings, some settings are decided for
     # you (e.g. username is canvas).
     postgresql:
       password: password
 
-    # Environment specific redis settings, many settings are decided for you
+    # Environment specific redis settings, some settings are decided for you
     # (e.g. username is canvas).
     redis:
       password: password
 
     # Environment specific s3 settings. Only needed if the canvas
-    # storage_type above is set to s3.
+    # file_store above is set to s3.
     s3:
       access_key_id: access_key
       bucket_name: production-bucket
