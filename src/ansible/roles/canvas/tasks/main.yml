@@ -201,7 +201,7 @@
 
 - name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
   file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
-  when: automated_jobs is defined and automated_jobs|bool
+  when: background_jobs is defined and background_jobs|bool
   tags: canvas
 
 - name: create canvas jobs daemon
@@ -209,5 +209,5 @@
   notify:
     - start canvas_init service
     - restart apache service
-  when: automated_jobs is defined and automated_jobs|bool
+  when: background_jobs is defined and background_jobs|bool
   tags: canvas
