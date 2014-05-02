@@ -36,8 +36,8 @@ environments:
       user:
         address: example@example.com
         name: Example Example
-        username: username
         password: password
+        username: username
       server:
         authentication: plain
         hostname: smtp.example.com
