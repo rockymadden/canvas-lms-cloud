@@ -22,12 +22,12 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ### Localhost ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 ---
-![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
-
 * __Available roles:__ proxy, application, cache, database
 * __Scalability:__ N/A
 * __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
 
+
+![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
 
 ### Small ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
 ---
