@@ -106,6 +106,12 @@
     - canvas
     - install
 
+- name: configure canvas amazon s3
+  template: src=var/canvas/config/amazon_s3.yml.j2 dest=/var/canvas/config/amazon_s3.yml
+  tags:
+    - canvas
+    - configure
+
 - name: configure canvas database
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
   tags:

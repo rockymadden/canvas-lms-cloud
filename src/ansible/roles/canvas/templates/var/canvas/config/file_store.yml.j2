@@ -1,5 +1,9 @@
 {% for k, v in environments.items() %}
 {{ k }}:
+{% if v.canvas.file_store == 'local' %}
   storage: local
   path_prefix: tmp/files
+{% else %}
+  storage: s3
+{% endif %}
 {% endfor %}

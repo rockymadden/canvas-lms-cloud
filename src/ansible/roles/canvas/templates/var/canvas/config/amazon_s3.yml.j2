@@ -1,0 +1,7 @@
+{% for k, v in environments.items() %}
+{{ k }}:
+  access_key_id: {{ v.s3.access_key_id }}
+  bucket_name: {{ v.s3.bucket_name }}
+  s3_endpoint: {{ v.s3.endpoint }}
+  secret_access_key: {{ v.s3.secret_access_key }}
+{% endfor %}

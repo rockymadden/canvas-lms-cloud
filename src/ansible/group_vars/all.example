@@ -16,9 +16,9 @@ administrators:
 # -----------------------------------------------------------------------------
 
 canvas:
-  admin_account_email: admin@example.com
-  admin_account_name: Organization Name
-  admin_account_password: password
+  admin_email: admin@example.com
+  admin_name: Organization Name
+  admin_password: password
   files_hostname: files.canvas.example.com
   hostname: canvas.example.com
   version: release/2014-04-12.20
@@ -36,6 +36,8 @@ environments:
       # A high entropy random string of at least 32 characters is strongly
       # recommended.
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
+      # Values are `local` or `s3`.
+      file_store: local
 
     # Environment specific email settings.
     email:
@@ -59,3 +61,11 @@ environments:
     # (e.g. username is canvas).
     redis:
       password: password
+
+    # Environment specific s3 settings. Only needed if the canvas
+    # storage_type above is set to s3.
+    s3:
+      access_key_id: access_key
+      bucket_name: production-bucket
+      endpoint: s3.amazonaws.com
+      secret_access_key: secret_key
