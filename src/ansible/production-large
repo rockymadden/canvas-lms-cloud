@@ -1,5 +1,9 @@
-thi[dc0-application]
+# You need at least one application host with `automated_jobs=yes`.
+# Ex: `application-server-1 automated_jobs=yes`
+[dc0-application]
 
+# In a multiple datacenter setup, it is recommend to have at least one
+# host at each datacenter with `authomated_jobs=yes`.
 [dc1-application]
 
 [dc0-cache]

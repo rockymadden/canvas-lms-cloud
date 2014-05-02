@@ -5,14 +5,12 @@
   with_items:
      - apache2
      - libapache2-mod-passenger
-  when: delayed_jobs is not defined or not delayed_jobs|bool
   tags:
     - apache
     - install
 
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
-  when: delayed_jobs is not defined or not delayed_jobs|bool
   notify: restart apache service
   tags:
     - apache
@@ -24,7 +22,6 @@
     - /etc/apache2/sites-enabled/000-default.conf
     - /etc/apache2/sites-available/000-default.conf
     - /etc/apache2/sites-available/default-ssl.conf
-  when: delayed_jobs is not defined or not delayed_jobs|bool
   notify: restart apache service
   tags:
     - apache
@@ -32,7 +29,6 @@
 
 - name: configure canvas apache site
   template: src=etc/apache2/sites-available/canvas.j2 dest=/etc/apache2/sites-available/canvas
-  when: delayed_jobs is not defined or not delayed_jobs|bool
   notify: restart apache service
   tags:
     - apache
@@ -40,7 +36,6 @@
 
 - name: enable canvas apache site
   command: a2ensite canvas
-  when: delayed_jobs is not defined or not delayed_jobs|bool
   notify: restart apache service
   tags:
     - apache

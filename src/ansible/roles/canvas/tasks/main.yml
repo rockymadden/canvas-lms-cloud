@@ -243,3 +243,18 @@
   tags:
     - canvas
     - secure
+
+- name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
+  file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
+  when: automated_jobs is defined and automated_jobs|bool
+  tags:
+    - canvas
+    - install
+
+- name: create canvas jobs daemon
+  command: update-rc.d canvas_init defaults
+  when: automated_jobs is defined and automated_jobs|bool
+  notify: start canvas_init service
+  tags:
+    - canvas
+    - install

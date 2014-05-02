@@ -7,4 +7,3 @@
   remote_user: root
   roles:
     - canvas
-    - apache
