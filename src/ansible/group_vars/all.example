@@ -1,4 +1,5 @@
 ---
+
 # -----------------------------------------------------------------------------
 # ###     Rename this file from `all.example` to `all` after updating.      ###
 # -----------------------------------------------------------------------------
@@ -69,3 +70,7 @@ environments:
       bucket_name: production-bucket
       endpoint: s3.amazonaws.com
       secret_access_key: secret_key
+
+    # TODO: Linkedin.
+
+    # TODO: Twitter.
