@@ -1,5 +1,6 @@
 ---
 
+# The python-psycopg2 package is needed for ansible, not canvas.
 - name: install postgresql related packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items:
