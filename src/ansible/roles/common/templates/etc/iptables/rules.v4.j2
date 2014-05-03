@@ -27,8 +27,10 @@
 
 # Ethernet allows everything from co-hosts.
 {% for host in groups['all'] %}
+{% if host != inventory_hostname %}
 -A INPUT -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
 -A FORWARD -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
+{% endif %}
 {% endfor %}
 
 {% if inventory_hostname in groups['proxy'] %}
