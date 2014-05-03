@@ -183,7 +183,7 @@ $ ansible-playbook -i production_large apt_upgrade.yml --limit=application
 Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
 * OpenSSH server installed
 * Network interface and hostname configured
-* SSH key transferred
+* SSH key transferred (there is a playbook for this)
 
 ## License
 
