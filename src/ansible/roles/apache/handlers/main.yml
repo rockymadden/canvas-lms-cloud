@@ -5,4 +5,4 @@
   notify: warm up canvas apache site
 
 - name: warm up canvas apache site
-  shell: wget -qO- 127.0.0.1 &> /dev/null
+  shell: wget -qO- --no-check-certificate https://127.0.0.1/login &> /dev/null
