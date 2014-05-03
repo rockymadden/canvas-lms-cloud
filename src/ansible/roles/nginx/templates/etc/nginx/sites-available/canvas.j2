@@ -15,7 +15,7 @@ upstream canvas_apache {
 }
 
 server {
-	listen 443 ssl;
+	listen 443 ssl spdy;
 	server_name {{ canvas.hostname }};
 
 	ssl_certificate /etc/ssl/certs/canvas.pem;
@@ -52,7 +52,7 @@ server {
 
 {% if environments[this_environment].canvas.file_store == 'local' %}
 server {
-	listen 443 ssl;
+	listen 443 ssl spdy;
 	server_name {{ canvas.files_hostname }};
 
 	ssl_certificate /etc/ssl/certs/canvas.pem;
