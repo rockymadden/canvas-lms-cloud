@@ -4,7 +4,7 @@
   apt: pkg=nginx state=latest update_cache=yes cache_valid_time=3600
   tags: nginx
 
-# Assumes wildcard SSL if using local storage.
+# Assumes wildcard SSL if file store is `local`.
 - name: copy canvas ssl pem file
   copy: src='etc/ssl/certs/canvas.pem' dest='/etc/ssl/certs/canvas.pem' owner=root group=root mode=644
   notify: restart nginx service
@@ -12,7 +12,7 @@
     - nginx
     - ssl
 
-# Assumes wildcard SSL if using local storage.
+# Assumes wildcard SSL if file store is `local`.
 - name: copy canvas ssl key file
   copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=ssl-cert mode=640
   notify: restart nginx service
@@ -43,7 +43,7 @@
   notify: restart nginx service
   tags: nginx
 
-- name: create symlink /etc/nginx/sites-available/canvas to /etc/nginx/sites-enabled/canvas
+- name: enable canvas nginx site
   file: src=/etc/nginx/sites-available/canvas dest=/etc/nginx/sites-enabled/canvas state=link
   notify: restart nginx service
   tags: nginx
