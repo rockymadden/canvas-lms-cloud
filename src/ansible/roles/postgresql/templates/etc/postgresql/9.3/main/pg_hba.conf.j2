@@ -1,6 +1,6 @@
 local   all    all    peer
 host    all    all    0.0.0.0/0    md5
-{% if groups['database_standby_slave'] is defined %}
+{% if inventory_hostname in groups['database_standby_master'] and groups['database_standby_slave'] is defined %}
 {% for h in groups['database_standby_slave'] %}
 host    replication    all    {{ hostvars[h]['ansible_eth0']['ipv4']['address'] }}/32    trust
 {% endfor %}

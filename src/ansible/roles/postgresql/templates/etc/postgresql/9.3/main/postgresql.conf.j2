@@ -13,7 +13,6 @@ external_pid_file = '/var/run/postgresql/9.3-main.pid'
 
 listen_addresses = '*'
 port = 5432
-
 {% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
 max_connections = 512
 {% elif ((ansible_memtotal_mb / 1024)|round) >= 16 %}
@@ -23,7 +22,6 @@ max_connections = 128
 {% else %}
 max_connections = 64
 {% endif %}
-
 unix_socket_directories = '/var/run/postgresql'
 ssl = true
 ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
@@ -35,7 +33,6 @@ password_encryption = on
 #------------------------------------------------------------------------------
 
 shared_buffers = {{ ( ansible_memtotal_mb / 4)|int }}MB
-
 {% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
 temp_buffers = 32MB
 max_prepared_transactions = 256
