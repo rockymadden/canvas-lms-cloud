@@ -10,6 +10,8 @@ upstream canvas_apache {
 {% endif %}
 {% endfor %}
 {% endif %}
+
+	keepalive 64;
 }
 
 server {
