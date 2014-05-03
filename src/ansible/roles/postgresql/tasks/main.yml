@@ -35,7 +35,7 @@
 - name: create canvas postgresql user
   sudo: yes
   sudo_user: postgres
-  postgresql_user: name=canvas password={{ environments[this_environment].postgresql.password }} role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
+  postgresql_user: name=canvas password="{{ environments[this_environment].postgresql.password }}" role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
   tags: postgresql
 
 - name: create canvas postgresql database
