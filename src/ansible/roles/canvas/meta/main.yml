@@ -1,5 +1,5 @@
 ---
 
 dependencies:
-  - { role: common }
-  - { role: apache }
+  - common
+  - apache
