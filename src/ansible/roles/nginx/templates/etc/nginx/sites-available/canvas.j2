@@ -48,6 +48,7 @@ server {
 	return 301 https://$server_name$request_uri;
 }
 
+{% if environments[this_environment].canvas.file_store == 'local' %}
 server {
 	listen 443 ssl;
 	server_name {{ canvas.files_hostname }};
@@ -73,3 +74,4 @@ server {
 	server_name {{ canvas.files_hostname }};
 	return 301 https://$server_name$request_uri;
 }
+{% endif %}
