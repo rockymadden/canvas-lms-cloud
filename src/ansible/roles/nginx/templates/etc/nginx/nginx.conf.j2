@@ -1,5 +1,9 @@
 user www-data;
+{% if this_size == 'localhost' %}
+worker_processes 1;
+{% else %}
 worker_processes {{ ansible_processor_cores }};
+{% endif %}
 pid /run/nginx.pid;
 
 events {
