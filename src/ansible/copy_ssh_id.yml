@@ -1,0 +1,21 @@
+---
+
+# Usage: ansible-playbook -i inventory copy_ssh_id.yml --user=username --ask-pass --ask-sudo-pass
+
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: create /root/.ssh
+      file: path=/root/.ssh state=directory owner=root group=root mode=0700
+
+    - name: create /root/.ssh/authorized_keys
+      file: path=/root/.ssh/authorized_keys state=touch owner=root group=root mode=0600
+
+    - name: copy id_rsa.pub
+      copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/id_rsa.pub owner=root group=root mode=0600
+
+    - name: cat id_rsa.pub to authorized_keys
+      shell: chdir=/root/.ssh cat id_rsa.pub >> authorized_keys
+
+    - name: delete id_rsa.pub
+      file: path=/root/.ssh/id_rsa.pub state=absent
