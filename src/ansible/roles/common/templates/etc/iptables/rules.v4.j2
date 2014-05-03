@@ -42,6 +42,11 @@
 -A INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
 -I INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 443 -m recent --set
 -I INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 443 -m recent --update --seconds 5 --hitcount 20 -j DROP
+
+# This host is a proxy, ethernet allows TCP on port 80 (HTTP).
+-A INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+-I INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 80 -m recent --set
+-I INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 80 -m recent --update --seconds 5 --hitcount 20 -j DROP
 {% endif %}
 
 COMMIT

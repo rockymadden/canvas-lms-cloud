@@ -12,6 +12,11 @@
   notify: restart apache service
   tags: apache
 
+- name: configure apache ports
+  template: src=etc/apache2/ports.conf.j2 dest=/etc/apache2/ports.conf
+  notify: restart apache service
+  tags: apache
+
 - name: enable apache passenger mod
   command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.load
   notify: restart apache service
