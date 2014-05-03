@@ -215,12 +215,12 @@
   when: background_jobs is defined and background_jobs|bool
   tags: canvas
 
-- name: create canvas jobs daemon
-  command: update-rc.d canvas_init defaults
+- name: create canvas background jobs daemon
+  command: update-rc.d canvas_init defaults creates=/etc/rc0.d/K20canvas_init
   when: background_jobs is defined and background_jobs|bool
   tags: canvas
 
-- name: enable canvas jobs daemon
+- name: enable canvas background jobs daemon
   sudo: yes
   sudo_user: www-data
   service: name=canvas_init state=started enabled=yes
