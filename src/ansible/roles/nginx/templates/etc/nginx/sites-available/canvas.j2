@@ -5,7 +5,7 @@ upstream canvas_apache {
 	server 127.0.0.1:8080;
 {% else %}
 {% for h in groups['application'] %}
-{% if not (hostvars[h]['delayed_jobs']|default(false))|bool %}
+{% if not (hostvars[h]['background_jobs']|default(false))|bool %}
 	server {{ hostvars[h]['ansible_eth0']['ipv4']['address'] }}:8080 max_fails=4 fail_timeout=16s;
 {% endif %}
 {% endfor %}
