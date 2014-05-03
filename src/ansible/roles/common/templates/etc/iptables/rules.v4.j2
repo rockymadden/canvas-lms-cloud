@@ -31,14 +31,6 @@
 -A FORWARD -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
 {% endfor %}
 
-# Ethernet does not allow internal IPs.
--A INPUT -i eth+ -s 10.0.0.0/8 -j DROP
--A INPUT -i eth+ -s 172.16.0.0/12 -j DROP
--A INPUT -i eth+ -s 192.168.0.0/16 -j DROP
--A INPUT -i eth+ -s 224.0.0.0/4 -j DROP
--A INPUT -i eth+ -s 240.0.0.0/5 -j DROP
--A INPUT -i eth+ -s 127.0.0.0/8 -j DROP
-
 {% if inventory_hostname in groups['proxy'] %}
 # This host is a proxy, ethernet allows TCP on port 443 (HTTPS).
 -A INPUT -i eth+ -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
