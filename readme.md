@@ -20,7 +20,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ## Cloud Sizes
 
-### Localhost ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+### Localhost ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
 * __Available roles:__ proxy, application, cache, database
 * __Scalability:__ N/A
