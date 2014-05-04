@@ -11,3 +11,4 @@
 
 - name: warm up canvas apache site
   shell: wget -qO- 127.0.0.1 &> /dev/null
+  ignore_errors: yes
