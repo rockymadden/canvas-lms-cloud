@@ -18,7 +18,8 @@ canvas:
   admin_password: password
   files_hostname: files.canvas.example.com
   hostname: canvas.example.com
-  version: release/2014-04-12.20
+  # Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
+  version: 72a75c63ab7ee912f38f599080faaa9c3f0e4fe8
 
 # -----------------------------------------------------------------------------
 # Map of environments. Values: `production`, `test`, and `development`
