@@ -10,5 +10,5 @@
   service: name=canvas_init state=restarted sleep=30
 
 - name: warm up canvas apache site
-  shell: wget -qO- 127.0.0.1 &> /dev/null
+  shell: wget -qO- --no-check-certificate https://127.0.0.1/login &> /dev/null
   ignore_errors: yes
