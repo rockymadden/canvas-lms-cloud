@@ -140,7 +140,9 @@
 
 - name: configure canvas redis
   template: src=var/canvas/config/redis.yml.j2 dest=/var/canvas/config/redis.yml
-  notify: restart apache service
+  notify:
+    - restart apache service
+    - restart canvas_init service
   tags: canvas
 
 - name: configure canvas security
@@ -210,7 +212,7 @@
     - canvas
     - assets
 
-- name: create symlink var/canvas/script/canvas_init to /etc/init.d/canvas_init
+- name: create canvas background jobs daemon symlink
   file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
   when: background_jobs is defined and background_jobs|bool
   tags: canvas
