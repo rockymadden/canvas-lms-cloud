@@ -8,6 +8,7 @@
   sudo: yes
   sudo_user: www-data
   service: name=canvas_init state=restarted sleep=30
+  when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
 
 - name: warm up canvas apache site
   shell: wget -qO- --no-check-certificate https://127.0.0.1/login &> /dev/null
