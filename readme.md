@@ -67,6 +67,13 @@ $ ansible-playbook -i small_production small.yml
 
 ---
 
+Configure and deploy all test hosts:
+```
+$ ansible-playbook -i small_test small.yml
+```
+
+---
+
 Configure and deploy all development hosts:
 ```
 $ ansible-playbook -i small_development small.yml
