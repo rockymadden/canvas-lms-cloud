@@ -203,19 +203,19 @@
 
 - name: create canvas background jobs daemon symlink
   file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
-  when: background_jobs is defined and background_jobs|bool
+  when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
   tags: canvas
 
 - name: create canvas background jobs daemon
   command: update-rc.d canvas_init defaults creates=/etc/rc0.d/K20canvas_init
-  when: background_jobs is defined and background_jobs|bool
+  when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
   tags: canvas
 
 - name: enable canvas background jobs daemon
   sudo: yes
   sudo_user: www-data
   service: name=canvas_init state=started enabled=yes
-  when: background_jobs is defined and background_jobs|bool
+  when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
   tags: canvas
 
 - name: check if canvas qti is installed

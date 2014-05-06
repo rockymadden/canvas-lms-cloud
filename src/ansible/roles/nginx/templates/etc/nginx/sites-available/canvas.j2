@@ -6,7 +6,7 @@ upstream canvas_apache {
 {% else %}
 {% for h in groups['application'] %}
 # Assumes at least two application servers with one doing background processing.
-{% if not (hostvars[h]['background_jobs']|default(false))|bool %}
+{% if not (hostvars[h]['background_jobs_only']|default(false))|bool %}
 	server {{ hostvars[h].ansible_eth0.ipv4.address }}:8080 max_fails=4 fail_timeout=16s;
 {% endif %}
 {% endfor %}
