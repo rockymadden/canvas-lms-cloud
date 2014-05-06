@@ -66,8 +66,8 @@ max_stack_depth = 2MB
 {% if this_size == 'small' and inventory_hostname in groups['database_standby_master'] %}
 wal_level = archive
 archive_mode = on
-archive_command = 'scp /var/lib/postgresql/9.3/main/%p {{ hostvars[groups['database_standby_slave'][0]]['ansible_eth0']['ipv4']['address'] }}:/var/lib/postgresql/9.3/wal/%f'
-archive_timeout = 60;
+archive_command = 'rsync -az -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" /var/lib/postgresql/9.3/main/%p {{ hostvars[groups['database_standby_slave'][0]]['ansible_eth0']['ipv4']['address'] }}:/var/lib/postgresql/9.3/wal/%f'
+archive_timeout = 60
 {% endif %}
 
 #------------------------------------------------------------------------------

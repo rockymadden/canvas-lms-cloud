@@ -1,2 +1,4 @@
 standby_mode = 'on'
-restore_command = 'cp /var/lib/postgresql/9.3/wal/%f /var/lib/postgresql/9.3/main/"%p"'
+restore_command = 'cp /var/lib/postgresql/9.3/wal/%f "%p"'
+trigger_file = '/var/lib/postgresql/9.3/main/failover'
+archive_cleanup_command = 'pg_archivecleanup /var/lib/postgresql/9.3/wal %r'
