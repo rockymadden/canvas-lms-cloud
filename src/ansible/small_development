@@ -1,0 +1,26 @@
+# You need at least one application host with `background_jobs=yes`.
+# Ex: `application_server_1 background_jobs=yes`
+[application]
+
+[cache]
+
+[database_standby_master]
+
+[database_standby_slave]
+
+[proxy]
+
+[database:children]
+database_standby_master
+database_standby_slave
+
+[all:children]
+application
+cache
+database
+proxy
+
+[all:vars]
+this_datacenter=0
+this_environment=development
+this_size=small

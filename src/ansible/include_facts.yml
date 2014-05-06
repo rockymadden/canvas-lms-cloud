@@ -1,0 +1,45 @@
+---
+
+- name: gather facts for application
+  remote_user: root
+  hosts: application
+
+- name: gather facts for cache
+  remote_user: root
+  hosts: cache
+
+- name: gather facts for database_pool_coordinator
+  remote_user: root
+  hosts: database_pool_coordinator
+
+- name: gather facts for database_pool_master
+  remote_user: root
+  hosts: database_pool_master
+
+- name: gather facts for database_pool_slave
+  remote_user: root
+  hosts: database_pool_slave
+
+- name: gather facts for database_standby_master
+  remote_user: root
+  hosts: database_standby_master
+
+- name: gather facts for database_standby_slave
+  remote_user: root
+  hosts: database_standby_slave
+
+- name: gather facts for database_xc_coordinator
+  remote_user: root
+  hosts: database_xc_coordinator
+
+- name: gather facts for database_xc_datanode
+  remote_user: root
+  hosts: database_xc_datanode
+
+- name: gather facts for database_xc_gtm
+  remote_user: root
+  hosts: database_xc_gtm
+
+- name: gather facts for proxy
+  remote_user: root
+  hosts: proxy

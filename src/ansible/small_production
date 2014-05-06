@@ -35,7 +35,7 @@ dc0_database_standby_master
 dc1_database_standby_master
 
 [database_standby_slave:children]
-dc0_database_standby_master
+dc0_database_standby_slave
 dc1_database_standby_slave
 
 [dc0_database:children]

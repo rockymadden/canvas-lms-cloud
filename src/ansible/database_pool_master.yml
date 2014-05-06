@@ -1,9 +1,0 @@
----
-
-- hosts:
-    - database_pool_master
-    - development_database_pool_master
-    - test_database_pool_master
-  remote_user: root
-  roles:
-    - postgresql

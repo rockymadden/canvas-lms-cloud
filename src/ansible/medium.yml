@@ -1,0 +1,8 @@
+---
+
+- include: host_database_pool_master.yml
+- include: host_database_pool_slave.yml
+- include: host_database_pool_coordinator.yml
+- include: host_cache.yml
+- include: host_proxy.yml
+- include: host_application.yml

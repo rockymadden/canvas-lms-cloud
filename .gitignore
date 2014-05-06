@@ -15,16 +15,18 @@
 .DS_Store
 
 # Inventory ignores.
+
+
+.large_development
+.large_production
+.large_test
 .localhost
-.development-large
-.development-medium
-.development-small
-.production-large
-.production-medium
-.production-small
-.test-large
-.test-medium
-.test-small
+.medium_development
+.medium_production
+.medium_test
+.small_development
+.small_production
+.small_test
 
 # Group variable ignores.
 src/ansible/group_vars/all

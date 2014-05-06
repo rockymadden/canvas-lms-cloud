@@ -1,0 +1,8 @@
+---
+
+- include: host_database_xc_datanode.yml
+- include: host_database_xc_gtm.yml
+- include: host_database_xc_coordinator.yml
+- include: host_cache.yml
+- include: host_proxy.yml
+- include: host_application.yml

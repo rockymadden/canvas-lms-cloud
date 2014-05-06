@@ -63,24 +63,11 @@ max_stack_depth = 2MB
 #------------------------------------------------------------------------------
 # WRITE AHEAD LOG AND REPLICATION
 #------------------------------------------------------------------------------
-{% if inventory_hostname in groups['database_standby_master'] %}
-{% if ((ansible_memtotal_mb / 1024)|round) >= 32 %}
-wal_level = hot_standby
-max_wal_senders = 32
-wal_keep_segments = 128
-{% elif ((ansible_memtotal_mb / 1024)|round) >= 16 %}
-wal_level = hot_standby
-max_wal_senders = 16
-wal_keep_segments = 64
-{% elif ((ansible_memtotal_mb / 1024)|round) >= 8 %}
-wal_level = hot_standby
-max_wal_senders = 8
-wal_keep_segments = 32
-{% else %}
-wal_level = hot_standby
-max_wal_senders = 4
-wal_keep_segments = 16
-{% endif %}
+{% if this_size == 'small' and inventory_hostname in groups['database_standby_master'] %}
+wal_level = archive
+archive_mode = on
+archive_command = 'scp /var/lib/postgresql/9.3/main/%p {{ hostvars[groups['database_standby_slave'][0]]['ansible_eth0']['ipv4']['address'] }}:/var/lib/postgresql/9.3/wal/%f'
+archive_timeout = 60;
 {% endif %}
 
 #------------------------------------------------------------------------------

@@ -1,0 +1,5 @@
+---
+
+- hosts: application
+  sudo: yes
+  tasks:

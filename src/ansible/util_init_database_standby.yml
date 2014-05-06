@@ -1,0 +1,7 @@
+---
+
+- hosts:
+    - database_standby_master
+    - database_standby_slave
+  sudo: yes
+  tasks:

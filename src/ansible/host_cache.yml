@@ -1,0 +1,7 @@
+---
+
+- include: include_facts.yml
+- hosts: cache
+  remote_user: root
+  roles:
+    - redis

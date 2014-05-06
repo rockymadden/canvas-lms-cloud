@@ -1,0 +1,6 @@
+---
+
+- include: host_database_standby_master.yml
+- include: host_cache.yml
+- include: host_proxy.yml
+- include: host_application.yml

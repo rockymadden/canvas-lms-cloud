@@ -32,16 +32,16 @@
 # Ethernet allows everything from administrators.
 {% if administrators is not none %}
 {% for a in administrators %}
--I INPUT -i eth+ -s {{ a['ipv4'] }} -j ACCEPT
--I FORWARD -i eth+ -s {{ a['ipv4'] }} -j ACCEPT
+-I INPUT -i eth+ -s {{ a.ipv4 }} -j ACCEPT
+-I FORWARD -i eth+ -s {{ a.ipv4 }} -j ACCEPT
 {% endfor %}
 {% endif %}
 
 # Ethernet allows everything from co-hosts.
-{% for host in groups['all'] %}
-{% if host != inventory_hostname %}
--I INPUT -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
--I FORWARD -i eth+ -s {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
+{% for h in groups['all'] %}
+{% if h != inventory_hostname %}
+-I INPUT -i eth+ -s {{ hostvars[h].ansible_eth0.ipv4.address }} -j ACCEPT
+-I FORWARD -i eth+ -s {{ hostvars[h].ansible_eth0.ipv4.address }} -j ACCEPT
 {% endif %}
 {% endfor %}
 
