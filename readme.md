@@ -26,7 +26,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a ho
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
 
-### Small ![Development Status](http://img.shields.io/badge/status-wip-yellow.svg)
+### Small ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
 * __Available hosts:__ proxy, application, cache, database master, database slave
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master database host with a warm standby. Supports file storage via Amazon S3.
