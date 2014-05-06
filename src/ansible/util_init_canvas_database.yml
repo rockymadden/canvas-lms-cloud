@@ -1,7 +1,7 @@
 ---
 
 - hosts: application
-  sudo: yes
+  remote_user: root
   tasks:
     - name: initialize canvas database
       shell: >
@@ -11,3 +11,4 @@
         CANVAS_LMS_ACCOUNT_NAME="{{ canvas.admin_name }}"
         CANVAS_LMS_STATS_COLLECTION=2
         db:initial_setup
+      when: inventory_hostname == groups['application'][0]
