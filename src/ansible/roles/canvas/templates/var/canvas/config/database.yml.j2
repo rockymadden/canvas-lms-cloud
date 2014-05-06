@@ -6,7 +6,7 @@
 {% if this_size == 'localhost' %}
   host: 127.0.0.1
 {% elif this_size == 'small' %}
-  host: {{ hostvars[groups['database_standby_master'][0]]['ansible_eth0']['ipv4']['address'] }}
+  host: {{ hostvars[groups['database_standby_master'][0]].ansible_eth0.ipv4.address }}
 {% endif %}
   username: canvas
   password: {{ v.postgresql.password }}
@@ -18,7 +18,7 @@
 {% if this_size == 'localhost' %}
     host: 127.0.0.1
 {% elif this_size == 'small' %}
-    host: {{ hostvars[groups['database_standby_master'][0]]['ansible_eth0']['ipv4']['address'] }}
+    host: {{ hostvars[groups['database_standby_master'][0]].ansible_eth0.ipv4.address }}
 {% endif %}
     username: canvas
     password: {{ v.postgresql.password }}

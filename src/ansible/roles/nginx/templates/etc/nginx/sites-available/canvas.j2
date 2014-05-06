@@ -7,7 +7,7 @@ upstream canvas_apache {
 {% for h in groups['application'] %}
 # Assumes at least two application servers with one doing background processing.
 {% if not (hostvars[h]['background_jobs']|default(false))|bool %}
-	server {{ hostvars[h]['ansible_eth0']['ipv4']['address'] }}:8080 max_fails=4 fail_timeout=16s;
+	server {{ hostvars[h].ansible_eth0.ipv4.address }}:8080 max_fails=4 fail_timeout=16s;
 {% endif %}
 {% endfor %}
 {% endif %}
@@ -36,7 +36,7 @@ server {
 	location ^~ /health_check {
 {% if administrators is not none %}
 {% for a in administrators %}
-		allow {{ a['ipv4'] }}/32;
+		allow {{ a.ipv4 }}/32;
 {% endfor %}
 {% endif %}
 		deny all;
