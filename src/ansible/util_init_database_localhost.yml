@@ -1,0 +1,7 @@
+---
+
+- hosts: database_standby_master
+  remote_user: root
+  tasks:
+    - name: start postgres service
+      service: name=postgresql state=started
