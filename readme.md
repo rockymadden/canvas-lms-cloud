@@ -80,100 +80,62 @@ All publicly available ports/protocols have IP based rate-limiting to help mitig
 
 ## Usage
 
+All examples use a small cloud size. Be sure to adjust your commands based upon your own implementation size.
+
+---
+
+Copy your public SSH key to a new server (the first playbook run against any host):
+```
+$ ansible-playbook -i small_production util_ssh_copy_id.yml --user=username --ask-pass --ask-sudo-pass
+```
+
+---
+
 Configure and deploy all production hosts:
 ```
-$ ansible-playbook -i localhost site.yml
-$ ansible-playbook -i production_small site.yml
-$ ansible-playbook -i production_medium site.yml
-$ ansible-playbook -i production_large site.yml
+$ ansible-playbook -i small_production small.yml
 ```
 
 ---
 
 Configure and deploy all development hosts:
 ```
-$ ansible-playbook -i localhost site.yml
-$ ansible-playbook -i development-small site.yml
-$ ansible-playbook -i development-medium site.yml
-$ ansible-playbook -i development-large site.yml
+$ ansible-playbook -i small_development small.yml
 ```
 
 ---
 
 Configure and deploy just production application hosts:
 ```
-$ ansible-playbook -i localhost application.yml
-$ ansible-playbook -i production_small application.yml
-$ ansible-playbook -i production_medium application.yml
-$ ansible-playbook -i production_large application.yml
+$ ansible-playbook -i small_production host_application.yml
 ```
 
 ---
 
 Configure and deploy just production application hosts while only running ruby based tasks:
 ```
-$ ansible-playbook -i localhost application.yml --tags ruby
-$ ansible-playbook -i production_small application.yml --tags ruby
-$ ansible-playbook -i production_medium application.yml --tags ruby
-$ ansible-playbook -i production_large application.yml --tags ruby
-```
-
----
-
-Configure and deploy just production cache hosts:
-```
-$ ansible-playbook -i localhost cache.yml
-$ ansible-playbook -i production_small cache.yml
-$ ansible-playbook -i production_medium cache.yml
-$ ansible-playbook -i production_large cache.yml
-```
-
----
-Configure and deploy just production database hosts:
-```
-$ ansible-playbook -i localhost database.yml
-$ ansible-playbook -i production_small database.yml
-$ ansible-playbook -i production_medium database.yml
-$ ansible-playbook -i production_large database.yml
-```
-
----
-Configure and deploy just production proxy hosts:
-```
-$ ansible-playbook -i localhost proxy.yml
-$ ansible-playbook -i production_small proxy.yml
-$ ansible-playbook -i production_medium proxy.yml
-$ ansible-playbook -i production_large proxy.yml
+$ ansible-playbook -i small_production host_application.yml --tags ruby
 ```
 
 ---
 
 Perform apt maintenance on all production hosts:
 ```
-$ ansible-playbook -i localhost apt_upgrade.yml
-$ ansible-playbook -i production_small apt_upgrade.yml
-$ ansible-playbook -i production_medium apt_upgrade.yml
-$ ansible-playbook -i production_large apt_upgrade.yml
+$ ansible-playbook -i small_production util_apt_upgrade.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts without rebooting:
 ```
-$ ansible-playbook -i localhost apt_upgrade.yml --skip-tags=reboot
-$ ansible-playbook -i production_small apt_upgrade.yml --skip-tags=reboot
-$ ansible-playbook -i production_medium apt_upgrade.yml --skip-tags=reboot
-$ ansible-playbook -i production_large apt_upgrade.yml --skip-tags=reboot
+$ ansible-playbook -i small_production util_apt_upgrade.yml --skip-tags=reboot
 ```
 
 ---
 
 Perform apt maintenance on all production application hosts:
 ```
-$ ansible-playbook -i localhost apt_upgrade.yml --limit=application
-$ ansible-playbook -i production_small apt_upgrade.yml --limit=application
-$ ansible-playbook -i production_medium apt_upgrade.yml --limit=application
-$ ansible-playbook -i production_large apt_upgrade.yml --limit=application
+$ ansible-playbook -i small_production util_apt_upgrade.yml --limit=application
 ```
 
 ---
@@ -182,8 +144,7 @@ $ ansible-playbook -i production_large apt_upgrade.yml --limit=application
 
 Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:
 * OpenSSH server installed
-* Network interface and hostname configured
-* SSH key transferred (there is a playbook for this)
+* SSH key transferred
 
 ## License
 
