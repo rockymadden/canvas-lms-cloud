@@ -193,17 +193,6 @@
     - canvas
     - node_modules
 
-- name: initialize canvas database
-  shell: >
-    chdir=/var/canvas RAILS_ENV=production bundle exec rake
-    CANVAS_LMS_ADMIN_EMAIL="{{ canvas.admin_email }}"
-    CANVAS_LMS_ADMIN_PASSWORD="{{ canvas.admin_password }}"
-    CANVAS_LMS_ACCOUNT_NAME="{{ canvas.admin_name }}"
-    CANVAS_LMS_STATS_COLLECTION=2
-    db:initial_setup
-  when: not canvas_installed.stat.exists
-  tags: canvas
-
 - name: compile canvas assets
   shell: chdir=/var/canvas bundle exec rake canvas:compile_assets
   notify: restart apache service
