@@ -1,5 +1,18 @@
-# You need at least one application host with `background_jobs=yes`.
-# Ex: `application_server_1 background_jobs=yes`
+###############################################################################
+# At least one application host with `background_jobs=yes` or
+# `background_jobs_only=yes` is needed.
+#
+# `background_jobs` will serve http traffic in addition to performing
+# background job processing.
+#
+# `background_jobs_only` will not serve http traffic and will only perform
+# background job processing.
+#
+# Examples:
+# `application_server_1 background_jobs_only=yes`
+# `application_server_2 background_jobs=yes`
+# `application_server_2`
+###############################################################################
 [application]
 
 [cache]
@@ -8,6 +21,9 @@
 
 [proxy]
 
+###############################################################################
+# Do not edit below this line. Groups of groups and variable declarations.
+###############################################################################
 [database:children]
 database_standby_master
 
