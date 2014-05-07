@@ -40,6 +40,8 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_test)
 
+![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-medium.png)
+
 ### Large ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
 * __Available hosts:__ proxy, application, cache, database coordinator, database datanode, database global transaction manager, storage
