@@ -94,6 +94,20 @@ $ ansible-playbook -i small_production host_application.yml --tags ruby
 
 ---
 
+Make Canvas unavailable to perform maintenance:
+```
+$ ansible-playbook -i small_production util_canvas_unavailable.yml
+```
+
+---
+
+Make Canvas available after performing maintenance:
+```
+$ ansible-playbook -i small_production util_canvas_available.yml
+```
+
+---
+
 Perform apt maintenance on all production hosts:
 ```
 $ ansible-playbook -i small_production util_apt_upgrade.yml
