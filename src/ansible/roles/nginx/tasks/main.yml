@@ -5,7 +5,7 @@
   tags: nginx
 
 # Assumes wildcard SSL if file store is `local`.
-- name: copy canvas ssl pem file
+- name: copy canvas ssl pem
   copy: src='etc/ssl/certs/canvas.pem' dest='/etc/ssl/certs/canvas.pem' owner=root group=root mode=644
   notify: restart nginx service
   tags:
@@ -13,14 +13,14 @@
     - ssl
 
 # Assumes wildcard SSL if file store is `local`.
-- name: copy canvas ssl key file
+- name: copy canvas ssl key
   copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=ssl-cert mode=640
   notify: restart nginx service
   tags:
     - nginx
     - ssl
 
-- name: create nginx canvas cache directory
+- name: create canvas nginx cache
   file: path=/var/cache/nginx/canvas state=directory owner=www-data group=www-data mode=0755
   notify: restart nginx service
   tags: nginx
@@ -40,6 +40,11 @@
 
 - name: configure canvas nginx site
   template: src=etc/nginx/sites-available/canvas.j2 dest=/etc/nginx/sites-available/canvas
+  notify: restart nginx service
+  tags: nginx
+
+- name: configure canvas-unavailable nginx site
+  template: src=etc/nginx/sites-available/canvas-unavailable.j2 dest=/etc/nginx/sites-available/canvas-unavailable
   notify: restart nginx service
   tags: nginx
 

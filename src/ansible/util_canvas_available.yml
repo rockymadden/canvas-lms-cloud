@@ -1,0 +1,13 @@
+---
+
+- hosts: proxy
+  remote_user: root
+  tasks:
+    - name: disable canvas-unavailable nginx site
+      file: src=/etc/nginx/sites-available/canvas-unavailable dest=/etc/nginx/sites-enabled/canvas-unavailable state=absent
+
+    - name: enable canvas nginx site
+      file: src=/etc/nginx/sites-available/canvas dest=/etc/nginx/sites-enabled/canvas state=link
+
+    - name: restart nginx service
+      service: name=nginx state=restarted
