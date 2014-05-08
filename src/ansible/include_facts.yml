@@ -1,45 +1,45 @@
 ---
 
-- name: gather facts for application
+- name: gather application hosts facts
   remote_user: root
   hosts: application
 
-- name: gather facts for cache
+- name: gather cache hosts facts
   remote_user: root
   hosts: cache
 
-- name: gather facts for rdb_pool_coordinator
+- name: gather rdb_pool_coordinator hosts facts
   remote_user: root
   hosts: rdb_pool_coordinator
 
-- name: gather facts for rdb_pool_master
+- name: gather rdb_pool_master hosts facts
   remote_user: root
   hosts: rdb_pool_master
 
-- name: gather facts for rdb_pool_slave
+- name: gather rdb_pool_slave hosts facts
   remote_user: root
   hosts: rdb_pool_slave
 
-- name: gather facts for rdb_standby_master
+- name: gather rdb_standby_master hosts facts
   remote_user: root
   hosts: rdb_standby_master
 
-- name: gather facts for rdb_standby_slave
+- name: gather rdb_standby_slave hosts facts
   remote_user: root
   hosts: rdb_standby_slave
 
-- name: gather facts for rdb_xc_coordinator
+- name: gather rdb_xc_coordinator hosts facts
   remote_user: root
   hosts: rdb_xc_coordinator
 
-- name: gather facts for rdb_xc_datanode
+- name: gather rdb_xc_datanode hosts facts
   remote_user: root
   hosts: rdb_xc_datanode
 
-- name: gather facts for rdb_xc_gtm
+- name: gather rdb_xc_gtm hosts facts
   remote_user: root
   hosts: rdb_xc_gtm
 
-- name: gather facts for proxy
+- name: gather proxy hosts facts
   remote_user: root
   hosts: proxy

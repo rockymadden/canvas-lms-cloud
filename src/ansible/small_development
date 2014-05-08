@@ -1,18 +1,15 @@
-###############################################################################
-# At least one application host with `background_jobs=yes` or
-# `background_jobs_only=yes` is needed.
+# ---------------------------------------------------------------------------------------------------------------------
+# At least one application host with `background_jobs` or `background_jobs_only` is needed. It is assumed that hosts
+# with `background_jobs_only` and then `background_jobs` are placed first.
 #
-# `background_jobs` will serve http traffic in addition to performing
-# background job processing.
-#
-# `background_jobs_only` will not serve http traffic and will only perform
-# background job processing.
+# - `background_jobs=yes` will serve http traffic in addition to performing background job processing.
+# - `background_jobs_only=yes` will not serve http traffic and will only perform background job processing.
 #
 # Examples:
 # `application_server_1 background_jobs_only=yes`
 # `application_server_2 background_jobs=yes`
-# `application_server_2`
-###############################################################################
+# `application_server_3`
+# ---------------------------------------------------------------------------------------------------------------------
 [application]
 
 [cache]
@@ -23,9 +20,9 @@
 
 [proxy]
 
-###############################################################################
+# ---------------------------------------------------------------------------------------------------------------------
 # Do not edit below this line. Groups of groups and variable declarations.
-###############################################################################
+# ---------------------------------------------------------------------------------------------------------------------
 [rdb:children]
 rdb_standby_master
 rdb_standby_slave
