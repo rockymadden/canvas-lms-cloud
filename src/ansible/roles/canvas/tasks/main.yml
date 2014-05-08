@@ -99,7 +99,7 @@
   notify: restart apache service
   tags: canvas
 
-- name: configure canvas database
+- name: configure canvas rdb
   template: src=var/canvas/config/database.yml.j2 dest=/var/canvas/config/database.yml
   notify: restart apache service
   tags: canvas

@@ -25,17 +25,17 @@
 
 [dc1_cache]
 
-[dc0_database_xc_coordinator]
+[dc0_rdb_xc_coordinator]
 
-[dc1_database_xc_coordinator]
+[dc1_rdb_xc_coordinator]
 
-[dc0_database_xc_datanode]
+[dc0_rdb_xc_datanode]
 
-[dc1_database_xc_datanode]
+[dc1_rdb_xc_datanode]
 
-[dc0_database_xc_gtm]
+[dc0_rdb_xc_gtm]
 
-[dc1_database_xc_gtm]
+[dc1_rdb_xc_gtm]
 
 [dc0_proxy]
 
@@ -52,32 +52,32 @@ dc1_application
 dc0_cache
 dc1_cache
 
-[database_xc_coordinator:children]
-dc0_database_xc_coordinator
-dc1_database_xc_coordinator
+[rdb_xc_coordinator:children]
+dc0_rdb_xc_coordinator
+dc1_rdb_xc_coordinator
 
-[database_xc_datanode:children]
-dc0_database_xc_datanode
-dc1_database_xc_datanode
+[rdb_xc_datanode:children]
+dc0_rdb_xc_datanode
+dc1_rdb_xc_datanode
 
-[database_xc_gtm:children]
-dc0_database_xc_gtm
-dc1_database_xc_gtm
+[rdb_xc_gtm:children]
+dc0_rdb_xc_gtm
+dc1_rdb_xc_gtm
 
-[dc0_database:children]
-dc0_database_xc_coordinator
-dc0_database_xc_datanode
-dc0_database_xc_gtm
+[dc0_rdb:children]
+dc0_rdb_xc_coordinator
+dc0_rdb_xc_datanode
+dc0_rdb_xc_gtm
 
-[dc1_database:children]
-dc1_database_xc_coordinator
-dc1_database_xc_datanode
-dc1_database_xc_gtm
+[dc1_rdb:children]
+dc1_rdb_xc_coordinator
+dc1_rdb_xc_datanode
+dc1_rdb_xc_gtm
 
-[database:children]
-database_xc_coordinator
-database_xc_datanode
-database_xc_gtm
+[rdb:children]
+rdb_xc_coordinator
+rdb_xc_datanode
+rdb_xc_gtm
 
 [proxy:children]
 dc0_proxy
@@ -86,7 +86,7 @@ dc1_proxy
 [dc0:children]
 dc0_application
 dc0_cache
-dc0_database
+dc0_rdb
 dc0_proxy
 
 [dc0:vars]
@@ -95,7 +95,7 @@ this_datacenter=0
 [dc1:children]
 dc1_application
 dc1_cache
-dc1_database
+dc1_rdb
 dc1_proxy
 
 [dc1:vars]

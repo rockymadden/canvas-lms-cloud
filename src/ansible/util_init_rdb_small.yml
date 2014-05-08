@@ -1,6 +1,6 @@
 ---
 
-- hosts: database_standby_slave
+- hosts: rdb_standby_slave
   remote_user: root
   tasks:
     - name: stop postgres service
@@ -12,7 +12,7 @@
     - name: configure postgresql recovery
       template: src=roles/postgresql/templates/var/lib/postgresql/9.3/main/recovery.conf.j2 dest=/var/lib/postgresql/9.3/main/recovery.conf owner=postgres group=postgres mode=0600
 
-- hosts: database_standby_master
+- hosts: rdb_standby_master
   remote_user: root
   tasks:
     - name: start postgres service
@@ -29,14 +29,14 @@
     - name: rsync postgres data
       sudo: yes
       sudo_user: postgres
-      shell: rsync -az -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" /var/lib/postgresql/9.3/main/ {{ hostvars[groups['database_standby_slave'][0]].ansible_eth0.ipv4.address }}:/var/lib/postgresql/9.3/main/ --exclude postmaster.pid
+      shell: rsync -az -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" /var/lib/postgresql/9.3/main/ {{ hostvars[groups['rdb_standby_slave'][0]].ansible_eth0.ipv4.address }}:/var/lib/postgresql/9.3/main/ --exclude postmaster.pid
 
     - name: stop postgres master backup
       sudo: yes
       sudo_user: postgres
       shell: psql -U postgres -c "select pg_stop_backup();"
 
-- hosts: database_standby_slave
+- hosts: rdb_standby_slave
   remote_user: root
   tasks:
     - name: start postgres service

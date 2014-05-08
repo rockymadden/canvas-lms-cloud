@@ -17,26 +17,26 @@
 
 [cache]
 
-[database_pool_coordinator]
+[rdb_pool_coordinator]
 
-[database_pool_master]
+[rdb_pool_master]
 
-[database_pool_slave]
+[rdb_pool_slave]
 
 [proxy]
 
 ###############################################################################
 # Do not edit below this line. Groups of groups and variable declarations.
 ###############################################################################
-[database:children]
-database_pool_coordinator
-database_pool_master
-database_pool_slave
+[rdb:children]
+rdb_pool_coordinator
+rdb_pool_master
+rdb_pool_slave
 
 [all:children]
 application
 cache
-database
+rdb
 proxy
 
 [all:vars]

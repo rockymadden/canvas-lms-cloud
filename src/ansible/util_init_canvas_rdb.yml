@@ -3,7 +3,7 @@
 - hosts: application
   remote_user: root
   tasks:
-    - name: initialize canvas database
+    - name: initialize canvas rdb
       shell: >
         chdir=/var/canvas RAILS_ENV=production bundle exec rake
         CANVAS_LMS_ADMIN_EMAIL="{{ canvas.admin_email }}"

@@ -1,6 +1,6 @@
 ---
 
-- hosts: database_standby_master
+- hosts: rdb_standby_master
   remote_user: root
   tasks:
     - name: start postgres service

@@ -1,7 +1,7 @@
 ---
 
 - include: include_facts.yml
-- hosts: database_pool_slave
+- hosts: rdb_pool_slave
   remote_user: root
   roles:
     - postgresql

@@ -33,7 +33,7 @@
 - name: configure postgresql recovery
   template: src=var/lib/postgresql/9.3/main/recovery.conf.j2 dest=/var/lib/postgresql/9.3/main/recovery.conf owner=postgres group=postgres mode=0600
   notify: alert postgresql service
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_slave']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_slave']
   tags: postgresql
 
 - name: configure postgresql start
@@ -43,45 +43,45 @@
 
 - name: create /var/lib/postgresql/9.3/wal
   file: path=/var/lib/postgresql/9.3/wal state=directory owner=postgres group=postgres mode=0700
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_slave']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_slave']
   tags: postgresql
 
 - name: create canvas postgresql user
   sudo: yes
   sudo_user: postgres
   postgresql_user: name=canvas password="{{ environments[this_environment].postgresql.password }}" role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_master']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_master']
   tags: postgresql
 
-- name: create canvas postgresql database
+- name: create canvas postgresql rdb
   sudo: yes
   sudo_user: postgres
   postgresql_db:
     name=canvas_{{ this_environment }}
     owner=canvas
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_master']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_master']
   tags: postgresql
 
-- name: create canvas postgresql queue database
+- name: create canvas postgresql queue rdb
   sudo: yes
   sudo_user: postgres
   postgresql_db:
     name=canvas_queue_{{ this_environment }}
     owner=canvas
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_master']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_master']
   tags: postgresql
 
 - name: create postgres user ssh keys
   user: name=postgres generate_ssh_key=yes
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_master']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_master']
   tags: postgresql
 
 - name: fetch postgres user public ssh key
   fetch: src=/var/lib/postgresql/.ssh/id_rsa.pub dest=/tmp/postgresql/.ssh/ fail_on_missing=yes flat=yes
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_master']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_master']
   tags: postgresql
 
 - name: copy postgres user public ssh key
   authorized_key: user=postgres key="{{ lookup('file', '/tmp/postgresql/.ssh/id_rsa.pub') }}"
-  when: this_size == 'small' and inventory_hostname in groups['database_standby_slave']
+  when: this_size == 'small' and inventory_hostname in groups['rdb_standby_slave']
   tags: postgresql

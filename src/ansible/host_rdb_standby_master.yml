@@ -1,7 +1,7 @@
 ---
 
 - include: include_facts.yml
-- hosts: database_xc_coordinator
+- hosts: rdb_standby_master
   remote_user: root
   roles:
     - postgresql

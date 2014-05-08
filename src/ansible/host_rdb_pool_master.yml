@@ -1,7 +1,7 @@
 ---
 
 - include: include_facts.yml
-- hosts: database_xc_gtm
+- hosts: rdb_pool_master
   remote_user: root
   roles:
     - postgresql

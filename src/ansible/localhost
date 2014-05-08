@@ -17,20 +17,20 @@
 
 [cache]
 
-[database_standby_master]
+[rdb_standby_master]
 
 [proxy]
 
 ###############################################################################
 # Do not edit below this line. Groups of groups and variable declarations.
 ###############################################################################
-[database:children]
-database_standby_master
+[rdb:children]
+rdb_standby_master
 
 [all:children]
 application
 cache
-database
+rdb
 proxy
 
 [all:vars]

@@ -17,26 +17,26 @@
 
 [cache]
 
-[database_xc_coordinator]
+[rdb_xc_coordinator]
 
-[database_xc_datanode]
+[rdb_xc_datanode]
 
-[database_xc_gtm]
+[rdb_xc_gtm]
 
 [proxy]
 
 ###############################################################################
 # Do not edit below this line. Groups of groups and variable declarations.
 ###############################################################################
-[database:children]
-database_xc_coordinator
-database_xc_datanode
-database_xc_gtm
+[rdb:children]
+rdb_xc_coordinator
+rdb_xc_datanode
+rdb_xc_gtm
 
 [all:children]
 application
 cache
-database
+rdb
 proxy
 
 [all:vars]
