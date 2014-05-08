@@ -1,5 +1,7 @@
 ---
 
+# Usage: ansible-playbook -i inventory util_init_canvas_rdb.yml
+
 - hosts: application
   remote_user: root
   tasks:

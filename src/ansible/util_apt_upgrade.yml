@@ -1,5 +1,7 @@
 ---
 
+# Usage: ansible-playbook -i inventory util_apt_upgrade.yml
+
 - hosts: all
   remote_user: root
   tasks:
