@@ -10,7 +10,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 * Cassandra leveraged for improved system performance
 * Handling for multiple physical datacenter setups
 * Handling for multiple application hosts with round robin load balancing
-* Handling for database clusters (e.g. Pgpool II and Postgres-XC)
+* Handling for relational database clusters (e.g. Pgpool II and Postgres-XC)
 * Handling for storage clusters (e.g. GlusterFS) or Amazon S3
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application hosts to run automated jobs
@@ -20,23 +20,22 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 
 ### Localhost ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
-* __Available hosts:__ proxy, application, cache, database
+* __Available hosts:__ proxy, application, cache, rdb
 * __Inventory files:__ [localhost](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost)
-
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
 
 ### Small ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
-* __Available hosts:__ proxy, application, cache, database master, database slave
-* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master database host with a warm standby. Supports file storage via Amazon S3.
+* __Available hosts:__ proxy, application, cache, rdb master, rdb slave
+* __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master rdb host with a warm standby. Supports file storage via Amazon S3.
 * __Inventory files:__ [small_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_production), [small_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_development), [small_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_test)
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-small.png)
 
 ### Medium ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
-* __Available hosts:__ proxy, application, cache, database coordinator, database master, database slave, storage
+* __Available hosts:__ proxy, application, cache, rdb coordinator, rdb master, rdb slave, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_test)
 
@@ -44,7 +43,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 
 ### Large ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
-* __Available hosts:__ proxy, application, cache, database coordinator, database datanode, database global transaction manager, storage
+* __Available hosts:__ proxy, application, cache, rdb coordinator, rdb datanode, rdb global transaction manager, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [large_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_production), [large_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_development), [large_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_test)
 
@@ -147,7 +146,7 @@ All publicly available ports/protocols have IP based rate-limiting to help mitig
 ---
 * ICMP echo requests are allowed to all hosts.
 * TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/ssh/sshd_config.j2).
-* TCP ports 80 and 443 are open on proxy hosts and __are the only ports intended for public consumption.__
+* TCP ports 80 and 443 are open on proxy hosts and are the only ports intended for public consumption.
 
 ## Server Targeting
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
