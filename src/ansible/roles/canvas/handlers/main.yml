@@ -11,5 +11,5 @@
   when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
 
 - name: warm up canvas apache site
-  shell: wget -qO- --no-check-certificate https://127.0.0.1/login &> /dev/null
+  shell: wget -qO- --no-check-certificate http://127.0.0.1:8080/login &> /dev/null
   ignore_errors: yes
