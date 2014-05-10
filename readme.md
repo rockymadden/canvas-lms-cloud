@@ -93,7 +93,7 @@ $ ansible-playbook -i small_production host_application.yml
 
 Configure and deploy just production application hosts while only running ruby based tasks:
 ```
-$ ansible-playbook -i small_production host_application.yml --tags ruby
+$ ansible-playbook -i small_production host_application.yml --tags=ruby
 ```
 
 ---
