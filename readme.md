@@ -55,7 +55,7 @@ All examples use a small cloud size. Be sure to adjust your commands based upon 
 ---
 
 Copy your public SSH key to a new server (typically the first playbook run against any host):
-```
+```bash
 $ ansible-playbook -i small_production util_ssh_copy_id.yml \
 > --user=username --limit=hostname \
 > --ask-pass --ask-sudo-pass
@@ -64,70 +64,70 @@ $ ansible-playbook -i small_production util_ssh_copy_id.yml \
 ---
 
 Configure and deploy all production hosts:
-```
+```bash
 $ ansible-playbook -i small_production small.yml
 ```
 
 ---
 
 Configure and deploy all test hosts:
-```
+```bash
 $ ansible-playbook -i small_test small.yml
 ```
 
 ---
 
 Configure and deploy all development hosts:
-```
+```bash
 $ ansible-playbook -i small_development small.yml
 ```
 
 ---
 
 Configure and deploy just production application hosts:
-```
+```bash
 $ ansible-playbook -i small_production host_application.yml
 ```
 
 ---
 
 Configure and deploy just production application hosts while only running ruby based tasks:
-```
+```bash
 $ ansible-playbook -i small_production host_application.yml --tags=ruby
 ```
 
 ---
 
 Make Canvas unavailable to perform maintenance:
-```
+```bash
 $ ansible-playbook -i small_production util_canvas_unavailable.yml
 ```
 
 ---
 
 Make Canvas available after performing maintenance:
-```
+```bash
 $ ansible-playbook -i small_production util_canvas_available.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts:
-```
+```bash
 $ ansible-playbook -i small_production util_apt_upgrade.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts without rebooting:
-```
+```bash
 $ ansible-playbook -i small_production util_apt_upgrade.yml --skip-tags=reboot
 ```
 
 ---
 
 Perform apt maintenance on all production application hosts:
-```
+```bash
 $ ansible-playbook -i small_production util_apt_upgrade.yml --limit=application
 ```
 
