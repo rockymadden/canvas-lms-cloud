@@ -2,8 +2,11 @@
 src/ansible/.*
 
 # Group variables.
-src/ansible/group_vars/all
+src/ansible/group_vars/*
+!src/ansible/group_vars/*.example
 
 # Certificates.
-src/ansible/roles/nginx/files/etc/ssl/certs/*.pem
-src/ansible/roles/nginx/files/etc/ssl/private/*.key
+src/ansible/roles/nginx/files/etc/ssl/certs/*
+!src/ansible/roles/nginx/files/etc/ssl/certs/*.example
+src/ansible/roles/nginx/files/etc/ssl/private/*
+!src/ansible/roles/nginx/files/etc/ssl/private/*.example
