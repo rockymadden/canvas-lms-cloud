@@ -15,7 +15,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application hosts to run automated jobs
 * Security hardening at multiple levels
-* Playbooks to handle for routine tasks (e.g. pushing SSH keys, performing upgrades, toggling maintenance mode)
+* Playbooks to handle for routine tasks and maintenance (e.g. copying SSH keys, performing LMS upgrades, performing host upgrades, toggling maintenance mode)
 
 ## Cloud Sizes
 
@@ -133,7 +133,7 @@ $ ansible-playbook -i small_production util_apt_upgrade.yml --limit=application
 
 ## Firewall Design
 
-All publicly available ports/protocols have IP based rate-limiting to help mitigate abuse and attacks (e.g. if you ping more than once a second, your requests are dropped). For details, check out the [iptables rules template](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
+All publicly available ports/protocols have IP based rate-limiting to help mitigate abuse and attacks (e.g. if you ping more than once per second, your requests would be dropped). For details, check out the [iptables rules template](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
 
 ### Co-Hosts
 ---
