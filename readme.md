@@ -15,6 +15,7 @@ Automatically configure, deploy, and host the Canvas LMS on everything from a si
 * Handling for multiple reverse proxies, SSL terminators, static caches, load balancers
 * Handling for dedicated application hosts to run automated jobs
 * Security hardening at multiple levels
+* Playbooks to handle for routine tasks (e.g. pushing SSH keys, performing upgrades, toggling maintenance mode)
 
 ## Cloud Sizes
 
