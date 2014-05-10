@@ -54,9 +54,11 @@ All examples use a small cloud size. Be sure to adjust your commands based upon 
 
 ---
 
-Copy your public SSH key to a new server (the first playbook run against any host):
+Copy your public SSH key to a new server (typically the first playbook run against any host):
 ```
-$ ansible-playbook -i small_production util_ssh_copy_id.yml --user=username --ask-pass --ask-sudo-pass
+$ ansible-playbook -i small_production util_ssh_copy_id.yml \
+> --user=username --limit=hostname \
+> --ask-pass --ask-sudo-pass
 ```
 
 ---
