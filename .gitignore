@@ -1,34 +1,9 @@
-# Core ignores.
-*.diff
-*.err
-*.orig
-*.log
-*.rej
-*.swo
-*.swp
-*.vi
-*~
-*#
-.git
+# Inventories.
+src/ansible/.*
 
-# OS ignores.
-.DS_Store
-
-# Inventory ignores.
-.large_development
-.large_production
-.large_test
-.localhost
-.medium_development
-.medium_production
-.medium_test
-.small_development
-.small_production
-.small_test
-
-# Group variable ignores.
+# Group variables.
 src/ansible/group_vars/all
 
-# SSL certificate ignores.
-*.key
-*.pem
+# Certificates.
+src/ansible/roles/nginx/files/etc/ssl/certs/*.pem
+src/ansible/roles/nginx/files/etc/ssl/private/*.key
