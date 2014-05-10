@@ -15,6 +15,12 @@
         db:initial_setup
       when: inventory_hostname == groups['application'][0]
 
+    - name: secure /var/canvas
+      file: path=/var/canvas state=directory owner=www-data group=www-data mode=0700 recurse=yes
+
+    - name: secure /var/canvas/config
+      shell: chmod 400 /var/canvas/config/*.yml
+
     - name: restart apache service
       service: name=apache2 state=restarted
 
