@@ -14,7 +14,7 @@
 
 # Assumes wildcard SSL if file store is `local`.
 - name: copy canvas ssl key
-  copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=ssl-cert mode=640
+  copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=root mode=640
   notify: restart nginx service
   tags:
     - nginx
