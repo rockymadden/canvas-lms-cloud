@@ -7,38 +7,38 @@
      - postgresql-9.3
      - python-psycopg2
   register: postgresql_installed
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: configure postgresql pg_ctl
   template: src=etc/postgresql/9.3/main/pg_ctl.conf.j2 dest=/etc/postgresql/9.3/main/pg_ctl.conf
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: configure postgresql pg_hba
   template: src=etc/postgresql/9.3/main/pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: configure postgresql pg_ident
   template: src=etc/postgresql/9.3/main/pg_ident.conf.j2 dest=/etc/postgresql/9.3/main/pg_ident.conf
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: configure postgresql
   template: src=etc/postgresql/9.3/main/postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: configure postgresql recovery
   template: src=var/lib/postgresql/9.3/main/recovery.conf.j2 dest=/var/lib/postgresql/9.3/main/recovery.conf owner=postgres group=postgres mode=0600
-  notify: alert postgresql service
+  notify: notify postgresql service
   when: this_size == 'small' and inventory_hostname in groups['rdb_standby_slave']
   tags: postgresql
 
 - name: configure postgresql start
   template: src=etc/postgresql/9.3/main/start.conf.j2 dest=/etc/postgresql/9.3/main/start.conf
-  notify: alert postgresql service
+  notify: notify postgresql service
   tags: postgresql
 
 - name: create /var/lib/postgresql/9.3/wal

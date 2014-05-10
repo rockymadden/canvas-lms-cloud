@@ -1,8 +1,4 @@
 ---
 
-- name: alert postgresql service
+- name: notify postgresql service
   service: name=postgresql state={% if postgresql_installed.changed %}stopped{% else %}restarted{% endif %}
-  notify: alert user of postgresql service state
-
-- name: alert user of postgresql service state
-  debug: msg="postgresql was {% if postgresql_installed.changed %}installed or upgraded and is stopped. you must start it manually.{% else %}restarted.{% endif %}"
