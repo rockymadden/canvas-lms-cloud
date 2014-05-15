@@ -1,6 +1,6 @@
 {% for k, v in environments.items() %}
 {{ k }}:
-  domain: {{ canvas.hostname }}
-  files_domain: {{ canvas.files_hostname }}
+  domain: {{ environments[this_environment].canvas.hostname }}
+  files_domain: {{ environments[this_environment].canvas.files_hostname }}
   ssl: true
 {% endfor %}

@@ -69,7 +69,7 @@
   git:
     repo=https://github.com/instructure/canvas-lms.git
     dest=/var/canvas
-    version={{ canvas.version }}
+    version={{ environments[this_environment].canvas.version }}
   when: not canvas_installed.stat.exists
   tags: canvas
 

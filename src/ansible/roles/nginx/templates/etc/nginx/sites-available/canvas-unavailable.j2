@@ -1,7 +1,7 @@
 server {
 	listen 80;
 	listen 443 ssl spdy;
-	server_name {{ canvas.hostname }};
+	server_name {{ environments[this_environment].canvas.hostname }};
 	root /var/www/canvas-unavailable/;
 	ssl_certificate /etc/ssl/certs/canvas.pem;
 	ssl_certificate_key /etc/ssl/private/canvas.key;
@@ -15,7 +15,7 @@ server {
 server {
 	listen 80;
 	listen 443 ssl spdy;
-	server_name {{ canvas.files_hostname }};
+	server_name {{ environments[this_environment].canvas.files_hostname }};
 	root /var/www/canvas-unavailable/;
 	ssl_certificate /etc/ssl/certs/canvas.pem;
 	ssl_certificate_key /etc/ssl/private/canvas.key;

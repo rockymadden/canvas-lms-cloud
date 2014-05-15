@@ -1,7 +1,7 @@
 <VirtualHost *:8080>
-  ServerName {{ canvas.hostname }}
-  ServerAlias {{ canvas.files_hostname }}
-  ServerAdmin {{ canvas.admin_email }}
+  ServerName {{ environments[this_environment].canvas.hostname }}
+  ServerAlias {{ environments[this_environment].canvas.files_hostname }}
+  ServerAdmin {{ environments[this_environment].canvas.admin_email }}
   DocumentRoot /var/canvas/public
   ErrorLog /var/log/apache2/canvas_errors.log
   LogLevel warn
