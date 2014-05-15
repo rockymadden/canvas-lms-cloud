@@ -1,6 +1,8 @@
 <VirtualHost *:8080>
   ServerName {{ environments[this_environment].canvas.hostname }}
+{% if environments[this_environment].canvas.file_store == 'local' %}
   ServerAlias {{ environments[this_environment].canvas.files_hostname }}
+{% endif %}
   ServerAdmin {{ environments[this_environment].canvas.admin_email }}
   DocumentRoot /var/canvas/public
   ErrorLog /var/log/apache2/canvas_errors.log
