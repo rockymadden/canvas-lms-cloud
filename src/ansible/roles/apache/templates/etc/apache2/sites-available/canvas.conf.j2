@@ -6,7 +6,7 @@
   ErrorLog /var/log/apache2/canvas_errors.log
   LogLevel warn
   CustomLog /var/log/apache2/canvas_access.log combined
-  SetEnv RAILS_ENV production
+  SetEnv RAILS_ENV {{ this_environment }}
   <Directory /var/canvas/public>
     Allow from all
     Options -MultiViews
