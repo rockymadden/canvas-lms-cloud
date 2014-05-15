@@ -5,16 +5,16 @@
   tags: nginx
 
 # Assumes wildcard SSL if file store is `local`.
-- name: copy canvas ssl pem
-  copy: src='etc/ssl/certs/canvas.pem' dest='/etc/ssl/certs/canvas.pem' owner=root group=root mode=644
+- name: copy canvas ssl public key
+  copy: src='etc/ssl/certs/{{ environments[this_environment].nginx.public_key_filename }}' dest='/etc/ssl/certs/{{ environments[this_environment].nginx.public_key_filename }}' owner=root group=root mode=644
   notify: restart nginx service
   tags:
     - nginx
     - ssl
 
 # Assumes wildcard SSL if file store is `local`.
-- name: copy canvas ssl key
-  copy: src='etc/ssl/private/canvas.key' dest='/etc/ssl/private/canvas.key' owner=root group=root mode=640
+- name: copy canvas ssl private key
+  copy: src='etc/ssl/private/{{ environments[this_environment].nginx.private_key_filename }}' dest='/etc/ssl/private/{{ environments[this_environment].nginx.private_key_filename }}' owner=root group=root mode=640
   notify: restart nginx service
   tags:
     - nginx
