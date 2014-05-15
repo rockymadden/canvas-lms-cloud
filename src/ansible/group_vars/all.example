@@ -9,31 +9,25 @@ administrators:
     ipv4: 127.0.0.1
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Global canvas settings:
-#   - version: Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
-# ---------------------------------------------------------------------------------------------------------------------
-
-canvas:
-  admin_email: admin@example.com
-  admin_name: Organization Name
-  admin_password: password
-  files_hostname: files.canvas.example.com
-  hostname: canvas.example.com
-  version: 72a75c63ab7ee912f38f599080faaa9c3f0e4fe8
-
-# ---------------------------------------------------------------------------------------------------------------------
 # Environment specific settings via a map (keys can be `production`, `test`, or `development`):
 #   - environment.canvas.encryption_key: High entropy random string of 20+ characters is strongly recommended.
 #   - environment.canvas.file_store: Possible values are `local` or `s3`.
 #   - environment.postgresql: Some settings are predetermined (e.g. username is canvas).
 #   - environment.s3: Only needed if the environment.canvas.file_store is `s3`.
+#   - environment.version: Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
 # ---------------------------------------------------------------------------------------------------------------------
 
 environments:
   production:
     canvas:
+      admin_email: admin@example.com
+      admin_name: Organization Name
+      admin_password: password
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
+      files_hostname: files.canvas.example.com
       file_store: local
+      hostname: canvas.example.com
+      version: 72a75c63ab7ee912f38f599080faaa9c3f0e4fe8
     email:
       user:
         address: example@example.com
