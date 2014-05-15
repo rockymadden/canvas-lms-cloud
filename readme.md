@@ -1,6 +1,6 @@
 # Canvas LMS Cloud <sub><sup>v0.1.4</sup></sub>
 
-Automatically configure, deploy, and host the Canvas LMS on everything from a simple local virtual machine instance to a horizontally scaling, fault-tolerant, load balanced private cloud.
+Automagically configure, deploy, and host the Canvas LMS on everything from a simple local virtual machine instance to a horizontally scaling, fault-tolerant, load balanced private cloud.
 
 ## Features
 * High availability, fault tolerant, and horizontal scaling design
