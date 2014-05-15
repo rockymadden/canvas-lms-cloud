@@ -12,9 +12,9 @@ administrators:
 # Environment specific settings via a map (keys can be `production`, `test`, or `development`):
 #   - environment.canvas.encryption_key: High entropy random string of 20+ characters is strongly recommended.
 #   - environment.canvas.file_store: Possible values are `local` or `s3`.
+#   - environment.canvas.version: Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
 #   - environment.postgresql: Some settings are predetermined (e.g. username is canvas).
 #   - environment.s3: Only needed if the environment.canvas.file_store is `s3`.
-#   - environment.version: Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
 # ---------------------------------------------------------------------------------------------------------------------
 
 environments:
