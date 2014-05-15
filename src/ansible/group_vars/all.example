@@ -1,7 +1,7 @@
 ---
 
 # ---------------------------------------------------------------------------------------------------------------------
-# System administrators, who are given full access (e.g. firewall).
+# System administrators, who are given full firewall access.
 # ---------------------------------------------------------------------------------------------------------------------
 
 administrators:
@@ -9,7 +9,8 @@ administrators:
     ipv4: 127.0.0.1
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Global canvas settings.
+# Global canvas settings:
+#   - version: Can be the 40-character SHA-1 hash, `HEAD`, a branch name, or a tag name.
 # ---------------------------------------------------------------------------------------------------------------------
 
 canvas:
@@ -22,16 +23,17 @@ canvas:
   version: 72a75c63ab7ee912f38f599080faaa9c3f0e4fe8
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Map of environments. Values: `production`, `test`, and `development`.
+# Environment specific settings via a map (keys can be `production`, `test`, or `development`):
+#   - environment.canvas.encryption_key: High entropy random string of 20+ characters is strongly recommended.
+#   - environment.canvas.file_store: Possible values are `local` or `s3`.
+#   - environment.postgresql: Some settings are predetermined (e.g. username is canvas).
+#   - environment.s3: Only needed if the environment.canvas.file_store is `s3`.
 # ---------------------------------------------------------------------------------------------------------------------
 
 environments:
-  # Environment specific settings for production.
   production:
     canvas:
-      # High entropy random string of 32+ characters is strongly recommended.
       encryption_key: 1234567890abcdefghijklmnopqrstuvwxyz
-      # Values: `local` or `s3`
       file_store: local
     email:
       user:
@@ -44,10 +46,8 @@ environments:
         hostname: smtp.example.com
         domain_name: example.com
         port: 25
-    # Some settings are predetermined (e.g. username is canvas).
     postgresql:
       password: password
-    # Only needed if the canvas file_store value above is `s3`.
     s3:
       access_key_id: access_key
       bucket_name: production-bucket
