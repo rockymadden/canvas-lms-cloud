@@ -6,3 +6,5 @@
 - include: host_cache.yml
 - include: host_proxy.yml
 - include: host_application.yml
+- include: util_initialize_rdb.yml
+- include: util_initialize_canvas.yml

@@ -1,7 +1,8 @@
 ---
 
 - include: host_rdb_standby_master.yml
-- include: host_rdb_standby_slave.yml
 - include: host_cache.yml
 - include: host_proxy.yml
 - include: host_application.yml
+- include: util_initialize_rdb.yml
+- include: util_initialize_canvas.yml
