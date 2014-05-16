@@ -22,7 +22,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 ### Localhost ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
 * __Available hosts:__ proxy, application, cache, rdb
-* __Inventory files:__ [localhost_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost_production), [localhost_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost_development), [localhost_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/localhost_test)
+* __Inventory files:__ [localhost_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/localhost_production), [localhost_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/localhost_development), [localhost_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/localhost_test)
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
 
@@ -30,7 +30,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 ---
 * __Available hosts:__ proxy, application, cache, rdb master, rdb slave
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master rdb host with a warm standby. Supports file storage via Amazon S3.
-* __Inventory files:__ [small_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_production), [small_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_development), [small_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/small_test)
+* __Inventory files:__ [small_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/small_production), [small_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/small_development), [small_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/small_test)
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-small.png)
 
@@ -38,7 +38,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 ---
 * __Available hosts:__ proxy, application, cache, rdb coordinator, rdb master, rdb slave, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
-* __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/medium_test)
+* __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/medium_test)
 
 ![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-medium.png)
 
@@ -46,7 +46,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 ---
 * __Available hosts:__ proxy, application, cache, rdb coordinator, rdb datanode, rdb global transaction manager, storage
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Postgres-XC](https://wiki.postgresql.org/wiki/Postgres-XC). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
-* __Inventory files:__ [large_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_production), [large_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_development), [large_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/large_test)
+* __Inventory files:__ [large_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/large_production), [large_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/large_development), [large_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/large_test)
 
 ## Playbook Usage
 
@@ -135,25 +135,25 @@ $ ansible-playbook -i small_production util_perform_apt_upgrade.yml --limit=appl
 
 ## Firewall Design
 
-All publicly available ports/protocols have IP based rate-limiting to help mitigate abuse and attacks (e.g. if you ping more than once per second, your requests would be dropped). For details, check out the [iptables rules template](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
+All publicly available ports/protocols have IP based rate-limiting to help mitigate abuse and attacks (e.g. if you ping more than once per second, your requests would be dropped). For details, check out the [iptables rules template](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/roles/common/templates/etc/iptables/rules.v4.j2).
 
 ---
 
 __Co-Hosts:__
 
-All ports and protocols are open. Co-host IP addresses are automatically discovered via the Ansible inventory. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
+All ports and protocols are open. Co-host IP addresses are automatically discovered via the Ansible inventory. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/roles/common/templates/etc/iptables/rules.v4.j2).
 
 ---
 
 __Administrators:__
 
-All ports and protocols are open. If your IP address is explicitly defined in [group_vars](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/group_vars/all.example), you are considered an administrator. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/iptables/rules.v4.j2).
+All ports and protocols are open. If your IP address is explicitly defined in [group_vars](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/group_vars/all.example), you are considered an administrator. This is enforced via [iptables rules for all hosts](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/roles/common/templates/etc/iptables/rules.v4.j2).
 
 ---
 
 __Public:__
 
-ICMP echo requests are allowed to all hosts. TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/src/ansible/roles/common/templates/etc/ssh/sshd_config.j2). TCP ports 80 and 443 are open on proxy hosts and are the only ports intended for public consumption.
+ICMP echo requests are allowed to all hosts. TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via [sshd_config](https://github.com/rockymadden/canvas-lms-cloud/blob/master/provisioning/roles/common/templates/etc/ssh/sshd_config.j2). TCP ports 80 and 443 are open on proxy hosts and are the only ports intended for public consumption.
 
 ---
 
