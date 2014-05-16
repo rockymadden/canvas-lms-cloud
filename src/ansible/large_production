@@ -1,6 +1,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # At least one application host with `background_jobs` or `background_jobs_only` is needed. It is assumed that hosts
-# with `background_jobs_only` and then `background_jobs` are placed first.
+# with `background_jobs_only` and then `background_jobs` are placed first. In a multiple datacenter setup, it is
+# recommend to have at least one host at each with `authomated_jobs` or `background_jobs_only`.
 #
 # - `background_jobs=yes` will serve http traffic in addition to performing background job processing.
 # - `background_jobs_only=yes` will not serve http traffic and will only perform background job processing.
@@ -10,12 +11,9 @@
 # `application_server_2 background_jobs=yes`
 # `application_server_3`
 # ---------------------------------------------------------------------------------------------------------------------
+
 [dc0_application]
 
-# ---------------------------------------------------------------------------------------------------------------------
-# In a multiple datacenter setup, it is recommend to have at least one host at each with `authomated_jobs` or
-# `background_jobs_only`.
-# ---------------------------------------------------------------------------------------------------------------------
 [dc1_application]
 
 [dc0_cache]
@@ -41,6 +39,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # Do not edit below this line. Groups of groups and variable declarations.
 # ---------------------------------------------------------------------------------------------------------------------
+
 [application:children]
 dc0_application
 dc1_application
