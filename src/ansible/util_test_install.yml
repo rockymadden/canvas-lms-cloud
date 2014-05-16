@@ -1,0 +1,22 @@
+---
+
+# Usage: ansible-playbook -i inventory util_test_install.yml
+
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: perform http get https://hostname/login
+      shell: curl -o /dev/null --insecure --silent --write-out '%{http_code}' https://{{ environments[this_environment].canvas.hostname }}/login
+      register: get_https
+
+    - name: expect status code 200
+      fail: msg="Expected status code 200"
+      when: get_https.stdout != "200"
+
+    - name: http get http://hostname/login
+      shell: curl -o /dev/null --insecure --silent --write-out '%{http_code}' http://{{ environments[this_environment].canvas.hostname }}/login
+      register: get_http
+
+    - name: expect status code 301
+      fail: msg="Expected status code 301"
+      when: get_http.stdout != "301"
