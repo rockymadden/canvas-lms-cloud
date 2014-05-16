@@ -161,14 +161,14 @@ ICMP echo requests are allowed to all hosts. TCP port 22 is open on all hosts. H
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
 
 ```
-CPU: Intel Xeon E3-1245v3
+CPU: Intel Xeon 4+ core E3/E5 (e.g. E3-1230v3, E5-1620v2)
 DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
 RAM 32 GB ECC
 NIC: 1 Gbps (preferably dual)
 IPv4: 1 public
 ```
 
-These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. $65/month at [SoYouStart](http://www.soyoustart.com/us/offers/sys-e32-4.xml)).
+These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. ~$120/month at [OVH](https://www.ovh.com/us/dedicated-servers/infra/2014-EG-32.xml)).
 
 ## Requirements
 
