@@ -1,6 +1,6 @@
 ---
 
-# Usage: ansible-playbook -i inventory util_init_rdb_small.yml
+# Usage: ansible-playbook -i inventory util_initialize_rdb_small.yml
 
 - hosts: rdb_standby_slave
   remote_user: root

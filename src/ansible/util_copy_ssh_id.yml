@@ -1,7 +1,6 @@
 ---
 
-# Usage: ansible-playbook -i inventory util_ssh_copy_id.yml --user=username --ask-pass --ask-sudo-pass
-# Usage: ansible-playbook -i inventory util_ssh_copy_id.yml --user=username --ask-pass --ask-sudo-pass --limit hostname
+# Usage: ansible-playbook -i inventory util_copy_ssh_id.yml --user=username --ask-pass --ask-sudo-pass
 
 - hosts: all
   sudo: yes

@@ -1,6 +1,6 @@
 ---
 
-# Usage: ansible-playbook -i inventory util_init_rdb_localhost.yml
+# Usage: ansible-playbook -i inventory util_initialize_rdb_localhost.yml
 
 - hosts: rdb_standby_master
   remote_user: root

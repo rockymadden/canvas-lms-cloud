@@ -56,7 +56,7 @@ All examples use a small cloud size. Be sure to adjust your commands based upon 
 
 Copy your public SSH key to a new server (typically the first playbook run against any host):
 ```bash
-$ ansible-playbook -i small_production util_ssh_copy_id.yml \
+$ ansible-playbook -i small_production util_copy_ssh_id.yml \
 > --user=username --limit=hostname \
 > --ask-pass --ask-sudo-pass
 ```
@@ -100,35 +100,35 @@ $ ansible-playbook -i small_production host_application.yml --tags=ruby
 
 Make Canvas unavailable to perform maintenance:
 ```bash
-$ ansible-playbook -i small_production util_canvas_unavailable.yml
+$ ansible-playbook -i small_production util_make_canvas_unavailable.yml
 ```
 
 ---
 
 Make Canvas available after performing maintenance:
 ```bash
-$ ansible-playbook -i small_production util_canvas_available.yml
+$ ansible-playbook -i small_production util_make_canvas_available.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts:
 ```bash
-$ ansible-playbook -i small_production util_apt_upgrade.yml
+$ ansible-playbook -i small_production util_perform_apt_upgrade.yml
 ```
 
 ---
 
 Perform apt maintenance on all production hosts without rebooting:
 ```bash
-$ ansible-playbook -i small_production util_apt_upgrade.yml --skip-tags=reboot
+$ ansible-playbook -i small_production util_perform_apt_upgrade.yml --skip-tags=reboot
 ```
 
 ---
 
 Perform apt maintenance on all production application hosts:
 ```bash
-$ ansible-playbook -i small_production util_apt_upgrade.yml --limit=application
+$ ansible-playbook -i small_production util_perform_apt_upgrade.yml --limit=application
 ```
 
 ---

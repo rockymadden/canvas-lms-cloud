@@ -1,6 +1,6 @@
 ---
 
-# Usage: ansible-playbook -i inventory util_canvas_available.yml
+# Usage: ansible-playbook -i inventory util_make_canvas_available.yml
 
 - hosts: proxy
   remote_user: root
