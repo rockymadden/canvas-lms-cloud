@@ -161,7 +161,7 @@ ICMP echo requests are allowed to all hosts. TCP port 22 is open on all hosts. H
 Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:
 
 ```
-CPU: Intel Xeon 4+ core E3/E5 (e.g. E3-1230v3, E5-1620v2)
+CPU: Intel Xeon E3/E5/E7 (e.g. E3-1230v3, E5-1620v2)
 DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
 RAM 32 GB ECC
 NIC: 1 Gbps (preferably dual)
