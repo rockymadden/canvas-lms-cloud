@@ -1,9 +1,0 @@
----
-
-# Usage: ansible-playbook -i inventory util_initialize_rdb_localhost.yml
-
-- hosts: rdb_standby_master
-  remote_user: root
-  tasks:
-    - name: start postgres service
-      service: name=postgresql state=started
