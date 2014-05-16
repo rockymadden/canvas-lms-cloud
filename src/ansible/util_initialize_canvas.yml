@@ -25,5 +25,4 @@
       service: name=apache2 state=restarted
 
     - name: warm up canvas apache site
-      shell: wget -qO- --no-check-certificate http://127.0.0.1:8080/login &> /dev/null
-      ignore_errors: yes
+      shell: curl -o /dev/null --insecure --silent http://127.0.0.1:8080/login
