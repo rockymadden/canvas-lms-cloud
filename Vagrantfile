@@ -1,1 +1,1 @@
-./vagrant/Vagrantfile.localhost
+./vagrant/vagrantfile_localhost
