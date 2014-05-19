@@ -1,14 +1,14 @@
 [application]
-default ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200 background_jobs=yes
+10.0.10.10 background_jobs=yes
 
 [cache]
-default ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+10.0.10.10
 
 [rdb_standby_master]
-default ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+10.0.10.10
 
 [proxy]
-default ansible_ssh_host=127.0.0.1 ansible_ssh_port=2200
+10.0.10.10
 
 [rdb:children]
 rdb_standby_master

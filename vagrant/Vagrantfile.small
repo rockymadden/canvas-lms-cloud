@@ -1,0 +1,96 @@
+VAGRANTFILE_API_VERSION = '2'
+NETWORK_FILE_SYSTEM = false
+
+box = 'ubuntu/trusty64'
+box_url = 'http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.define 'application' do |application|
+        application.vm.box = box
+        application.vm.box_url = box_url
+
+        application.vm.network :private_network, ip: '10.0.10.10'
+
+        application.vm.provider :virtualbox do |virtualbox|
+            virtualbox.name = 'application'
+            virtualbox.memory = 3072
+            virtualbox.cpus = 1
+        end
+    end
+
+    config.vm.define 'cache' do |cache|
+        cache.vm.box = box
+        cache.vm.box_url = box_url
+
+        cache.vm.network :private_network, ip: '10.0.10.11'
+
+        cache.vm.provider :virtualbox do |virtualbox|
+            virtualbox.memory = 1024
+            virtualbox.cpus = 1
+        end
+    end
+
+    config.vm.define 'rdb_standby_master' do |rdb_standby_master|
+        rdb_standby_master.vm.box = box
+        rdb_standby_master.vm.box_url = box_url
+
+        rdb_standby_master.vm.network :private_network, ip: '10.0.10.12'
+
+        rdb_standby_master.vm.provider :virtualbox do |virtualbox|
+            virtualbox.memory = 1024
+            virtualbox.cpus = 1
+        end
+    end
+
+    config.vm.define 'rdb_standby_slave' do |rdb_standby_slave|
+        rdb_standby_slave.vm.box = box
+        rdb_standby_slave.vm.box_url = box_url
+
+        rdb_standby_slave.vm.network :private_network, ip: '10.0.10.13'
+
+        rdb_standby_slave.vm.provider :virtualbox do |virtualbox|
+            virtualbox.memory = 1024
+            virtualbox.cpus = 1
+        end
+    end
+
+    config.vm.define 'proxy' do |proxy|
+        proxy.vm.box = box
+        proxy.vm.box_url = box_url
+
+        proxy.vm.network :private_network, ip: '10.0.10.14'
+
+        proxy.vm.provider :virtualbox do |virtualbox|
+            virtualbox.memory = 512
+            virtualbox.cpus = 1
+        end
+
+        # Issue with parallel multi-machine provisioning using ansible.
+        # See: https://github.com/mitchellh/vagrant/issues/1784
+        proxy.vm.provision :ansible do |ansible|
+            ansible.limit = 'all'
+            ansible.sudo = true
+            ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+            ansible.playbook = 'ansible/util_copy_ssh_id.yml'
+            ansible.inventory_path = 'ansible/small_vagrant'
+        end
+
+        proxy.vm.provision :ansible do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'ansible/small.yml'
+            ansible.inventory_path = 'ansible/small_vagrant'
+        end
+
+        proxy.vm.provision :ansible do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'ansible/util_initialize_rdb_small.yml'
+            ansible.inventory_path = 'ansible/small_vagrant'
+        end
+
+        proxy.vm.provision :ansible do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'ansible/util_initialize_canvas.yml'
+            ansible.inventory_path = 'ansible/small_vagrant'
+        end
+    end
+end
