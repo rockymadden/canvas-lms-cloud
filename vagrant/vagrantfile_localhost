@@ -21,23 +21,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
         ansible.playbook = 'ansible/util_copy_ssh_id.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
+        ansible.host_key_checking = false
     end
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
         ansible.playbook = 'ansible/localhost.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
+        ansible.host_key_checking = false
     end
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
         ansible.playbook = 'ansible/util_initialize_rdb_localhost.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
+        ansible.host_key_checking = false
     end
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
         ansible.playbook = 'ansible/util_initialize_canvas.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
+        ansible.host_key_checking = false
     end
 end
