@@ -42,8 +42,8 @@ environments:
     postgresql:
       password: password
     nginx:
-      private_key_filename: canvas.key.example
-      public_key_filename: canvas.pem.example
+      private_key_filename: canvas.key
+      public_key_filename: canvas.pem
     s3:
       access_key_id: access_key
       bucket_name: production-bucket

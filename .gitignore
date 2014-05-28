@@ -4,12 +4,6 @@
 # Ansible inventories.
 ansible/.*
 
-# Ansible group variables.
-ansible/group_vars/*
-!ansible/group_vars/*.example
-
 # Ansible certificates.
-ansible/roles/nginx/files/etc/ssl/certs/*
-!ansible/roles/nginx/files/etc/ssl/certs/*.example
-ansible/roles/nginx/files/etc/ssl/private/*
-!ansible/roles/nginx/files/etc/ssl/private/*.example
+ansible/roles/nginx/files/etc/ssl/certs/.*
+ansible/roles/nginx/files/etc/ssl/private/.*
