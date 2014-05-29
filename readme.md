@@ -24,7 +24,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Available hosts:__ proxy, application, cache, rdb
 * __Inventory files:__ [localhost_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_production), [localhost_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_development), [localhost_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_test)
 
-![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-localhost.png)
+![Diagram](http://share.rockymadden.com/ADvO+)
 
 ### Small ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
@@ -32,7 +32,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master rdb host with a warm standby. Supports file storage via Amazon S3.
 * __Inventory files:__ [small_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_production), [small_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_development), [small_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_test)
 
-![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-small.png)
+![Diagram](http://share.rockymadden.com/TyYO+)
 
 ### Medium ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
@@ -40,7 +40,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_test)
 
-![Diagram](https://googledrive.com/host/0B3I6erHNlT16MXUwY3R2WHJpZEU/canvas-lms-cloud-medium.png)
+![Diagram](http://share.rockymadden.com/Y0uW+)
 
 ### Large ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
