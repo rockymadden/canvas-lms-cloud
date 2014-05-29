@@ -27,7 +27,7 @@ environments:
       files_hostname: files.canvas.example.com
       file_store: local
       hostname: canvas.example.com
-      version: 72a75c63ab7ee912f38f599080faaa9c3f0e4fe8
+      version: 4335288d2036ec68cc04e661760e2f18b86a86b5
     email:
       user:
         address: example@example.com
