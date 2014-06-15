@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         virtualbox.cpus = 2
     end
 
-    config.vm.provision :shell, inline: 'sleep 10'
+    config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
@@ -26,12 +26,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
     end
 
+    config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
+
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
         ansible.playbook = 'ansible/localhost.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
         ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
     end
+
+    config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
@@ -40,11 +44,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
     end
 
-    config.vm.provision :shell, inline: 'sleep 30'
+    config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
     config.vm.provision :ansible do |ansible|
         ansible.limit = 'all'
         ansible.playbook = 'ansible/util_initialize_canvas.yml'
+        ansible.inventory_path = 'ansible/localhost_vagrant'
+        ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
+    end
+
+    config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
+
+    config.vm.provision :ansible do |ansible|
+        ansible.limit = 'all'
+        ansible.playbook = 'ansible/util_test_install.yml'
         ansible.inventory_path = 'ansible/localhost_vagrant'
         ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
     end

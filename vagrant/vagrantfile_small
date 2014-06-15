@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             virtualbox.cpus = 1
         end
 
-        config.vm.provision :shell, inline: 'sleep 10'
+        config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
         # Issue with parallel multi-machine provisioning using ansible.
         # See: https://github.com/mitchellh/vagrant/issues/1784
@@ -78,12 +78,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
         end
 
+        config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
+
         proxy.vm.provision :ansible do |ansible|
             ansible.limit = 'all'
             ansible.playbook = 'ansible/small.yml'
             ansible.inventory_path = 'ansible/small_vagrant'
             ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
         end
+
+        config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
         proxy.vm.provision :ansible do |ansible|
             ansible.limit = 'all'
@@ -92,12 +96,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
         end
 
-        config.vm.provision :shell, inline: 'sleep 30'
+        config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
 
         proxy.vm.provision :ansible do |ansible|
             ansible.limit = 'all'
             ansible.playbook = 'ansible/util_initialize_canvas.yml'
             ansible.inventory_path = 'ansible/small_vagrant'
+            ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
+        end
+
+        config.vm.provision :shell, inline: "echo 'Waiting 30 seconds for hosts to catch up...' && sleep 30"
+
+        config.vm.provision :ansible do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'ansible/util_test_install.yml'
+            ansible.inventory_path = 'ansible/localhost_vagrant'
             ansible.raw_ssh_args = ['-o StrictHostKeyChecking=no', '-o UserKnownHostsFile=/dev/null']
         end
     end
