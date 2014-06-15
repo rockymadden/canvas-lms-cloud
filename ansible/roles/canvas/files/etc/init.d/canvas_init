@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo -u www-data /var/canvas/script/canvas_init $1

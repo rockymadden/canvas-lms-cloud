@@ -201,8 +201,8 @@
     - canvas
     - assets
 
-- name: create canvas background jobs daemon symlink
-  file: src=/var/canvas/script/canvas_init dest=/etc/init.d/canvas_init state=link
+- name: copy canvas_init script
+  copy: src=etc/init.d/canvas_init dest=/etc/init.d/canvas_init owner=root group=root mode=755
   when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
   tags: canvas
 
@@ -212,8 +212,6 @@
   tags: canvas
 
 - name: enable canvas background jobs daemon
-  sudo: yes
-  sudo_user: www-data
   service: name=canvas_init state=started enabled=yes
   when: (background_jobs_only is defined and background_jobs_only|bool) or (background_jobs is defined and background_jobs|bool)
   tags: canvas
