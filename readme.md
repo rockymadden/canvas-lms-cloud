@@ -24,7 +24,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Available hosts:__ proxy, application, cache, rdb
 * __Inventory files:__ [localhost_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_production), [localhost_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_development), [localhost_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_test)
 
-![Diagram](http://share.rockymadden.com/image/1n2W1p0z0J1s/canvas-lms-cloud-localhost.png)
+![Diagram](https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-localhost.png)
 
 ### Small ![Development Status](http://img.shields.io/badge/status-available-brightgreen.svg)
 ---
@@ -32,7 +32,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master rdb host with a warm standby. Supports file storage via Amazon S3.
 * __Inventory files:__ [small_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_production), [small_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_development), [small_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_test)
 
-![Diagram](http://share.rockymadden.com/image/2x1a2C2M1Q14/canvas-lms-cloud-small.png)
+![Diagram](https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-small.png)
 
 ### Medium ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
@@ -40,7 +40,7 @@ Automagically configure, deploy, and host the Canvas LMS on everything from a si
 * __Scalability:__ Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports [Pgpool II with streaming replication](http://www.pgpool.net/). Supports horizontal file storage scaling via [GlusterFS](http://www.gluster.org/).
 * __Inventory files:__ [medium_production](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_production), [medium_development](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_development), [medium_test](https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_test)
 
-![Diagram](http://share.rockymadden.com/image/3e070N3r3n0f/canvas-lms-cloud-medium.png)
+![Diagram](https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-medium.png)
 
 ### Large ![Development Status](http://img.shields.io/badge/status-queued-lightgrey.svg)
 ---
