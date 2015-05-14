@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>canvas-lms-cloud by rockymadden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">canvas-lms-cloud</h1>
+      <h2 class="project-tagline">Automagically configure, deploy, and host the open source Canvas LMS on everything from simple local virtual machine instance to a horizontally scaling, fault-tolerant, load balanced private cloud.</h2>
+      <a href="https://github.com/rockymadden/canvas-lms-cloud" class="btn">View on GitHub</a>
+      <a href="https://github.com/rockymadden/canvas-lms-cloud/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rockymadden/canvas-lms-cloud/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>High availability, fault tolerant, and horizontal scaling design</li>
+<li>No dedicated hardware firewalls or load balancers needed</li>
+<li>Nginx used as an SSL terminator, static cache, round-robin load balancer, with SPDY protocol support</li>
+<li>Redis leveraged for improved system performance</li>
+<li>Cassandra leveraged for improved system performance</li>
+<li>Handling for multiple physical datacenter setups</li>
+<li>Handling for multiple application hosts with round robin load balancing</li>
+<li>Handling for relational database clusters (e.g. Pgpool II and Postgres-XC)</li>
+<li>Handling for storage clusters (e.g. GlusterFS) or Amazon S3</li>
+<li>Handling for multiple reverse proxies, SSL terminators, static caches, load balancers</li>
+<li>Handling for dedicated application hosts to run automated jobs</li>
+<li>Security hardening at multiple levels</li>
+<li>Playbooks to handle for routine tasks and maintenance (e.g. copying SSH keys, performing LMS upgrades, performing host upgrades, toggling maintenance mode)</li>
+</ul>
+
+<h2>
+<a id="cloud-sizes" class="anchor" href="#cloud-sizes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cloud Sizes</h2>
+
+<h3>
+<a id="localhost-" class="anchor" href="#localhost-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Localhost <img src="http://img.shields.io/badge/status-available-brightgreen.svg" alt="Development Status">
+</h3>
+
+<hr>
+
+<ul>
+<li>
+<strong>Available hosts:</strong> proxy, application, cache, rdb</li>
+<li>
+<strong>Inventory files:</strong> <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_production">localhost_production</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_development">localhost_development</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/localhost_test">localhost_test</a>
+</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-localhost.png" alt="Diagram"></p>
+
+<h3>
+<a id="small-" class="anchor" href="#small-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Small <img src="http://img.shields.io/badge/status-available-brightgreen.svg" alt="Development Status">
+</h3>
+
+<hr>
+
+<ul>
+<li>
+<strong>Available hosts:</strong> proxy, application, cache, rdb master, rdb slave</li>
+<li>
+<strong>Scalability:</strong> Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports a master rdb host with a warm standby. Supports file storage via Amazon S3.</li>
+<li>
+<strong>Inventory files:</strong> <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_production">small_production</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_development">small_development</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/small_test">small_test</a>
+</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-small.png" alt="Diagram"></p>
+
+<h3>
+<a id="medium-" class="anchor" href="#medium-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Medium <img src="http://img.shields.io/badge/status-queued-lightgrey.svg" alt="Development Status">
+</h3>
+
+<hr>
+
+<ul>
+<li>
+<strong>Available hosts:</strong> proxy, application, cache, rdb coordinator, rdb master, rdb slave, storage</li>
+<li>
+<strong>Scalability:</strong> Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports <a href="http://www.pgpool.net/">Pgpool II with streaming replication</a>. Supports horizontal file storage scaling via <a href="http://www.gluster.org/">GlusterFS</a>.</li>
+<li>
+<strong>Inventory files:</strong> <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_production">medium_production</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_development">medium_development</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/medium_test">medium_test</a>
+</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/309915227/canvas-lms-cloud/canvas-lms-cloud-medium.png" alt="Diagram"></p>
+
+<h3>
+<a id="large-" class="anchor" href="#large-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Large <img src="http://img.shields.io/badge/status-queued-lightgrey.svg" alt="Development Status">
+</h3>
+
+<hr>
+
+<ul>
+<li>
+<strong>Available hosts:</strong> proxy, application, cache, rdb coordinator, rdb datanode, rdb global transaction manager, storage</li>
+<li>
+<strong>Scalability:</strong> Supports multiple datacenter setups. Supports horizontal scaling of proxy, cache (via sharding), and application hosts. Supports <a href="https://wiki.postgresql.org/wiki/Postgres-XC">Postgres-XC</a>. Supports horizontal file storage scaling via <a href="http://www.gluster.org/">GlusterFS</a>.</li>
+<li>
+<strong>Inventory files:</strong> <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/large_production">large_production</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/large_development">large_development</a>, <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/large_test">large_test</a>
+</li>
+</ul>
+
+<h2>
+<a id="playbook-usage" class="anchor" href="#playbook-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playbook Usage</h2>
+
+<p>All examples use a small cloud size. Be sure to adjust your commands based upon your own implementation size.</p>
+
+<hr>
+
+<p>Copy your public SSH key to a new server (typically the first playbook run against any host):</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_copy_ssh_id.yml \
+<span class="pl-k">&gt;</span> --user=username --limit=hostname \
+<span class="pl-k">&gt;</span> --ask-pass --ask-sudo-pass</pre></div>
+
+<hr>
+
+<p>Configure and deploy all production hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production small.yml</pre></div>
+
+<hr>
+
+<p>Configure and deploy all test hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_test small.yml</pre></div>
+
+<hr>
+
+<p>Configure and deploy all development hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_development small.yml</pre></div>
+
+<hr>
+
+<p>Configure and deploy just production application hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production host_application.yml</pre></div>
+
+<hr>
+
+<p>Configure and deploy just production application hosts while only running ruby based tasks:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production host_application.yml --tags=ruby</pre></div>
+
+<hr>
+
+<p>Make Canvas unavailable to perform maintenance:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_make_canvas_unavailable.yml</pre></div>
+
+<hr>
+
+<p>Make Canvas available after performing maintenance:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_make_canvas_available.yml</pre></div>
+
+<hr>
+
+<p>Perform apt maintenance on all production hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_perform_apt_upgrade.yml</pre></div>
+
+<hr>
+
+<p>Perform apt maintenance on all production hosts without rebooting:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_perform_apt_upgrade.yml --skip-tags=reboot</pre></div>
+
+<hr>
+
+<p>Perform apt maintenance on all production application hosts:</p>
+
+<div class="highlight highlight-bash"><pre>$ ansible-playbook -i small_production util_perform_apt_upgrade.yml --limit=application</pre></div>
+
+<hr>
+
+<h2>
+<a id="firewall-design" class="anchor" href="#firewall-design" aria-hidden="true"><span class="octicon octicon-link"></span></a>Firewall Design</h2>
+
+<p>All publicly available ports/protocols have IP based rate-limiting to help mitigate abuse and attacks (e.g. if you ping more than once per second, your requests would be dropped). For details, check out the <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/roles/common/templates/etc/iptables/rules.v4.j2">iptables rules template</a>.</p>
+
+<hr>
+
+<p><strong>Co-Hosts:</strong></p>
+
+<p>All ports and protocols are open. Co-host IP addresses are automatically discovered via the Ansible inventory. This is enforced via <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/roles/common/templates/etc/iptables/rules.v4.j2">iptables rules for all hosts</a>.</p>
+
+<hr>
+
+<p><strong>Administrators:</strong></p>
+
+<p>All ports and protocols are open. If your IP address is explicitly defined in <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/group_vars/all.example">group_vars</a>, you are considered an administrator. This is enforced via <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/roles/common/templates/etc/iptables/rules.v4.j2">iptables rules for all hosts</a>.</p>
+
+<hr>
+
+<p><strong>Public:</strong></p>
+
+<p>ICMP echo requests are allowed to all hosts. TCP port 22 is open on all hosts. However, only SSH key authentication is allowed which is enforced via <a href="https://github.com/rockymadden/canvas-lms-cloud/blob/master/ansible/roles/common/templates/etc/ssh/sshd_config.j2">sshd_config</a>. TCP ports 80 and 443 are open on proxy hosts and are the only ports intended for public consumption.</p>
+
+<hr>
+
+<h2>
+<a id="server-targeting" class="anchor" href="#server-targeting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Server Targeting</h2>
+
+<p>Horizontal scaling concepts are used heavily (e.g. numerous servers per role, ability to dynamic add servers per role, load balancing per role, removing single points of failure per role, etc). With this in mind, we specifically target servers with roughly the following specifications:</p>
+
+<pre><code>CPU: Intel Xeon E3/E5/E7 (e.g. E3-1230v3, E5-1620v2)
+DISK: Intel SSDs or 10k enterprise-level SATA HDDs in RAID 1/10
+RAM 32 GB ECC
+NIC: 1 Gbps (preferably dual)
+IPv4: 1 public
+</code></pre>
+
+<p>These types of servers can be custom built cost-effectively (i.e. $1,200) and leased in large quantities cost-effectively (e.g. ~$120/month at <a href="https://www.ovh.com/us/dedicated-servers/infra/2014-EG-32.xml">OVH</a>).</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Ansible installed locally and one or more Ubuntu 14.04 LTS hosts with:</p>
+
+<ul>
+<li>OpenSSH server installed</li>
+<li>SSH key transferred</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>The MIT License (MIT)
+
+Copyright (c) 2014 Rocky Madden (http://rockymadden.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rockymadden/canvas-lms-cloud">canvas-lms-cloud</a> is maintained by <a href="https://github.com/rockymadden">rockymadden</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
